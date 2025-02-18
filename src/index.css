@@ -1,0 +1,20 @@
+:root {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: rgb(255, 218, 224);
+}
+
+a {
+  color: darkred;
+  text-decoration: none;
+  transition: 0.3s;
+  width: fit-content;
+}
+
+a:visited{
+  color: darkred;
+}

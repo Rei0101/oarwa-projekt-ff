@@ -1,0 +1,152 @@
+.burger-logo {
+    width: 500px;
+    transform: translate(0%, -40%);
+    margin-bottom: -7%;
+}
+
+.text-block {
+    background-color: palevioletred;
+}
+
+.text-block h3 {
+    padding: 10px 30px;
+    font-size: 25px;
+    color: darkred;
+}
+
+.text-block h3 span{
+    font-family: "Chewy";
+    font-size: 40px;
+    vertical-align: middle;
+    color: crimson;
+}
+
+.text-block p {
+    padding: 0px 30px;
+    margin-bottom: 35px;
+    font-size: 20px;
+}
+
+.link-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;   
+}
+
+.link-cards div{
+    text-align: center;
+}
+
+.link-cards div h4 {
+    font-family: "Chewy";
+    letter-spacing: 5px;
+    color: crimson;
+}
+
+.link-cards div p {
+    padding: 15px;
+}
+
+.link-cards div button {
+    height: 55px;
+    width: 130px;
+    font-size: large;
+    border-radius: 10px;
+    background-color: crimson;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.link-cards div button:hover {
+    cursor: pointer;
+    background-color: gold;
+}
+
+.link-cards div button:active {
+    background-color: goldenrod;
+    transition: none;
+}
+
+.link-cards > div {
+    height: 300px;
+}
+
+.link-cards > div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    min-width: 160px;
+}
+
+.link-cards > div:first-child div {
+    flex-grow: 1;
+    width: 33.33%;
+}
+
+.link-cards > div:first-child div:nth-child(2) {
+    border-left: 2px solid palevioletred;
+    border-right: 2px solid palevioletred;
+}
+
+.link-cards > div:last-child * {
+    margin: 0;
+}
+
+.link-cards > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: palevioletred;
+    justify-self: center;
+    font-size: 30px;   
+}
+
+.link-cards > div:last-child p{
+    font-size: 60px;
+    margin: 20px 0px;
+}
+
+.reviews {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.reviews > div {
+    height: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.reviews ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 10px;
+}
+
+.reviews ul li img{
+    height: 30px;
+    width: 30px;
+}
+
+.reviews div > img {
+    height: 50px;
+    width: 50px;
+    clip-path: circle();
+}
+
+.reviews > div div{
+    flex-grow: 1;
+    width: 33.33%;
+}
+
+.reviews > div div:nth-child(2) {
+    border-left: 2px solid palevioletred;
+    border-right: 2px solid palevioletred;
+}
+

@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-
-dotenv.config()
-
+import CONFIG from "./config/config.js";
 import express from "express";
 import cors from "cors";
 
@@ -17,8 +14,8 @@ app.get('/', (req, res) => {
 });
 
 //TODO Add /api base route
-const server = app.listen(process.env.SERVER_PORT || 5000, () => {
-  console.log(`Server running on port http://localhost:${process.env.SERVER_PORT || 5000}`);
+const server = app.listen(CONFIG.SERVER_PORT, () => {
+  console.log(`Server running on port http://localhost:${CONFIG.SERVER_PORT}`);
 });
 
 export { app, server };

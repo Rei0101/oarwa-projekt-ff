@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDB, closeDB } from "./config/db.js";
 import rootRoutes from "./routes/rootRoutes.js";
 import generalRoutes from "./routes/generalRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -15,9 +16,8 @@ connectDB();
 
 //* False path (add /api to URL)
 app.use("/", rootRoutes);
-
 app.use("/api", generalRoutes);
-
+app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 

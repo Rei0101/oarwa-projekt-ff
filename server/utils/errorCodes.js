@@ -22,18 +22,18 @@ function FORBIDDEN(res, mes = "Access denied.") {
   });
 }
 
-function CONFLICT(res, mes = "A request conflict has occurred.") {
-  return res.status(409).json({
-    success: false,
-    errorCode: "CONFLICT",
-    message: mes,
-  });
-}
-
 function NOT_FOUND(res, mes = "Requested resources not found.") {
   return res.status(404).json({
     success: false,
     errorCode: "NOT_FOUND",
+    message: mes,
+  });
+}
+
+function CONFLICT(res, mes = "A request conflict has occurred.") {
+  return res.status(409).json({
+    success: false,
+    errorCode: "CONFLICT",
     message: mes,
   });
 }
@@ -50,7 +50,7 @@ export {
   BAD_REQUEST,
   NOT_AUTHORIZED,
   FORBIDDEN,
-  CONFLICT,
   NOT_FOUND,
+  CONFLICT,
   INTERNAL_SERVER_ERROR,
 };

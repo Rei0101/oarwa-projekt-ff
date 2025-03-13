@@ -5,4 +5,8 @@ const welcomeMessage = (req, res) => {
   });
 };
 
+const getCollection = async (req, res) => {
+  
+};
+
 export { welcomeMessage };

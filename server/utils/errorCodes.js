@@ -1,48 +1,48 @@
-function BAD_REQUEST(res, mes = "Sent data is invalid.") {
+function BAD_REQUEST(res, mes) {
   return res.status(400).json({
     success: false,
     errorCode: "BAD_REQUEST",
-    message: mes,
+    message: mes || "Sent data is invalid.",
   });
 }
 
-function NOT_AUTHORIZED(res, mes = "Accessing resource is not authorized.") {
+function NOT_AUTHORIZED(res, mes) {
   return res.status(401).json({
     success: false,
     errorCode: "NOT_AUTHORIZED",
-    message: mes,
+    message: mes || "Accessing resource is not authorized.",
   });
 }
 
-function FORBIDDEN(res, mes = "Access denied.") {
+function FORBIDDEN(res, mes) {
   return res.status(403).json({
     success: false,
     errorCode: "FORBIDDEN",
-    message: mes,
+    message: mes || "Access denied.",
   });
 }
 
-function NOT_FOUND(res, mes = "Requested resources not found.") {
+function NOT_FOUND(res, mes) {
   return res.status(404).json({
     success: false,
     errorCode: "NOT_FOUND",
-    message: mes,
+    message: mes || "Requested resources not found.",
   });
 }
 
-function CONFLICT(res, mes = "A request conflict has occurred.") {
+function CONFLICT(res, mes) {
   return res.status(409).json({
     success: false,
     errorCode: "CONFLICT",
-    message: mes,
+    message: mes || "A request conflict has occurred.",
   });
 }
 
-function INTERNAL_SERVER_ERROR(res, mes = "Error when fetching data.") {
+function INTERNAL_SERVER_ERROR(res, mes) {
   return res.status(500).json({
     success: false,
     errorCode: "INTERNAL_SERVER_ERROR",
-    message: mes,
+    message: mes || "Error when fetching data.",
   });
 }
 

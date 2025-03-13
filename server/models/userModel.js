@@ -18,7 +18,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    unique: true,
   },
   dateOfBirth: Date,
   city: {
@@ -28,7 +27,6 @@ const userSchema = new Schema({
   address: {
     type: String,
     required: true,
-    unique: true,
   },
 });
 

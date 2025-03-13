@@ -1,24 +1,20 @@
+import bcrypt from "bcrypt";
 import { User } from "../models/userModel.js";
+import { checkFieldAppearance } from "../utils/userHelpers.js";
 
-const newUser = async (req, res, next) => {
-  const { firstName, lastName, email, password, dateOfBirth, city, address } =
-    req.body;
+const registerUser = async (req, res, next) => {
+  const { email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = new User({
-    firstName,
-    lastName,
-    email,
-    password,
-    dateOfBirth,
-    city,
-    address,
-  });
+  const newUser = new User({ ...req.body, password: hashedPassword });
+
   try {
+    await checkFieldAppearance({ email }, User);
     await newUser.save();
-    res.send(newUser);
+    res.status(201).send(newUser);
   } catch (error) {
     next(error);
   }
 };
 
-export { newUser };
+export { registerUser };

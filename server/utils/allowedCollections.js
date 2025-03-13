@@ -1,1 +1,1 @@
-export default ["users"];
+export const allowedCollections = ["users"];

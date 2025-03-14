@@ -21,6 +21,15 @@ app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1); 
+});
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1); 
+});
+
 const server = app.listen(CONFIG.SERVER_PORT, () => {
   console.log(
     `Server running on URI http://${CONFIG.HOST}:${CONFIG.SERVER_PORT}/api`

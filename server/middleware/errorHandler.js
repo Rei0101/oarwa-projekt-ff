@@ -8,7 +8,8 @@ import {
 } from "../utils/errorCodes.js";
 
 const errorHandler = async (err, req, res, next) => {
-  console.error(err);
+  console.error(err.stack);
+  console.error(`Error occurred with method ${req.method} at path ${req.url}`);
 
   const status = err.status || 500;
 

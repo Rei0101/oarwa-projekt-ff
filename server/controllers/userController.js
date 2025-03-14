@@ -22,18 +22,19 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const dbUser = await User.findOne({ email: req.body.email });
+    
     if (
       dbUser &&
       (await bcrypt.compare(req.body.password, dbUser.password))
     ) {
       const token = jwt.sign(
-        { userEmail: dbUser.email, role: dbUser.role },
+        { email: dbUser.email, role: dbUser.role },
         CONFIG.JWT_SECRET,
         { expiresIn: CONFIG.JWT_EXPIRATION }
       );
       res.json({ token });
     } else {
-      throw Object.assign(new Error(), { status: 401 });
+      throw Object.assign(new Error(), { status: 404 });
     }
   } catch (error) {
     next(error);

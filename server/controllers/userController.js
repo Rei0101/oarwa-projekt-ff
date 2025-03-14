@@ -34,12 +34,9 @@ const loginUser = async (req, res, next) => {
       );
       res.json({ token });
     } else {
-      console.log("a");
-      
-      throw Object.assign(new Error(), { status: 404 });
+      throw Object.assign(new Error(), { status: 401 });
     }
   } catch (error) {
-    console.log("b");
     next(error);
   }
 };

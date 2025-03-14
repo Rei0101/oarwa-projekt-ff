@@ -1,5 +1,8 @@
 import express from "express";
-import { welcomeMessage, getCollection } from "../controllers/generalController.js";
+import {
+  welcomeMessage,
+  getCollection,
+} from "../controllers/generalController.js";
 
 const router = express.Router();
 

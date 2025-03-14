@@ -2,7 +2,7 @@ import { allowedCollections } from "../utils/allowedCollections.js";
 import { getCollectionData } from "../utils/collectionHandler.js";
 
 const welcomeMessage = (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
     message: `Welcome to the API for Meat Your Maker. Viewable collections: ${allowedCollections}`,
   });
@@ -19,7 +19,7 @@ const getCollection = async (req, res, next) => {
       throw Object.assign(new Error(), { status: 404 });
     }
 
-    res.json(collection);
+    res.status(200).json(collection);
   } catch (error) {
     next(error);
   }

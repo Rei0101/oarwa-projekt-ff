@@ -1,4 +1,4 @@
-function BAD_REQUEST(res, mes) {
+const BAD_REQUEST = (res, mes) => {
   return res.status(400).json({
     success: false,
     errorCode: "BAD_REQUEST",
@@ -6,15 +6,15 @@ function BAD_REQUEST(res, mes) {
   });
 }
 
-function NOT_AUTHORIZED(res, mes) {
+const UNAUTHORIZED = (res, mes) => {
   return res.status(401).json({
     success: false,
-    errorCode: "NOT_AUTHORIZED",
-    message: mes || "Accessing resource is not authorized.",
+    errorCode: "UNAUTHORIZED",
+    message: mes || "Authentication required.",
   });
 }
 
-function FORBIDDEN(res, mes) {
+const FORBIDDEN = (res, mes) => {
   return res.status(403).json({
     success: false,
     errorCode: "FORBIDDEN",
@@ -22,7 +22,7 @@ function FORBIDDEN(res, mes) {
   });
 }
 
-function NOT_FOUND(res, mes) {
+const NOT_FOUND = (res, mes) => {
   return res.status(404).json({
     success: false,
     errorCode: "NOT_FOUND",
@@ -30,7 +30,7 @@ function NOT_FOUND(res, mes) {
   });
 }
 
-function CONFLICT(res, mes) {
+const CONFLICT = (res, mes) => {
   return res.status(409).json({
     success: false,
     errorCode: "CONFLICT",
@@ -38,7 +38,7 @@ function CONFLICT(res, mes) {
   });
 }
 
-function INTERNAL_SERVER_ERROR(res, mes) {
+const INTERNAL_SERVER_ERROR = (res, mes) => {
   return res.status(500).json({
     success: false,
     errorCode: "INTERNAL_SERVER_ERROR",
@@ -48,7 +48,7 @@ function INTERNAL_SERVER_ERROR(res, mes) {
 
 export {
   BAD_REQUEST,
-  NOT_AUTHORIZED,
+  UNAUTHORIZED,
   FORBIDDEN,
   NOT_FOUND,
   CONFLICT,

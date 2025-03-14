@@ -1,13 +1,13 @@
 import {
   BAD_REQUEST,
-  NOT_AUTHORIZED,
+  UNAUTHORIZED,
   FORBIDDEN,
   NOT_FOUND,
   CONFLICT,
   INTERNAL_SERVER_ERROR,
 } from "../utils/errorCodes.js";
 
-export default function errorHandler(err, req, res, next) {
+const errorHandler = async (err, req, res, next) => {
   console.error(err);
 
   const status = err.status || 500;
@@ -16,7 +16,7 @@ export default function errorHandler(err, req, res, next) {
     case 400:
       return BAD_REQUEST(res, err.message);
     case 401:
-      return NOT_AUTHORIZED(res, err.message);
+      return UNAUTHORIZED(res, err.message);
     case 403:
       return FORBIDDEN(res, err.message);
     case 404:
@@ -27,3 +27,5 @@ export default function errorHandler(err, req, res, next) {
       return INTERNAL_SERVER_ERROR(res, err.message);
   }
 }
+
+export default errorHandler;

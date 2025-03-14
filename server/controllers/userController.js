@@ -22,7 +22,7 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const dbUser = await User.findOne({ email: req.body.email });
-    
+
     if (
       dbUser &&
       (await bcrypt.compare(req.body.password, dbUser.password))
@@ -34,9 +34,12 @@ const loginUser = async (req, res, next) => {
       );
       res.json({ token });
     } else {
+      console.log("a");
+      
       throw Object.assign(new Error(), { status: 404 });
     }
   } catch (error) {
+    console.log("b");
     next(error);
   }
 };

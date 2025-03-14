@@ -1,6 +1,6 @@
-async function checkFieldAppearance(conditions, User) {
-  for (const key in conditions) {
-    if (await User.findOne({ [key]: conditions[key] })) {
+const checkFieldAppearance = async (conditions, User) => {
+  for (const field in conditions) {
+    if (await User.findOne({ [field]: conditions[field] })) {
       throw Object.assign(new Error(), { status: 409 });
     }
   }

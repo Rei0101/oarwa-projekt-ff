@@ -1,5 +1,6 @@
 :root {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 body {
@@ -15,6 +16,6 @@ a {
   width: fit-content;
 }
 
-a:visited{
+a:visited {
   color: darkred;
 }

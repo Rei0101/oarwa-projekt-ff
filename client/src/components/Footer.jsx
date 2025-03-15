@@ -1,4 +1,4 @@
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 
 export default function Footer() {
   return (
@@ -16,10 +16,12 @@ export default function Footer() {
         <Navigation />
       </div>
       <div>
-        <p>© {String(new Date().getFullYear())} <i>Meat Your Maker.</i> All rights reserved.</p>
+        <p>
+          © {String(new Date().getFullYear())} <i>Meat Your Maker.</i> All
+          rights reserved.
+        </p>
         <p>Made by Rei Krstić.</p>
       </div>
-      
     </footer>
   );
 }

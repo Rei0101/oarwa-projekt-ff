@@ -27,12 +27,12 @@ function Home() {
             step="1"
             instruction="Prijavi se sad!"
             path="/#"
-            name="Login"
+            name="Prijava"
           />
           <LinkCard
             step="2"
             instruction="Pronađi nešto za jesti!"
-            path="/meni"
+            path="/menu"
             name="Meni"
           />
           <LinkCard
@@ -45,7 +45,7 @@ function Home() {
         <LinkCard
           step="4"
           instruction="...MLJAC!😋"
-          path="/narudzba"
+          path="/order"
           name="Narudžba"
         />
       </section>

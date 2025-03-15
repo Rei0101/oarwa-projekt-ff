@@ -1,64 +1,82 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
-    background-color: palevioletred;
-    height: 100px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: palevioletred;
+  height: 100px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header img:first-child {
-    margin: 0px 30px;
+  margin: 0px 30px;
 }
 
 header img {
-    height: 50px;
+  height: 50px;
 }
 
-header div, header nav {
-    display: flex;
-    align-items: center;
-    gap: 35px;
+header div,
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
 }
 
 header a {
-    font-size: large;
+  font-size: large;
 }
 
 header a:hover {
-    color: gold !important;
+  color: gold !important;
 }
-  
-header a:active{
-    text-decoration: underline overline wavy;
+
+header a:active {
+  text-decoration: underline overline wavy;
+}
+
+header .profile-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: max-content;
+  margin-right: 15px;
+  margin-left: -5px;
+}
+
+header .profile-box h5, header .profile-box img {
+  margin: 0px;
+  padding: 0px;
+}
+
+header .profile-box a:active {
+  text-decoration: none;
 }
 
 footer {
-    background-color: palevioletred;
-    height: 200px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
+  background-color: palevioletred;
+  height: 200px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 footer > div:last-child {
-    transform: translateY(50%);
+  transform: translateY(50%);
 }
 
 footer nav {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 footer a {
-    font-size: medium;
+  font-size: medium;
 }

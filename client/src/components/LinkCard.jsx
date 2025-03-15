@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import PropTypes from "prop-types";
 
-export default function LinkCard({step, instruction, path, name}) {
+export default function LinkCard({ step, instruction, path, name }) {
   return (
     <div>
       <h4>{step}. KORAK</h4>
@@ -19,4 +19,4 @@ LinkCard.propTypes = {
   instruction: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-}
+};

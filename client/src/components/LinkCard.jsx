@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
 import PropTypes from "prop-types";
 
 export default function LinkCard({ step, instruction, path, name }) {
@@ -8,7 +7,7 @@ export default function LinkCard({ step, instruction, path, name }) {
       <h4>{step}. KORAK</h4>
       <p>{instruction}</p>
       <Link to={path}>
-        <Button name={name} />
+        <button>{name}</button>
       </Link>
     </div>
   );

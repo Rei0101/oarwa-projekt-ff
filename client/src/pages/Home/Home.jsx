@@ -26,7 +26,7 @@ function Home() {
           <LinkCard
             step="1"
             instruction="Prijavi se sad!"
-            path="/#"
+            path="/login"
             name="Prijava"
           />
           <LinkCard
@@ -51,8 +51,8 @@ function Home() {
       </section>
       <section className="reviews">
         <h2>
-          Naša jela i sastojci su ukusni. Ne vjerujte nama na riječ, već
-          našim recenzentima:
+          Naša jela i sastojci su ukusni. Ne vjerujte nama na riječ, već našim
+          recenzentima:
         </h2>
         <div>
           <Review

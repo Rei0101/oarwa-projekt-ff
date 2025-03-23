@@ -1,18 +1,13 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
-export default function ControlledInput({
+export default function Input({
   name,
   label,
   type = "text",
+  value,
+  onChange,
   required = false,
 }) {
-  const [input, setInput] = useState("");
-
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
-  };
-
   return (
     <span>
       <label htmlFor={name}>{label}:</label>
@@ -20,17 +15,19 @@ export default function ControlledInput({
         id={name}
         name={name}
         type={type}
-        value={input}
-        onChange={handleInputChange}
+        value={value}
+        onChange={onChange}
         required={required}
       />
     </span>
   );
 }
 
-ControlledInput.propTypes = {
+Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
 };

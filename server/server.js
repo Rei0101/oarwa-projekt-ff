@@ -14,7 +14,6 @@ app.use(express.json());
 
 connectDB();
 
-//* False path (add /api to URL)
 app.use("/", rootRoutes);
 app.use("/api", generalRoutes);
 app.use("/api/users", userRoutes);

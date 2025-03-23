@@ -1,5 +1,6 @@
 .form-box {
   box-sizing: border-box;
+  position: relative;
   border-radius: 5%;
   background-color: palevioletred;
   width: 75%;
@@ -59,6 +60,18 @@
 
 .form-box p {
   margin-bottom: 75px;
-  position: relative;
-  top: 10px;
+}
+
+.error {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+}
+
+.error.visible {
+  visibility: visible;
 }

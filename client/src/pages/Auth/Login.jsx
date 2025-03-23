@@ -20,7 +20,7 @@ function Login() {
       const { email, password } = formData;
 
       if (!email || !password) {
-        setError("Missing credentials.");
+        setError("Forma nije popunjena.");
         return;
       }
 
@@ -32,12 +32,11 @@ function Login() {
         }
       );
 
-      console.log("Response:", response);
       localStorage.setItem("token", response.data.token);
 
       navigate("/");
     } catch (error) {
-      setError("Invalid credentials.");
+      setError("Uneseni su netočni podaci.");
       console.error("Error object:", error);
     }
   };
@@ -66,7 +65,7 @@ function Login() {
           <button type="submit">Prijavi se</button>
         </form>
         <p>
-          Nemaš još račun? <Link to="/registration">Registriraj se!</Link>
+          Nemaš još račun? <Link to="/register">Registriraj se!</Link>
         </p>  
         <ErrorText error={error} />
       </div>

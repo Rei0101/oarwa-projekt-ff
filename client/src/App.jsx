@@ -5,7 +5,7 @@ import Menu from "./pages/Menu/Menu";
 import MakeAMeal from "./pages/MakeAMeal/MakeAMeal";
 import Order from "./pages/Order/Order";
 import Login from "./pages/Auth/Login";
-import Registration from "./pages/Auth/Registration";
+import Register from "./pages/Auth/Register";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -21,7 +21,7 @@ function App() {
           <Route path="/make-a-meal" element={<MakeAMeal />} />
           <Route path="/order" element={<Order />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
 
         <Footer />

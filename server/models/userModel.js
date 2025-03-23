@@ -19,7 +19,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  dateOfBirth: Date,
+  dateOfBirth: { 
+    type: Date,
+    default: null
+  },
   city: {
     type: String,
     required: true,
@@ -28,11 +31,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  role: { 
+  role: {
     type: String,
     enum: ["customer", "chef"],
-    default: "customer"
-  }
+    default: "customer",
+  },
 });
 
 const User = mongoose.model("User", userSchema);

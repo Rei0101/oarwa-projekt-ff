@@ -1,18 +1,15 @@
 import { useState } from "react";
+import { handleChange as handleChangeUtil } from "../utils/handlers";
 
 function useForm(initialValues) {
   const [formData, setFormData] = useState(initialValues);
   const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  function handleChange(e) {
+    handleChangeUtil(e, setFormData)
   };
 
-  const resetForm = () => {
+  function resetForm() {
     setFormData(initialValues);
     setError(null);
   };

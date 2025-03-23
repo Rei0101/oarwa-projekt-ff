@@ -1,8 +1,8 @@
 import "./Auth.css";
 import Input from "../../components/Input";
-import { Link } from "react-router-dom";
+import { handleRegister } from "../../utils/handlers";
+import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import axios from "axios";
 
 function Register() {
   const { formData, handleChange, error, setError } = useForm({
@@ -15,31 +15,12 @@ function Register() {
     city: "",
     address: "",
   });
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setError(null);
-
-    // Add your validation logic here
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/register",
-        formData
-      );
-
-      console.log(response);
-      // Handle successful register (e.g., redirect, show success message, etc.)
-    } catch (error) {
-      setError(error.message || "Register failed.");
-      console.error(error);
-    }
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="container">
       <div className="form-box">
-        <form onSubmit={handleRegister}>
+        <form onSubmit={(e) => handleRegister(e, formData, setError, navigate)}>
           <Input
             name="firstName"
             label="Ime"

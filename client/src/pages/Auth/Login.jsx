@@ -10,7 +10,6 @@ function Login() {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,10 +31,7 @@ function Login() {
         }
       );
 
-      console.log("Response:", response);
-      localStorage.setItem("token", response.data.token);
-
-      navigate("/");
+      console.log(response);
     } catch (error) {
       setError("Invalid credentials.");
       console.error("Error object:", error);

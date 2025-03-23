@@ -1,6 +1,7 @@
 import "./Auth.css";
 import Input from "../../components/Input";
-import { Link } from "react-router-dom";
+import ErrorText from "../../components/ErrorText";
+import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import axios from "axios";
 
@@ -63,7 +64,7 @@ function Login() {
         <p>
           Nemaš još račun? <Link to="/registration">Registriraj se!</Link>
         </p>  
-        <p className={`error ${error ? "visible" : ""}`}>{error}</p>
+        <ErrorText error={error} />
       </div>
     </div>
   );

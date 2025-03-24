@@ -10,8 +10,8 @@ import {
 const errorHandler = async (err, req, res, next) => {
   console.error(err.stack);
   console.error(`Error occurred with method ${req.method} at path ${req.url}`);
-
-  const status = err.status || 500;
+  
+  const status = err.statusCode || 500;
 
   switch (status) {
     case 400:

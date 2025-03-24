@@ -70,6 +70,7 @@
   left: 50%;
   transform: translateX(-50%);
   visibility: hidden;
+  text-align: center;
 }
 
 .error.visible {

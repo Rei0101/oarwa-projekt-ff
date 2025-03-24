@@ -1,8 +1,10 @@
+import CustomError from "../../shared/CustomErrorClass.js"
+
 const authorizeUser = (role) => (req, res, next) => {
     if (req.dbUser && req.dbUser.role === role) {
       next();
     } else {
-      next(Object.assign(new Error(), { status: 403 }));
+      throw new CustomError(403);
     }
   };
 

@@ -1,3 +1,4 @@
+import CustomError from "../../shared/CustomErrorClass.js"
 import { allowedCollections } from "../utils/allowedCollections.js";
 import { getCollectionData } from "../utils/collectionHandler.js";
 
@@ -16,7 +17,7 @@ const getCollection = async (req, res, next) => {
     collection = await getCollectionData(collectionName);
 
     if (collection.length == 0) {
-      throw Object.assign(new Error(), { status: 404 });
+      throw new CustomError(404);
     }
 
     res.status(200).json(collection);

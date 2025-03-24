@@ -1,6 +1,7 @@
 import CONFIG from "../config/config.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import CustomError from "../../shared/CustomErrorClass.js"
 import { User } from "../models/userModel.js";
 import { checkFieldAppearance } from "../utils/userHelpers.js";
 
@@ -34,7 +35,7 @@ const loginUser = async (req, res, next) => {
       );
       res.json({ token });
     } else {
-      throw Object.assign(new Error(), { status: 401 });
+      throw new CustomError(401);
     }
   } catch (error) {
     next(error);

@@ -1,8 +1,8 @@
 import CustomError from "../../shared/CustomErrorClass.js"
 
-const checkFieldAppearance = async (conditions, User) => {
+const checkFieldAppearance = async (conditions, Field) => {
   for (const field in conditions) {
-    if (await User.findOne({ [field]: conditions[field] })) {
+    if (await Field.findOne({ [field]: conditions[field] })) {
       throw new CustomError(409);
     }
   }

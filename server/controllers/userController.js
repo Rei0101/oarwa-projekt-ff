@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import CustomError from "../../shared/CustomErrorClass.js"
 import { User } from "../models/userModel.js";
-import { checkFieldAppearance } from "../utils/userHelpers.js";
+import { checkFieldAppearance } from "../utils/helpers.js";
 
 const registerUser = async (req, res, next) => {
   const { email, password } = req.body;

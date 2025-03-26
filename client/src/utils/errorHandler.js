@@ -35,7 +35,7 @@ function getErrorMessageByCode(code) {
     case 404:
       return "Nisu pronađeni traženi podaci.";
     case 409:
-      return "Došlo je do sukoba. Molimo pokušajte ponovno kasnije.";
+      return "Ovi podaci već postoje. Molimo pokušajte ponovno.";
     default:
       return "Došlo je do pogreške. Molimo pokušajte ponovno kasnije.";
   }

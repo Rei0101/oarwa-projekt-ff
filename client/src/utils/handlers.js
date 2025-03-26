@@ -32,7 +32,7 @@ async function handleLogin(e, formData, setError, navigate) {
     navigate("/");
   } catch (error) {
     if (!error.statusCode) {
-      error.statusCode = 401;
+      error = new CustomError(401);
     }
     handleError(error, setError);
   }
@@ -54,8 +54,15 @@ async function handleRegister(e, formData, setError, navigate) {
 
     navigate("/login");
   } catch (error) {
-    handleError(500)
+    if (error.status === 409 || error.response.status === 409) {
+      error = new CustomError(
+        409,
+        "Ovaj korisnik već postoji. Molimo pokušajte ponovno."
+      );
+    }
+
+    handleError(error, setError);
   }
 }
 
-export { handleChange, handleLogin, handleRegister };
+export { handleFocus, handleBlur, handleLogin, handleRegister };

@@ -2,12 +2,34 @@ import CustomError from "../../../shared/CustomErrorClass";
 import handleError from "./errorHandler";
 import axios from "axios";
 
-function handleChange(e, setFormData) {
-  const { name, value } = e.target;
-  setFormData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
+function handleFocus(getter, setError) {
+  return function (e) {
+    const { name } = e.target;
+    setError(getter[name]);
+  };
+}
+
+function handleBlur(setter) {
+  return function (e) {
+    const { name, value } = e.target;
+    let valueCopy;
+
+    if (name === "email") {
+      valueCopy = value;
+
+      setter((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+
+    setTimeout(() => {
+      setter((prev) => ({
+        ...prev,
+        [name]: name === "email" ? valueCopy : value.trim(),
+      }));
+    }, 0);
+  };
 }
 
 async function handleLogin(e, formData, setError, navigate) {
@@ -38,11 +60,21 @@ async function handleLogin(e, formData, setError, navigate) {
   }
 }
 
-async function handleRegister(e, formData, setError, navigate) {
+async function handleRegister(e, formData, formErrors, setError, navigate) {
   e.preventDefault();
-  setError(null);
 
-  //TODO Add your validation logic here
+  let hasValidationErrors = Object.values(formErrors).some(
+    (value) => value !== null
+  );
+
+  if (hasValidationErrors) {
+    setError(
+      "Nisu sva polja pravilno unesena. Molimo provjerite ih prije registracije."
+    );
+    return;
+  }
+
+  setError(null);
 
   try {
     const response = await axios.post(

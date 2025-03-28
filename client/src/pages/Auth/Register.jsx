@@ -1,11 +1,20 @@
 import "./Auth.css";
 import Input from "../../components/Input";
-import { handleRegister } from "../../utils/handlers";
+import ErrorText from "../../components/ErrorText";
+import { handleFocus, handleBlur, handleRegister } from "../../utils/handlers";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 
 function Register() {
-  const { formData, handleChange, error, setError } = useForm({
+  const {
+    formData,
+    setFormData,
+    borderColors,
+    handleChange,
+    formErrors,
+    error,
+    setError,
+  } = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -14,35 +23,54 @@ function Register() {
     dateOfBirth: "",
     city: "",
     address: "",
+    phone: "",
   });
   const navigate = useNavigate();
 
+  const today = new Date();
+
   return (
     <div className="container">
-      <div className="form-box">
-        <form onSubmit={(e) => handleRegister(e, formData, setError, navigate)}>
+      <div className="form-box register">
+        <form
+          onSubmit={(e) =>
+            handleRegister(e, formData, formErrors, setError, navigate)
+          }
+        >
           <Input
             name="firstName"
             label="Ime"
             value={formData.firstName}
             onChange={handleChange}
+            placeholder="npr. Ivan"
             required
-          ></Input>
+            borderColor={borderColors.firstName}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
           <Input
             name="lastName"
             label="Prezime"
             value={formData.lastName}
             onChange={handleChange}
+            placeholder="npr. Horvat"
             required
-          ></Input>
+            borderColor={borderColors.lastName}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
           <Input
             name="email"
             label="E-mail"
             type="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="primjer@email.com"
             required
-          ></Input>
+            borderColor={borderColors.email}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
           <Input
             name="password"
             label="Lozinka"
@@ -50,7 +78,10 @@ function Register() {
             value={formData.password}
             onChange={handleChange}
             required
-          ></Input>
+            borderColor={borderColors.password}
+            maxLength={128}
+            onFocus={handleFocus(formErrors, setError)}
+          />
           <Input
             name="confirmPassword"
             label="Potvrdi lozinku"
@@ -58,34 +89,60 @@ function Register() {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
-          ></Input>
+            borderColor={borderColors.confirmPassword}
+            maxLength={128}
+            onFocus={handleFocus(formErrors, setError)}
+          />
           <Input
             name="dateOfBirth"
             label="Datum rođenja (opcionalno)"
             type="date"
             value={formData.dateOfBirth}
             onChange={handleChange}
-          ></Input>
+            borderColor={borderColors.dateOfBirth}
+            max={String(today.toISOString().slice(0, 10))}
+            maxLength={20}
+            onFocus={handleFocus(formErrors, setError)}
+          />
           <Input
             name="city"
             label="Grad"
             value={formData.city}
             onChange={handleChange}
+            placeholder="npr. Split"
             required
-          ></Input>
+            borderColor={borderColors.city}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
           <Input
             name="address"
             label="Adresa"
             value={formData.address}
             onChange={handleChange}
+            placeholder="Neka ulica 123"
             required
-          ></Input>
+            borderColor={borderColors.address}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
+          <Input
+            name="phone"
+            label="Broj mobitela"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            borderColor={borderColors.phone}
+            maxLength={30}
+            onFocus={handleFocus(formErrors, setError)}
+            onBlur={handleBlur(setFormData)}
+          />
           <button type="submit">Registriraj se</button>
         </form>
         <p>
-          Već imaš račun? <Link to="/login">Prijavi se</Link>
+          Već imaš račun? <Link to="/login">Prijavi se!</Link>
         </p>
-        <p className={`error ${error ? "visible" : ""}`}>{error}</p>
+        <ErrorText error={error} />
       </div>
     </div>
   );

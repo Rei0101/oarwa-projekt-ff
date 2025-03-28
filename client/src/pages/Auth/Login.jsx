@@ -1,12 +1,12 @@
 import "./Auth.css";
 import Input from "../../components/Input";
 import ErrorText from "../../components/ErrorText";
-import { handleLogin } from "../../utils/handlers";
+import { handleBlur, handleLogin } from "../../utils/handlers";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 
 function Login() {
-  const { formData, handleChange, error, setError } = useForm({
+  const { formData, setFormData, handleChange, error, setError } = useForm({
     email: "",
     password: "",
   });
@@ -22,8 +22,10 @@ function Login() {
             type="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="primjer@email.com"
             required
-          ></Input>
+            onBlur={handleBlur(setFormData)}
+          />
           <Input
             name="password"
             label="Lozinka"
@@ -31,12 +33,13 @@ function Login() {
             value={formData.password}
             onChange={handleChange}
             required
-          ></Input>
+            maxLength={128}
+          />
           <button type="submit">Prijavi se</button>
         </form>
         <p>
           Nemaš još račun? <Link to="/register">Registriraj se!</Link>
-        </p>  
+        </p>
         <ErrorText error={error} />
       </div>
     </div>

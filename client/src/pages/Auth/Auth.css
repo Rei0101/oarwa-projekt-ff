@@ -32,6 +32,7 @@
 
 .form-box form input {
   margin-top: 10px;
+  border-width: 5px;
 }
 
 .form-box form input {
@@ -62,11 +63,20 @@
   margin-bottom: 75px;
 }
 
+.form-box.register form input {
+  border-color: crimson;
+}
+
+.form-box.register form input[type="date"] {
+  border-color: gold;
+}
+
 .error {
   position: absolute;
+  height: 30px;
   margin: 0;
   padding: 0;
-  bottom: -15px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
   visibility: hidden;

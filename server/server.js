@@ -5,6 +5,7 @@ import { connectDB, closeDB } from "./config/db.js";
 import rootRoutes from "./routes/rootRoutes.js";
 import generalRoutes from "./routes/generalRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import menuItemRoutes from "./routes/menuItemRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -17,6 +18,7 @@ connectDB();
 app.use("/", rootRoutes);
 app.use("/api", generalRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/menu-items", menuItemRoutes);
 
 app.use(errorHandler);
 

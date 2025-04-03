@@ -9,17 +9,26 @@ const menuItemSchema = new Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
-  description: {
-    type: String,
-    default: null,
+  category: {
+    type: [String],
+    required: true,
+  },
+  ingredients: {
+    type: [String],
+    default: [],
   },
   price: {
     type: Number,
     required: true,
   },
+  timesSold: {
+    type: Number,
+    default: 0,
+  },
 });
 
-const MenuItem = mongoose.model("MenuItem", menuItemSchema);
+const MenuItem = mongoose.model("MenuItem", menuItemSchema, "menu_items");
 
 export { MenuItem };

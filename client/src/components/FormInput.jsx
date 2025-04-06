@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function Input({
+export default function FormInput({
   name,
   label,
   type = "text",
@@ -35,7 +35,7 @@ export default function Input({
   );
 }
 
-Input.propTypes = {
+FormInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,

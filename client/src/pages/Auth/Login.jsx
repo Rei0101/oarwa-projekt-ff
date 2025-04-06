@@ -1,5 +1,5 @@
 import "./Auth.css";
-import Input from "../../components/Input";
+import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
 import { handleBlur, handleLogin } from "../../utils/handlers";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ function Login() {
     <div className="container">
       <div className="form-box">
         <form onSubmit={(e) => handleLogin(e, formData, setError, navigate)}>
-          <Input
+          <FormInput
             name="email"
             label="E-mail"
             type="email"
@@ -26,7 +26,7 @@ function Login() {
             required
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="password"
             label="Lozinka"
             type="password"

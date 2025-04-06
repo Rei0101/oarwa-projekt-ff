@@ -1,5 +1,5 @@
 import "./Auth.css";
-import Input from "../../components/Input";
+import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
 import { handleFocus, handleBlur, handleRegister } from "../../utils/handlers";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ function Register() {
             handleRegister(e, formData, formErrors, setError, navigate)
           }
         >
-          <Input
+          <FormInput
             name="firstName"
             label="Ime"
             value={formData.firstName}
@@ -48,7 +48,7 @@ function Register() {
             onFocus={handleFocus(formErrors, setError)}
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="lastName"
             label="Prezime"
             value={formData.lastName}
@@ -59,7 +59,7 @@ function Register() {
             onFocus={handleFocus(formErrors, setError)}
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="email"
             label="E-mail"
             type="email"
@@ -71,7 +71,7 @@ function Register() {
             onFocus={handleFocus(formErrors, setError)}
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="password"
             label="Lozinka"
             type="password"
@@ -82,7 +82,7 @@ function Register() {
             maxLength={128}
             onFocus={handleFocus(formErrors, setError)}
           />
-          <Input
+          <FormInput
             name="confirmPassword"
             label="Potvrdi lozinku"
             type="password"
@@ -93,7 +93,7 @@ function Register() {
             maxLength={128}
             onFocus={handleFocus(formErrors, setError)}
           />
-          <Input
+          <FormInput
             name="dateOfBirth"
             label="Datum rođenja (opcionalno)"
             type="date"
@@ -104,7 +104,7 @@ function Register() {
             maxLength={20}
             onFocus={handleFocus(formErrors, setError)}
           />
-          <Input
+          <FormInput
             name="city"
             label="Grad"
             value={formData.city}
@@ -115,7 +115,7 @@ function Register() {
             onFocus={handleFocus(formErrors, setError)}
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="address"
             label="Adresa"
             value={formData.address}
@@ -126,7 +126,7 @@ function Register() {
             onFocus={handleFocus(formErrors, setError)}
             onBlur={handleBlur(setFormData)}
           />
-          <Input
+          <FormInput
             name="phone"
             label="Broj mobitela"
             value={formData.phone}

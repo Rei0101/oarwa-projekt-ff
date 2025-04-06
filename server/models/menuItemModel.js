@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const menuItemSchema = new Schema({
   imageLink: {
     type: String,
-    default: null,
+    required: true,
   },
   name: {
     type: String,

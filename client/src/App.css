@@ -89,3 +89,17 @@ footer nav {
 footer a {
   font-size: medium;
 }
+
+button {
+  height: 40px;
+  width: 125px;
+  border-radius: 20px;
+  background-color: crimson;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: gold;
+}

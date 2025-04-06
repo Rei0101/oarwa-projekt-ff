@@ -41,20 +41,6 @@
   width: 100%;
 }
 
-.form-box form button {
-  height: 40px;
-  width: 125px;
-  border-radius: 20px;
-  background-color: crimson;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.form-box form button:hover {
-  cursor: pointer;
-  background-color: gold;
-}
-
 .form-box form label {
   display: block;
 }

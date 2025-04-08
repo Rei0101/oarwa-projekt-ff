@@ -2,6 +2,7 @@ import "./Auth.css";
 import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
 import { handleFocus, handleBlur, handleRegister } from "../../utils/handlers";
+import { formatDate } from "../../../../shared/helpers";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 
@@ -100,7 +101,7 @@ function Register() {
             value={formData.dateOfBirth}
             onChange={handleChange}
             borderColor={borderColors.dateOfBirth}
-            max={String(today.toISOString().slice(0, 10))}
+            max={formatDate(today)}
             maxLength={20}
             onFocus={handleFocus(formErrors, setError)}
           />

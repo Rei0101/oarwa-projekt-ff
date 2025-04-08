@@ -6,6 +6,7 @@ const REGEX = {
   MIN_1_COMMON_PUNCTUATION: /[!@#$%^&*()_+\-={}\[\]|\\:;"'<>,.?\/]/,
   VALID_ADDRESS: /^(?!.*[^ \p{L}0-9,.-]).*(?:\d[ ].+|.+[ ]\d).*/u,
   VALID_PHONE_NUMBER: /^[+]?[\d\s().-]+$/,
+  VALID_DATE_FORMAT: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
 };
 
 export { REGEX };

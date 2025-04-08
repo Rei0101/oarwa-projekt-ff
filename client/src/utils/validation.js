@@ -1,4 +1,4 @@
-import { REGEX } from "./constants";
+import { REGEX } from "../../../shared/regex";
 
 function registerValidation(name, value, password) {
   if (!value.trim()) {

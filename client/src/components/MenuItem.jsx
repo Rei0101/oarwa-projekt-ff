@@ -6,12 +6,12 @@ export default function MenuItem({ imageLink, name, ingredients, price }) {
       <img src={imageLink} alt={name + " slika"} />
       <div>
         <span>
-            <h3>{name}</h3>
-            <p>{ingredients.join(", ")}</p>
+          <h3>{name}</h3>
+          <p>{ingredients.join(", ")}</p>
         </span>
         <span>
-            <p>{price + " €"}</p>
-            <button>Naruči!</button>
+          <p>{price + " €"}</p>
+          <button>Naruči!</button>
         </span>
       </div>
     </div>

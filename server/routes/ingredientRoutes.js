@@ -6,6 +6,11 @@ import authorizeUser from "../middleware/authorizationMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", authenticateUser, authorizeUser("admin"), addEntry(Ingredient));
+router.post(
+  "/",
+  authenticateUser,
+  authorizeUser("admin"),
+  addEntry(Ingredient)
+);
 
 export default router;

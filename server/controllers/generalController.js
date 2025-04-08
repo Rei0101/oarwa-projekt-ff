@@ -30,15 +30,14 @@ const getCollection = async (req, res, next) => {
 };
 
 const addEntry = (Entry) => async (req, res, next) => {
-  
-  const {name} = req.body.name;
-  
+  const { name } = req.body.name;
+
   const newEntry = new Entry({ ...req.body });
 
   try {
-      await checkFieldAppearance({ name }, Entry);
-      await newEntry.save();
-      res.status(201).send(newEntry);
+    await checkFieldAppearance({ name }, Entry);
+    await newEntry.save();
+    res.status(201).send(newEntry);
   } catch (error) {
     next(error);
   }

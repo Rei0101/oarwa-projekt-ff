@@ -10,7 +10,7 @@ import {
 const errorHandler = async (err, req, res, next) => {
   console.error(err.stack);
   console.error(`Error occurred with method ${req.method} at path ${req.url}`);
-  
+
   const status = err.statusCode || 500;
 
   switch (status) {
@@ -27,6 +27,6 @@ const errorHandler = async (err, req, res, next) => {
     default:
       return INTERNAL_SERVER_ERROR(res, err.message);
   }
-}
+};
 
 export default errorHandler;

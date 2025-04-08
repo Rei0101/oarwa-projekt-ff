@@ -37,10 +37,7 @@ const loginUser = async (req, res, next) => {
   try {
     const dbUser = await User.findOne({ email: req.body.email });
 
-    if (
-      dbUser &&
-      (await bcrypt.compare(req.body.password, dbUser.password))
-    ) {
+    if (dbUser && (await bcrypt.compare(req.body.password, dbUser.password))) {
       const token = jwt.sign(
         { email: dbUser.email, role: dbUser.role },
         CONFIG.JWT_SECRET,
@@ -48,7 +45,7 @@ const loginUser = async (req, res, next) => {
       );
       res.json({ token });
     } else {
-      throw new CustomError(401);
+      return next(new CustomError(401));
     }
   } catch (error) {
     next(error);

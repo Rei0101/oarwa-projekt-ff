@@ -1,7 +1,10 @@
 import "./Menu.css";
 import MenuItem from "../../components/MenuItem";
+import { decodeJWT } from "../../utils/helpers";
 
 function Menu() {
+  const userRole = decodeJWT(localStorage.getItem("token")).payload.role;
+  
   return (
     <div className="container">
       <input placeholder="Filter" type="text" />
@@ -24,6 +27,12 @@ function Menu() {
           ingredients={["umak od pome", "šunka"]}
           price={12.99}
         />
+        {userRole === "admin" ? (
+          <div className="item">
+            <h1>+</h1>  
+            <h3>Dodaj artikl</h3>
+          </div>
+        ) : null}
       </div>
     </div>
   );

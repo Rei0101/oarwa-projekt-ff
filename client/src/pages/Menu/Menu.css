@@ -1,33 +1,34 @@
 #menu {
-  width: 90%;
+  width: 100%;
   height: fit-content;
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+  gap: 20px;
 }
 
 #menu .item {
   box-sizing: border-box;
   height: 330px;
+  width: 300px;
   background-color: palevioletred;
   border-radius: 25px;
+  justify-self: center;
+}
+
+.item:last-child {
+  margin-right: 0;
 }
 
 #menu .item,
 .item img {
-  width: 300px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
 
-.item {
-  box-sizing: border-box;
-}
-
 .item img {
   height: 60%;
+  width: 100%;
 }
 
 .item div {

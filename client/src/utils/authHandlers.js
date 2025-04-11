@@ -67,4 +67,4 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
   }
 }
 
-export { handleFocus, handleBlur, handleLogin, handleRegister };
+export { handleLogin, handleRegister };

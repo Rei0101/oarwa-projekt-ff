@@ -1,5 +1,3 @@
-
-
 function handleFocus(getter, setError) {
   return function (e) {
     const { name } = e.target;

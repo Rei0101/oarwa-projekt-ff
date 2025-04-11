@@ -1,10 +1,11 @@
 import "./Auth.css";
 import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
-import { handleFocus, handleBlur, handleRegister } from "../../utils/handlers";
+import { handleRegister } from "../../utils/authHandlers";
+import { handleFocus, handleBlur } from "../../utils/handlers";
 import { formatDate } from "../../../../shared/helpers";
 import { Link, useNavigate } from "react-router-dom";
-import useForm from "../../hooks/useForm";
+import useAuthForm from "../../hooks/useAuthForm";
 
 function Register() {
   const {
@@ -15,7 +16,7 @@ function Register() {
     formErrors,
     error,
     setError,
-  } = useForm({
+  } = useAuthForm({
     firstName: "",
     lastName: "",
     email: "",

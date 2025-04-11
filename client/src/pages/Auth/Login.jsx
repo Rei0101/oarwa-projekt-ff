@@ -1,12 +1,13 @@
 import "./Auth.css";
 import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
-import { handleBlur, handleLogin } from "../../utils/handlers";
+import { handleLogin } from "../../utils/authHandlers";
+import { handleBlur } from "../../utils/handlers";
 import { Link, useNavigate } from "react-router-dom";
-import useForm from "../../hooks/useForm";
+import useAuthForm from "../../hooks/useAuthForm";
 
 function Login() {
-  const { formData, setFormData, handleChange, error, setError } = useForm({
+  const { formData, setFormData, handleChange, error, setError } = useAuthForm({
     email: "",
     password: "",
   });

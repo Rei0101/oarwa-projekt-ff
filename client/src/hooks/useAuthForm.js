@@ -2,7 +2,7 @@ import { registerValidation } from "../utils/validation";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-function useForm(initialValues) {
+function useAuthForm(initialValues) {
   const [formData, setFormData] = useState(initialValues);
   const [borderColors, setBorderColors] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(
@@ -60,4 +60,4 @@ function useForm(initialValues) {
   };
 }
 
-export default useForm;
+export default useAuthForm;

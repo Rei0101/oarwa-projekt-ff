@@ -16,12 +16,11 @@ const authenticateUser = async (req, res, next) => {
     }
 
     const decodedToken = jwt.verify(token, CONFIG.JWT_SECRET);
-    const dbUser = await User.findOne({ email: decodedToken.email });
 
-    if (!dbUser) {
+    if (!(await User.findOne({ email: decodedToken.email }))) {
       return next(new CustomError(404));
     }
-    req.dbUser = dbUser;
+    req.userRole = decodedToken.role;
 
     next();
   } catch (error) {

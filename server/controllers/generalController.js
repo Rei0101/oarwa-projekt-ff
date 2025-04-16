@@ -17,7 +17,7 @@ const getCollection = async (req, res, next) => {
   let collection;
 
   try {
-    collection = await handleCollection(collectionName);
+    collection = await handleCollection(collectionName.replaceAll("-", "_"));
 
     if (collection.length == 0) {
       return next(new CustomError(404));

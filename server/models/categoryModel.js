@@ -1,3 +1,4 @@
+import { REGEX } from "../../shared/regex.js";
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
@@ -6,6 +7,12 @@ const categorySchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: function (value) {
+        return REGEX.LETTERS_ONLY.test(value);
+      },
+      message: (props) => `${props.value} is not a valid name.`,
+    },
   },
   type: {
     type: String,

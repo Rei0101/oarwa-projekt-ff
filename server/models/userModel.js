@@ -10,8 +10,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
     validate: {
-      validator: function (v) {
-        return REGEX.LETTERS_ONLY.test(v);
+      validator: function (value) {
+        return REGEX.LETTERS_ONLY.test(value);
       },
       message: (props) => `${props.value} is not a valid first name.`,
     },
@@ -40,7 +40,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    //* password format is validated before hashing (in userController.js file)
+    //* Password format is validated before hashing (in userController.js file)
   },
   dateOfBirth: {
     type: Date,

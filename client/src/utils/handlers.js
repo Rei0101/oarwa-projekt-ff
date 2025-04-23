@@ -1,3 +1,7 @@
+import axios from "axios";
+import CustomError from "../../../shared/CustomErrorClass";
+import handleError from "./errorHandler";
+
 function handleFocus(getter, setError) {
   return function (e) {
     const { name } = e.target;
@@ -28,4 +32,15 @@ function handleBlur(setter) {
   };
 }
 
-export { handleFocus, handleBlur };
+const fetchCollection = async (collectionName, setError) => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/${collectionName}`);
+    setError(null);
+    return response.data;
+  } catch (error) {
+    error = new CustomError(500);
+    handleError(error, setError)
+  }
+};
+
+export { handleFocus, handleBlur, fetchCollection };

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Review({ image, reviewer, stars, review }) {
   const filledStar = "src/assets/star_fill.png";
-  const emptyStar = "src/assets/star_no_fill.png";
+  const emptyStar = "src/assets/star_no-fill.png";
   return (
     <div>
       <img src={image} alt="profilna slika recenzenta" />

@@ -37,6 +37,6 @@ function getErrorMessageByCode(code) {
     case 409:
       return "Ovi podaci već postoje. Molimo pokušajte ponovno.";
     default:
-      return "Došlo je do pogreške. Molimo pokušajte ponovno kasnije.";
+      return "Došlo je do pogreške. Molimo pokušajte ponovno.";
   }
 }

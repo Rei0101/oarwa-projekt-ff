@@ -26,7 +26,7 @@ const menuItemSchema = new Schema({
       message: (props) => `${props.value} is not a valid name.`,
     },
   },
-  category: {
+  categories: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Category",
     required: true,

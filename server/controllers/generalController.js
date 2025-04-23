@@ -14,10 +14,9 @@ const welcomeMessage = (req, res) => {
 
 const getCollection = async (req, res, next) => {
   const collectionName = req.params.collection;
-  let collection;
 
   try {
-    collection = await handleCollection(collectionName.replaceAll("-", "_"));
+    const collection = await handleCollection(collectionName);
 
     if (collection.length == 0) {
       return next(new CustomError(404));

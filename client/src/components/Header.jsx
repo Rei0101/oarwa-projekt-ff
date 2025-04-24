@@ -1,5 +1,5 @@
 import { useState } from "react";
-import blankProfile from "../assets/pfp_blank.png";
+import blankProfile from "../assets/pfp-blank.png";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
 

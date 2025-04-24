@@ -56,19 +56,19 @@ function Home() {
         </h2>
         <div>
           <Review
-            image="src\assets\pfp_shrek.jpg"
+            image="src\assets\pfp-shrek.jpg"
             reviewer="ShrekLover12"
             stars={5}
             review="Najbolja pizza u Splitu."
           ></Review>
           <Review
-            image="src\assets\pfp_cat.jpg"
+            image="src\assets\pfp-cat.jpg"
             reviewer="meowUwU"
             stars={4}
             review="Dobar izbor priloga i ukusna hrana.😁👍"
           ></Review>
           <Review
-            image="src\assets\pfp_sonic.png"
+            image="src\assets\pfp-sonic.png"
             reviewer="GottaGoFast99"
             stars={2}
             review="Dobia san salmonelu."

@@ -1,4 +1,5 @@
 import CustomError from "../../../shared/CustomErrorClass";
+import {categoryImagePairs} from "./categoryImagePairs";
 
 function decodeJWT(token) {
   const parts = token.split(".");
@@ -22,4 +23,15 @@ function decodeJWT(token) {
   return { header, payload };
 }
 
-export { decodeJWT };
+
+function fetchMenuItemImage(imageLink, category) {
+  if (imageLink) {
+    return imageLink;
+  }
+  if (category in categoryImagePairs) {
+     return categoryImagePairs[category];
+  }
+  return categoryImagePairs["missing"];
+}
+
+export { decodeJWT, fetchMenuItemImage };

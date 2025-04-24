@@ -32,7 +32,7 @@ function handleBlur(setter) {
   };
 }
 
-const fetchCollection = async (collectionName, setError) => {
+async function fetchCollection(collectionName, setError) {
   try {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/${collectionName}`);
     setError(null);

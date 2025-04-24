@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
+import {fetchMenuItemImage} from "../utils/helpers"
 
-export default function MenuItem({ imageLink, name, ingredients, price, userRole }) {
+export default function MenuItem({ imageLink, name, category, ingredients, price, userRole }) {
+  const image = fetchMenuItemImage(imageLink, category);
+
   return (
     <div className="item">
-      <img src={imageLink} alt={name + " slika"} />
+      <img src={image} alt={name + " slika"} />
       <div>
         <span>
           <h3>{name}</h3>
@@ -19,8 +22,9 @@ export default function MenuItem({ imageLink, name, ingredients, price, userRole
 }
 
 MenuItem.propTypes = {
-  imageLink: PropTypes.string.isRequired,
+  imageLink: PropTypes.string,
   name: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   ingredients: PropTypes.array.isRequired,
   price: PropTypes.number.isRequired,
   userRole: PropTypes.string,

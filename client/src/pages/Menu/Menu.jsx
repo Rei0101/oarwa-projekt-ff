@@ -15,7 +15,6 @@ function Menu() {
     }
   } catch (error) {
     console.error("Token error:", error.message);
-    localStorage.removeItem("token");
   }
 
   const [filter, setFilter] = useState("");
@@ -36,8 +35,9 @@ function Menu() {
             collectionData.map((item) => {
               return <MenuItem
                 key={item._id}
-                imageLink={item.imageLink || "a"}
+                imageLink={item.imageLink || null}
                 name={item.name}
+                category={item.categories.sort((a, b) => b.type.localeCompare(a.type))[0]?.name}
                 ingredients={[...item.ingredients]}
                 price={item.price}
                 userRole={userRole}

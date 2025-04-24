@@ -13,6 +13,11 @@ function decodeJWT(token) {
   const payload = JSON.parse(
     atob(parts[1].replaceAll("-", "+").replaceAll("_", "/"))
   );
+
+  const now = Math.floor(Date.now() / 1000);
+  if (payload.exp && now >= payload.exp) {
+    throw new CustomError(401, "JWT token has expired");
+  }
   
   return { header, payload };
 }

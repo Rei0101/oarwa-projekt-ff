@@ -5,7 +5,19 @@ import { decodeJWT } from "../../utils/helpers";
 import { useState } from "react";
 
 function Menu() {
-  const userRole = localStorage.getItem("token") ? decodeJWT(localStorage.getItem("token")).payload.role : null;
+  let userRole = null;
+
+  try {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = decodeJWT(token);
+      userRole = decoded.payload.role;
+    }
+  } catch (error) {
+    console.error("Token error:", error.message);
+    localStorage.removeItem("token");
+  }
+
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const {collectionData, error} = useMenuItems(filter);

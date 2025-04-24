@@ -8,8 +8,6 @@ const handleCollection = async (collectionName) => {
 
   try {
     if (collectionName === "menu-items") {
-      console.log("MenuItem");
-
       documents = await MenuItem.find({})
       .populate({
         path: 'categories',

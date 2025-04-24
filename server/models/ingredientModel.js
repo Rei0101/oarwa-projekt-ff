@@ -32,6 +32,9 @@ const ingredientSchema = new Schema({
     required: true,
     validate: {
       validator: async function (value) {
+        if (!value || value.length === 0) {
+          return false;
+        }
         for (const objectId of value) {
           const exists = await isObjectIdInCollection(objectId, Category);
           if (!exists) {
@@ -40,12 +43,15 @@ const ingredientSchema = new Schema({
         }
         return true;
       },
-      message: (props) =>{
-        return `${props.value} ${
-          props.value.length === 1
-            ? "is not a valid ObjectId."
-            : "includes invalid ObjectId(s)."
-        }`},
+      message: (props) => {
+        return props.value.length >= 1
+          ? `${props.value} ${
+              props.value.length === 1
+                ? "is not a valid ObjectId."
+                : "includes invalid ObjectId(s)."
+            }`
+          : "No valid ObjectId(s) provided.";
+      },
     },
   },
   price: {
@@ -53,11 +59,11 @@ const ingredientSchema = new Schema({
     required: true,
     min: [0.01, "Price must be a positive number."],
     validate: {
-      validator: function(value) {
+      validator: function (value) {
         return REGEX.VALID_PRICE.test(value);
       },
       message: (props) => `${props.value} is not a valid price.`,
-    }
+    },
   },
 });
 

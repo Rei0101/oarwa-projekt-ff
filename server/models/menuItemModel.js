@@ -32,20 +32,29 @@ const menuItemSchema = new Schema({
     required: true,
     validate: {
       validator: async function (value) {
+        if (!value || value.length === 0) {
+          return false;
+        }
         for (const objectId of value) {
-          const exists = await isObjectIdInCollection(objectId, Category);
-          if (!exists) {
+          const objectIdExists = await isObjectIdInCollection(
+            objectId,
+            Category
+          );
+          if (!objectIdExists) {
             return false;
           }
         }
         return true;
       },
-      message: (props) =>{
-        return `${props.value} ${
-          props.value.length === 1
-            ? "is not a valid ObjectId."
-            : "includes invalid ObjectId(s)."
-        }`},
+      message: (props) => {
+        return props.value.length >= 1
+          ? `${props.value} ${
+              props.value.length === 1
+                ? "is not a valid ObjectId."
+                : "includes invalid ObjectId(s)."
+            }`
+          : "No valid ObjectId(s) provided.";
+      },
     },
   },
   ingredients: {
@@ -54,20 +63,29 @@ const menuItemSchema = new Schema({
     default: [],
     validate: {
       validator: async function (value) {
+        if (!value || value.length === 0) {
+          return false;
+        }
         for (const objectId of value) {
-          const exists = await isObjectIdInCollection(objectId, Ingredient);
-          if (!exists) {
+          const objectIdExists = await isObjectIdInCollection(
+            objectId,
+            Ingredient
+          );
+          if (!objectIdExists) {
             return false;
           }
         }
         return true;
       },
-      message: (props) =>{
-        return `${props.value} ${
-          props.value.length === 1
-            ? "is not a valid ObjectId."
-            : "includes invalid ObjectId(s)."
-        }`},
+      message: (props) => {
+        return props.value.length >= 1
+          ? `${props.value} ${
+              props.value.length === 1
+                ? "is not a valid ObjectId."
+                : "includes invalid ObjectId(s)."
+            }`
+          : "No valid ObjectId(s) provided.";
+      },
     },
   },
   price: {

@@ -29,9 +29,16 @@ const getCollection = async (req, res, next) => {
 };
 
 const addEntry = (Entry) => async (req, res, next) => {
-  const { name } = req.body.name;
+  let name;
 
-  const newEntry = new Entry({ ...req.body });
+  if (req.baseUrl === "/api/categories" || req.baseUrl === "/api/ingredients" ) {
+    name = req.body.name.toLowerCase();
+  }
+  else {
+    name = req.body.name;
+  }
+
+  const newEntry = new Entry({ ...req.body, name });
 
   try {
     await checkFieldAppearance({ name }, Entry);

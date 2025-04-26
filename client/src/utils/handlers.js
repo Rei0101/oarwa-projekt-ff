@@ -34,13 +34,19 @@ function handleBlur(setter) {
 
 async function fetchCollection(collectionName, setError) {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/${collectionName}`);
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/${collectionName}`
+    );
     setError(null);
     return response.data;
   } catch (error) {
     error = new CustomError(500);
-    handleError(error, setError)
+    handleError(error, setError);
   }
-};
+}
 
-export { handleFocus, handleBlur, fetchCollection };
+async function handleMenuItemAdd(e) {
+  e.preventDefault();
+}
+
+export { handleFocus, handleBlur, fetchCollection, handleMenuItemAdd };

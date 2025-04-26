@@ -12,7 +12,7 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
-  
+
   return (
     <div className="container">
       <div className="form-box">

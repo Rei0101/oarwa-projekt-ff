@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
-import {fetchMenuItemImage} from "../utils/helpers"
+import { fetchMenuItemImage } from "../utils/helpers";
 
-export default function MenuItem({ imageLink, name, category, ingredients, price, userRole }) {
+export default function MenuItem({
+  imageLink,
+  name,
+  category,
+  ingredients,
+  price,
+  userRole,
+}) {
   const image = fetchMenuItemImage(imageLink, category);
 
   return (
@@ -10,11 +17,13 @@ export default function MenuItem({ imageLink, name, category, ingredients, price
       <div>
         <span>
           <h3>{name}</h3>
-          <p>{ingredients.map(ingredient => ingredient.name).join(", ")}</p>
+          <p>{ingredients.map((ingredient) => ingredient.name).join(", ")}</p>
         </span>
         <span>
           <p>{price + " €"}</p>
-          <button>{userRole === "user" ? "Dodaj u košaricu!" : "Uredi artikl"}</button>
+          <button>
+            {userRole === "user" ? "Dodaj u košaricu!" : "Uredi artikl"}
+          </button>
         </span>
       </div>
     </div>

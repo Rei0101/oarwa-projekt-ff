@@ -1,26 +1,26 @@
 import "./Menu.css";
 import MenuItem from "../../components/MenuItem";
 import useMenuItems from "../../hooks/useMenuItems";
-import { decodeJWT } from "../../utils/helpers";
+import FormInput from "../../components/FormInput";
+import FormSelect from "../../components/FormSelect";
+import { fetchUserRole } from "../../utils/helpers";
 import { useState } from "react";
+import useMenuItemAddForm from "../../hooks/useMenuItemAddForm";
+import { handleMenuItemAdd } from "../../utils/handlers";
 
 function Menu() {
-  let userRole = null;
-
-  try {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = decodeJWT(token);
-      userRole = decoded.payload.role;
-    }
-  } catch (error) {
-    console.error("Token error:", error.message);
-  }
-
+  const userRole = fetchUserRole();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
-  const {collectionData, error} = useMenuItems(filter);
-  
+  const { collectionData, menuError } = useMenuItems(filter);
+  const { formData, handleChange } = useMenuItemAddForm({
+    imageLink: "",
+    name: "",
+    categories: "",
+    ingredients: "",
+    price: "0",
+  });
+
   return (
     <div className="container">
       <input
@@ -29,27 +29,27 @@ function Menu() {
         onChange={(e) => setFilter(e.target.value)}
         type="text"
       />
-      {!error ? (
+      {!menuError ? (
         <div id="menu">
-          {
-            collectionData.map((item) => {
-              return <MenuItem
+          {collectionData.map((item) => {
+            return (
+              <MenuItem
                 key={item._id}
                 imageLink={item.imageLink || null}
                 name={item.name}
-                category={item.categories.sort((a, b) => b.type.localeCompare(a.type))[0]?.name}
+                category={
+                  item.categories.sort((a, b) =>
+                    b.type.localeCompare(a.type)
+                  )[0]?.name
+                }
                 ingredients={[...item.ingredients]}
                 price={item.price}
                 userRole={userRole}
               />
-            })
-          }
-          
+            );
+          })}
           {userRole === "admin" ? (
-            <div
-              className="item add"
-              onClick={() => setClickedAdd((prev) => !prev)}
-            >
+            <div className="item add" onClick={() => setClickedAdd(true)}>
               {!clickedAdd ? (
                 <span>
                   <h1>+</h1>
@@ -57,13 +57,60 @@ function Menu() {
                 </span>
               ) : (
                 <span>
-                  <form></form>
+                  <form onSubmit={(e) => handleMenuItemAdd(e)}>
+                    <FormInput
+                      name="imageLink"
+                      label="Slika (link)"
+                      value={formData.imageLink}
+                      onChange={handleChange}
+                    />
+                    <FormInput
+                      name="name"
+                      label="Naziv"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <FormSelect
+                      name="categories"
+                      label="Kategorije"
+                      value={formData.categories}
+                      onChange={handleChange}
+                      options={["burger", "pizza"]}
+                    />
+                    <FormSelect
+                      name="ingredients"
+                      label="Sastojci"
+                      value={formData.ingredients}
+                      onChange={handleChange}
+                      options={["ketchup", "krastavci"]}
+                    />
+                    <FormInput
+                      name="price"
+                      label="Cijena (€)"
+                      type="number"
+                      value={formData.price}
+                      onChange={handleChange}
+                      required
+                    />
+                    <button>Potvrdi</button>
+                  </form>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setClickedAdd(false);
+                    }}
+                  >
+                    Odbaci
+                  </button>
                 </span>
               )}
             </div>
           ) : null}
         </div>
-      ) : (<h3>{error}</h3>)}
+      ) : (
+        <h3>{menuError}</h3>
+      )}
     </div>
   );
 }

@@ -13,10 +13,13 @@ async function handleLogin(e, formData, setError, navigate) {
       throw new CustomError(403, "Nisu popunjeni svi potrebni podaci.");
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
-      email,
-      password,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/users/login`,
+      {
+        email,
+        password,
+      }
+    );
 
     console.log(response);
     localStorage.setItem("token", response.data.token);

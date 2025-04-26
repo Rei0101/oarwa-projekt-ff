@@ -1,22 +1,21 @@
 import { fetchCollection } from "../utils/handlers";
 import { useState, useEffect } from "react";
 
-const useMenuItems = (filter) => {
+function useMenuItems(filter) {
   const [collectionData, setCollectionData] = useState([]);
-  const [error, setError] = useState(null);
-  
-    
+  const [menuError, setError] = useState(null);
+
   useEffect(() => {
     async function fetchData() {
       const menuItemsData = await fetchCollection("menu-items", setError);
-      
+
       setCollectionData(menuItemsData);
     }
 
     fetchData();
   }, [filter]);
 
-  return { collectionData, error };
-};
+  return { collectionData, error: menuError };
+}
 
 export default useMenuItems;

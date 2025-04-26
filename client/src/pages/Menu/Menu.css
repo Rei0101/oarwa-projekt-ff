@@ -1,10 +1,14 @@
-input[type="text"] {
+:root {
+  --form-button-x-space-diff: 70px;
+}
+
+.container > input[type="text"] {
   width: 90%;
   height: 15px;
   font-size: large;
   border-radius: 25px;
   padding: 15px;
-  background: #fff url("../../assets/magnifying-glass.svg") no-repeat right; 
+  background: #fff url("../../assets/magnifying-glass.svg") no-repeat right;
   background-size: 24px;
   background-position: right 10px center;
 }
@@ -105,4 +109,22 @@ h3 {
 .item.add h2 {
   margin-top: -45px;
   margin-bottom: 35px;
+}
+
+.item.add form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item.add form > button {
+  transform: translate(var(--form-button-x-space-diff), 40px);
+}
+
+.item.add span > button {
+  transform: translateX(calc(0px - var(--form-button-x-space-diff)));
+}
+
+.item.add button {
+  width: 40%;
 }

@@ -49,7 +49,11 @@ function Menu() {
             );
           })}
           {userRole === "admin" ? (
-            <div className="item add" onClick={() => setClickedAdd(true)}>
+            <div
+              className="item add"
+              onClick={() => setClickedAdd(true)}
+              style={{ cursor: `${!clickedAdd ? "pointer" : "default"}` }}
+            >
               {!clickedAdd ? (
                 <span>
                   <h1>+</h1>

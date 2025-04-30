@@ -8,14 +8,13 @@ function useMenuItems(filter) {
   useEffect(() => {
     async function fetchData() {
       const menuItemsData = await fetchCollection("menu-items", setError);
-
       setCollectionData(menuItemsData);
     }
 
     fetchData();
   }, [filter]);
 
-  return { collectionData, error: menuError };
+  return { collectionData, menuError };
 }
 
 export default useMenuItems;

@@ -64,10 +64,11 @@ function Menu() {
               ) : (
                 <span>
                   <form onSubmit={(e) => handleMenuItemAdd(e)}>
+                    <p className="optional">* (opcionalno)</p>
                     <FormInput
                       name="imageLink"
-                      label="Slika"
-                      placeholder="http://slika.mym"
+                      label="* Slika"
+                      placeholder="https://link-na-sliku.mym"
                       value={formData.imageLink}
                       onChange={handleChange}
                     />

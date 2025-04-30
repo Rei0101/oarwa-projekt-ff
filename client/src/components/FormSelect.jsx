@@ -4,7 +4,14 @@ export default function FormSelect({ name, label, value, onChange, options }) {
   return (
     <span>
       <label htmlFor={name}>{label}:</label>
-      <select name={name} id={name} value={value} onChange={onChange}>
+      <select
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChange}
+        multiple
+        required
+      >
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option.charAt(0).toUpperCase() + option.slice(1)}
@@ -18,7 +25,7 @@ export default function FormSelect({ name, label, value, onChange, options }) {
 FormSelect.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
 };

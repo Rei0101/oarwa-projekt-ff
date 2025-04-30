@@ -65,4 +65,18 @@ function registerValidation(name, value, password) {
   }
 }
 
-export { registerValidation };
+const MenuItemAddValidation = {
+  validImageLink: function validImageLink(imageLink) {
+    return imageLink === "" || REGEX.VALID_URL.test(imageLink);
+  },
+  validName: function validName(name) {
+    return REGEX.LETTERS_ONLY.test(name);
+  },
+  validPrice: function validPrice(price) {
+    return (
+      /^[0-9]+(,|.[0-9]{1,2})?$/.test(price.toString()) && Number(price) >= 0.01
+    );
+  },
+};
+
+export { registerValidation, MenuItemAddValidation };

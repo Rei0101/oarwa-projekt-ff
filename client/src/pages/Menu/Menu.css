@@ -95,7 +95,7 @@ h3 {
   justify-content: center;
   text-align: center;
   background-color: limegreen !important;
-  user-select: none;
+  position: relative
 }
 
 .item.add:hover {
@@ -115,10 +115,42 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 270px;
+}
+
+.item.add form span {
+  display:flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+  width: 100%;
+}
+
+.item.add form span label {
+  width: 40%;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.item.add form span input,.item.add form span input{
+  border-radius: 5px;
+}
+
+.item.add form span input, 
+.item.add form span select{
+  width: 80%;
+  border-radius: 5px;
+  border-width: 2px;
+  margin-right: 10px;
+}
+
+.item.add form span select {
+  width: 83%;
 }
 
 .item.add form > button {
   transform: translate(var(--form-button-x-space-diff), 40px);
+  position: absolute;
+  top: 240px;
 }
 
 .item.add span > button {
@@ -127,4 +159,12 @@ h3 {
 
 .item.add button {
   width: 40%;
+}
+
+.item.add button:disabled {
+  cursor: not-allowed;
+}
+
+.item.add button:disabled:hover {
+  background-color: crimson;
 }

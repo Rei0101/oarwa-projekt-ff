@@ -1,24 +1,54 @@
-import { useState } from "react";
+import { MenuItemAddValidation } from "../utils/validation";
+import { useEffect, useState } from "react";
 
 function useMenuItemAddForm(initialValues) {
   const [formData, setFormData] = useState(initialValues);
-  const [formError, setFormError] = useState();
+  const [disabledSubmit, setDisabledSubmit] = useState(false);
+
+  useEffect(() => {
+    setDisabledSubmit(!(
+      MenuItemAddValidation.validImageLink(formData.imageLink) &&
+      MenuItemAddValidation.validName(formData.name) &&
+      MenuItemAddValidation.validPrice(formData.price)
+    ))
+  }, [formData])
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    console.log("Name:", name, "Value:", value);
+    if (e.target.type === "text" || e.target.type === "number") {
+      const { name, value } = e.target;
+      console.log(name !== "price" && !value.includes("."))
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+    else {
+      const { name, selectedOptions } = e.target;
 
-    /* setFormError("Invalid input"); */
+      const currentSelected = Array.from(selectedOptions, (option) => option.value);
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+      setFormData((prevData) => {
+        const prevSelected = prevData[name] || [];
+        const newSelected = currentSelected.reduce((acc, option) => {
+          if (prevSelected.includes(option)) {
+            return acc.filter((item) => item !== option);
+          } else {
+            return [...acc, option];
+          }
+        }, prevSelected);
+
+        return {
+          ...prevData,
+          [name]: newSelected,
+        };
+      });
+    }
   }
 
   return {
     formData,
     handleChange,
+    disabledSubmit
   };
 }
 

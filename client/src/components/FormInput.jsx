@@ -9,8 +9,10 @@ export default function FormInput({
   placeholder,
   required = false,
   borderColor,
+  min,
   max,
   maxLength = 100,
+  step,
   onFocus,
   onBlur,
 }) {
@@ -26,8 +28,10 @@ export default function FormInput({
         placeholder={placeholder}
         required={required}
         style={{ borderColor }}
+        min={min}
         max={max}
         maxLength={maxLength}
+        step={step}
         onFocus={onFocus}
         onBlur={onBlur}
       />
@@ -44,8 +48,10 @@ FormInput.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   borderColor: PropTypes.string,
+  min: PropTypes.string,
   max: PropTypes.string,
   maxLength: PropTypes.number,
+  step: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
 };

@@ -13,12 +13,12 @@ function Menu() {
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const { collectionData, menuError } = useMenuItems(filter);
-  const { formData, handleChange } = useMenuItemAddForm({
+  const { formData, handleChange, disabledSubmit } = useMenuItemAddForm({
     imageLink: "",
     name: "",
-    categories: "",
-    ingredients: "",
-    price: "0",
+    categories: [],
+    ingredients: [],
+    price: "0.01",
   });
 
   return (
@@ -64,7 +64,8 @@ function Menu() {
                   <form onSubmit={(e) => handleMenuItemAdd(e)}>
                     <FormInput
                       name="imageLink"
-                      label="Slika (link)"
+                      label="Slika"
+                      placeholder="http://slika.mym"
                       value={formData.imageLink}
                       onChange={handleChange}
                     />
@@ -80,7 +81,8 @@ function Menu() {
                       label="Kategorije"
                       value={formData.categories}
                       onChange={handleChange}
-                      options={["burger", "pizza"]}
+                      options={["burger", "pizza", "a", "b", "c", "d", "e"]}
+                      required
                     />
                     <FormSelect
                       name="ingredients"
@@ -88,6 +90,7 @@ function Menu() {
                       value={formData.ingredients}
                       onChange={handleChange}
                       options={["ketchup", "krastavci"]}
+                      required
                     />
                     <FormInput
                       name="price"
@@ -95,9 +98,11 @@ function Menu() {
                       type="number"
                       value={formData.price}
                       onChange={handleChange}
+                      min="0.01"
+                      step="0.01"
                       required
                     />
-                    <button>Potvrdi</button>
+                    <button disabled={disabledSubmit}>Potvrdi</button>
                   </form>
                   <button
                     onClick={(e) => {
@@ -105,7 +110,7 @@ function Menu() {
                       setClickedAdd(false);
                     }}
                   >
-                    Odbaci
+                    Poništi
                   </button>
                 </span>
               )}

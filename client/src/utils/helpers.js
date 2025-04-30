@@ -33,7 +33,7 @@ function fetchUserRole() {
     }
     throw new CustomError(403);
   } catch (error) {
-    return new CustomError(error.status, error.message);
+    return console.error(new CustomError(error.status, error.message));
   }
 }
 

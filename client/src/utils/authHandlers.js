@@ -21,7 +21,6 @@ async function handleLogin(e, formData, setError, navigate) {
       }
     );
 
-    console.log(response);
     localStorage.setItem("token", response.data.token);
 
     navigate("/");
@@ -54,8 +53,6 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
       `${import.meta.env.VITE_API_URL}/users/register`,
       formData
     );
-
-    console.log(response);
 
     navigate("/login");
   } catch (error) {

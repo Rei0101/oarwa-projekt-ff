@@ -47,6 +47,8 @@ async function fetchCollection(collectionName, setError) {
 
 async function handleMenuItemAdd(e) {
   e.preventDefault();
+  console.log("submitted");
+  
 }
 
 export { handleFocus, handleBlur, fetchCollection, handleMenuItemAdd };

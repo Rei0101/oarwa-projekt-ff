@@ -18,16 +18,17 @@ function useMenuItemAddForm(initialValues) {
   function handleChange(e) {
     if (e.target.type === "text" || e.target.type === "number") {
       const { name, value } = e.target;
-      console.log(name !== "price" && !value.includes("."))
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
-    }
-    else {
+    } else {
       const { name, selectedOptions } = e.target;
 
-      const currentSelected = Array.from(selectedOptions, (option) => option.value);
+      const currentSelected = Array.from(
+        selectedOptions,
+        (option) => option.value
+      );
 
       setFormData((prevData) => {
         const prevSelected = prevData[name] || [];

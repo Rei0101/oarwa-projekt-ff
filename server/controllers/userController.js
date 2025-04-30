@@ -5,7 +5,6 @@ import CustomError from "../../shared/CustomErrorClass.js";
 import { User } from "../models/userModel.js";
 import { validPassword } from "../utils/validation.js";
 import { handleUserRole } from "../utils/handlers.js";
-import { checkFieldAppearance } from "../utils/helpers.js";
 
 const registerUser = async (req, res, next) => {
   try {
@@ -25,7 +24,6 @@ const registerUser = async (req, res, next) => {
       role: handleUserRole(email),
     });
 
-    await checkFieldAppearance({ email }, User);
     await newUser.save();
     res.status(201).send(newUser);
   } catch (error) {

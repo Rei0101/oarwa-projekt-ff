@@ -9,19 +9,19 @@ const handleCollection = async (collectionName) => {
   try {
     if (collectionName === "menu-items") {
       documents = await MenuItem.find({})
-      .populate({
-        path: 'categories',
-        options: { sort: { _id: 1 } }
-      })
-      .populate({
-        path: 'ingredients',
-        options: { sort: { _id: 1 } },
-        populate: {
-          path: 'categories',
-          options: { sort: { _id: 1 } }
-        }
-      })
-      .sort({ _id: 1 });
+        .populate({
+          path: "categories",
+          options: { sort: { _id: 1 } },
+        })
+        .populate({
+          path: "ingredients",
+          options: { sort: { _id: 1 } },
+          populate: {
+            path: "categories",
+            options: { sort: { _id: 1 } },
+          },
+        })
+        .sort({ _id: 1 });
     } else if (collectionName === "ingredients") {
       documents = await Ingredient.find({})
         .populate({

@@ -1,7 +1,6 @@
 import CustomError from "../../shared/CustomErrorClass.js";
 import { allowedCollections } from "../utils/allowedCollections.js";
 import { handleCollection } from "../utils/handlers.js";
-import { checkFieldAppearance } from "../utils/helpers.js";
 
 const welcomeMessage = (req, res) => {
   res.status(200).json({
@@ -31,17 +30,15 @@ const getCollection = async (req, res, next) => {
 const addEntry = (Entry) => async (req, res, next) => {
   let name;
 
-  if (req.baseUrl === "/api/categories" || req.baseUrl === "/api/ingredients" ) {
+  if (req.baseUrl === "/api/categories" || req.baseUrl === "/api/ingredients") {
     name = req.body.name.toLowerCase();
-  }
-  else {
+  } else {
     name = req.body.name;
   }
 
   const newEntry = new Entry({ ...req.body, name });
 
   try {
-    await checkFieldAppearance({ name }, Entry);
     await newEntry.save();
     res.status(201).send(newEntry);
   } catch (error) {

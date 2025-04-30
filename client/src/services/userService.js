@@ -14,8 +14,7 @@ const userService = {
       return response.data;
     } catch (error) {
       throw new CustomError(
-        error?.response.status || 500,
-        error?.message || "Korisnik nije uspješno prijavljen."
+        error?.status || error?.response?.status || 500,
       );
     }
   },
@@ -25,8 +24,7 @@ const userService = {
       return response.data;
     } catch (error) {
       throw new CustomError(
-        error?.response?.status || 500,
-        error?.message || "Korisnik nije uspješno registriran."
+        error?.status || error?.response?.status || 500
       );
     }
   },

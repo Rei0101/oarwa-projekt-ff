@@ -10,8 +10,8 @@ const collectionService = {
       return response.data;
     } catch (error) {
       throw new CustomError(
-        error?.response?.status || 500,
-        error?.message || "Tražene stavke nisu uspješno dohvaćene."
+        error?.status || error?.response?.status || 500,
+        "Tražene stavke nisu uspješno dohvaćene."
       );
     }
   },

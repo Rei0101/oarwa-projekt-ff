@@ -1,8 +1,8 @@
 import "./Auth.css";
 import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
-import { handleRegister } from "../../utils/authHandlers";
-import { handleFocus, handleBlur } from "../../utils/handlers";
+import { handleRegister } from "../../utils/handlers/authHandlers";
+import { handleFocus, handleBlur } from "../../utils/handlers/handlers";
 import { formatDate } from "../../../../shared/helpers";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthForm from "../../hooks/useAuthForm";

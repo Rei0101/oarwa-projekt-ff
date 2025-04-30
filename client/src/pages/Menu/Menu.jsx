@@ -6,12 +6,14 @@ import FormSelect from "../../components/FormSelect";
 import { fetchUserRole } from "../../utils/helpers";
 import { useState } from "react";
 import useMenuItemAddForm from "../../hooks/useMenuItemAddForm";
-import { handleMenuItemAdd } from "../../utils/handlers";
+import { handleMenuItemAdd } from "../../utils/handlers/handlers";
 
 function Menu() {
   const userRole = fetchUserRole();
+  /* const categories; */
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
+  const [formError, setFormError] = useState(null)
   const { collectionData, menuError } = useMenuItems(filter);
   const { formData, handleChange, disabledSubmit } = useMenuItemAddForm({
     imageLink: "",

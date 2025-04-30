@@ -1,4 +1,4 @@
-import { fetchCollection } from "../utils/handlers";
+import { fetchCollection } from "../utils/handlers/handlers";
 import { useState, useEffect } from "react";
 
 function useMenuItems(filter) {

@@ -1,4 +1,4 @@
-import CustomError from "../../../shared/CustomErrorClass";
+import CustomError from "../../../../shared/CustomErrorClass";
 import handleError from "./errorHandler";
 import axios from "axios";
 

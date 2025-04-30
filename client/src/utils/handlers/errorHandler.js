@@ -1,4 +1,4 @@
-import CustomError from "../../../shared/CustomErrorClass";
+import CustomError from "../../../../shared/CustomErrorClass";
 import axios from "axios";
 
 export default async function handleError(err, setError) {

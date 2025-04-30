@@ -1,5 +1,5 @@
 import axios from "axios";
-import CustomError from "../../../shared/CustomErrorClass";
+import CustomError from "../../../../shared/CustomErrorClass";
 import handleError from "./errorHandler";
 
 function handleFocus(getter, setError) {

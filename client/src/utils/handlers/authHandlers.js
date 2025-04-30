@@ -1,4 +1,5 @@
 import CustomError from "../../../../shared/CustomErrorClass";
+import userService from "../../services/userService";
 import handleError from "./errorHandler";
 import axios from "axios";
 
@@ -13,19 +14,13 @@ async function handleLogin(e, formData, setError, navigate) {
       throw new CustomError(403, "Nisu popunjeni svi potrebni podaci.");
     }
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/users/login`,
-      {
-        email,
-        password,
-      }
-    );
+    const response = await userService.login(email,password)
 
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.token);
 
     navigate("/");
   } catch (error) {
-    if (!error.statusCode) {
+    if (!error?.statusCode) {
       error = new CustomError(401);
     }
     handleError(error, setError);
@@ -49,14 +44,11 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
   setError(null);
 
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/users/register`,
-      formData
-    );
+    await userService.register(formData);
 
     navigate("/login");
   } catch (error) {
-    if (error.status === 409 || error.response.status === 409) {
+    if (error?.status === 409 || error?.response?.status === 409) {
       error = new CustomError(
         409,
         "Ovaj korisnik već postoji. Molimo pokušajte ponovno."

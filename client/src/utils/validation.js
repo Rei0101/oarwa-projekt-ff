@@ -66,13 +66,13 @@ function registerValidation(name, value, password) {
 }
 
 const MenuItemAddValidation = {
-  validImageLink: function validImageLink(imageLink) {
+  validImageLink: (imageLink) => {
     return imageLink === "" || REGEX.VALID_URL.test(imageLink);
   },
-  validName: function validName(name) {
+  validName: (name) => {
     return REGEX.LETTERS_ONLY.test(name);
   },
-  validPrice: function validPrice(price) {
+  validPrice: (price) => {
     return (
       /^[0-9]+(,|.[0-9]{1,2})?$/.test(price.toString()) && Number(price) >= 0.01
     );

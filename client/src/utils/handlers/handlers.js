@@ -1,6 +1,7 @@
 import axios from "axios";
 import CustomError from "../../../../shared/CustomErrorClass";
 import handleError from "./errorHandler";
+import collectionService from "../../services/collectionService";
 
 function handleFocus(getter, setError) {
   return function (e) {
@@ -34,11 +35,9 @@ function handleBlur(setter) {
 
 async function fetchCollection(collectionName, setError) {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/${collectionName}`
-    );
+    const response = await collectionService.fetch(collectionName);
     setError(null);
-    return response.data;
+    return response;
   } catch (error) {
     error = new CustomError(500);
     handleError(error, setError);

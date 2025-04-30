@@ -6,12 +6,14 @@ function useMenuItemAddForm(initialValues) {
   const [disabledSubmit, setDisabledSubmit] = useState(false);
 
   useEffect(() => {
-    setDisabledSubmit(!(
-      MenuItemAddValidation.validImageLink(formData.imageLink) &&
-      MenuItemAddValidation.validName(formData.name) &&
-      MenuItemAddValidation.validPrice(formData.price)
-    ))
-  }, [formData])
+    setDisabledSubmit(
+      !(
+        MenuItemAddValidation.validImageLink(formData.imageLink) &&
+        MenuItemAddValidation.validName(formData.name) &&
+        MenuItemAddValidation.validPrice(formData.price)
+      )
+    );
+  }, [formData]);
 
   function handleChange(e) {
     if (e.target.type === "text" || e.target.type === "number") {
@@ -48,7 +50,7 @@ function useMenuItemAddForm(initialValues) {
   return {
     formData,
     handleChange,
-    disabledSubmit
+    disabledSubmit,
   };
 }
 

@@ -3,11 +3,10 @@ import CustomError from "../../shared/CustomErrorClass.js";
 const duplicationCheckingMiddleware =
   (fields, Model) => async (req, res, next) => {
     try {
-      for (const field in fields) {
+      for (const field of fields) {
         const value = req.body[field];
-
+        
         if (await Model.findOne({ [field]: value })) {
-          console.log("oh nohs");
           next(new CustomError(409));
         }
       }

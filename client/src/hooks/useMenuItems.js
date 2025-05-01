@@ -1,7 +1,7 @@
 import { fetchCollection } from "../utils/handlers/handlers";
 import { useState, useEffect } from "react";
 
-function useMenuItems(filter) {
+function useMenuItems(filter, clickedAdd) {
   const [collectionData, setCollectionData] = useState([]);
   const [menuError, setError] = useState(null);
 
@@ -12,7 +12,7 @@ function useMenuItems(filter) {
     }
 
     fetchData();
-  }, [filter]);
+  }, [filter, clickedAdd]);
 
   return { collectionData, menuError };
 }

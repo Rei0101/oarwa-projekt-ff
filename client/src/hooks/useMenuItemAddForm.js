@@ -50,6 +50,7 @@ function useMenuItemAddForm(initialValues) {
 
   return {
     formData,
+    setFormData,
     handleChange,
     disabledSubmit,
   };

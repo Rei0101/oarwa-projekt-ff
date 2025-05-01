@@ -13,15 +13,16 @@ function Menu() {
   const userRole = fetchUserRole();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
-  const { collectionData, menuError } = useMenuItems(filter);
+  const { collectionData, menuError } = useMenuItems(filter, clickedAdd);
   const { categories, ingredients } = useMenuItemAddSelectValues();
-  const { formData, handleChange, disabledSubmit } = useMenuItemAddForm({
-    imageLink: "",
-    name: "",
-    categories: [],
-    ingredients: [],
-    price: "0.01",
-  });
+  const { formData, setFormData, handleChange, disabledSubmit } =
+    useMenuItemAddForm({
+      imageLink: "",
+      name: "",
+      categories: [],
+      ingredients: [],
+      price: "0.01",
+    });
 
   return (
     <div className="container">
@@ -63,7 +64,11 @@ function Menu() {
                 </span>
               ) : (
                 <span>
-                  <form onSubmit={(e) => handleMenuItemAdd(e)}>
+                  <form
+                    onSubmit={(e) =>
+                      handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
+                    }
+                  >
                     <p className="optional">* (opcionalno)</p>
                     <FormInput
                       name="imageLink"

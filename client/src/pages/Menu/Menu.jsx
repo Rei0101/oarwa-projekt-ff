@@ -13,7 +13,6 @@ function Menu() {
   const userRole = fetchUserRole();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
-  const [formError, setFormError] = useState(null);
   const { collectionData, menuError } = useMenuItems(filter);
   const { categories, ingredients } = useMenuItemAddSelectValues();
   const { formData, handleChange, disabledSubmit } = useMenuItemAddForm({
@@ -85,7 +84,7 @@ function Menu() {
                       label="Kategorije"
                       value={formData.categories}
                       onChange={handleChange}
-                      options={categories.map((category) => category.name)}
+                      options={categories}
                       required
                     />
                     <FormSelect
@@ -93,7 +92,7 @@ function Menu() {
                       label="Sastojci"
                       value={formData.ingredients}
                       onChange={handleChange}
-                      options={ingredients.map((ingredient) => ingredient.name)}
+                      options={ingredients}
                       required
                     />
                     <FormInput

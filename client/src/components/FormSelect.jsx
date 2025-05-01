@@ -13,8 +13,8 @@ export default function FormSelect({ name, label, value, onChange, options }) {
         required
       >
         {options.map((option, index) => (
-          <option key={index} value={option}>
-            {option.charAt(0).toUpperCase() + option.slice(1)}
+          <option key={index} value={option._id}>
+            {option.name.charAt(0).toUpperCase() + option.name.slice(1)}
           </option>
         ))}
       </select>

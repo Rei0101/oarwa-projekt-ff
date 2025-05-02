@@ -4,9 +4,11 @@ import ErrorText from "../../components/ErrorText";
 import { handleLogin } from "../../utils/handlers/authHandlers";
 import { handleBlur } from "../../utils/handlers/handlers";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import useAuthForm from "../../hooks/useAuthForm";
 
 function Login() {
+  const { login } = useAuth();
   const { formData, setFormData, handleChange, error, setError } = useAuthForm({
     email: "",
     password: "",
@@ -16,7 +18,7 @@ function Login() {
   return (
     <div className="container">
       <div className="form-box">
-        <form onSubmit={(e) => handleLogin(e, formData, setError, navigate)}>
+        <form onSubmit={(e) => handleLogin(e, formData, setError, login, navigate)}>
           <FormInput
             name="email"
             label="E-mail"

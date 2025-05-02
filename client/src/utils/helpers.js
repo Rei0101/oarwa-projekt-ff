@@ -23,20 +23,6 @@ function decodeJWT(token) {
   return { header, payload };
 }
 
-function fetchUserRole() {
-  try {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = decodeJWT(token);
-      const userRole = decoded.payload.role;
-      return userRole;
-    }
-    throw new CustomError(403);
-  } catch (error) {
-    return console.error(new CustomError(error.status, error.message));
-  }
-}
-
 function fetchMenuItemImage(imageLink, category) {
   if (imageLink) {
     return imageLink;
@@ -47,4 +33,4 @@ function fetchMenuItemImage(imageLink, category) {
   return categoryImagePairs["missing"];
 }
 
-export { decodeJWT, fetchUserRole, fetchMenuItemImage };
+export { decodeJWT, fetchMenuItemImage };

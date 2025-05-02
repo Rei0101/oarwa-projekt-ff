@@ -1,9 +1,9 @@
 import CustomError from "../../../../shared/CustomErrorClass";
 import userService from "../../services/userService";
 import handleError from "./errorHandler";
-import axios from "axios";
+import { decodeJWT } from "../helpers";
 
-async function handleLogin(e, formData, setError, navigate) {
+async function handleLogin(e, formData, setError, login, navigate) {
   e.preventDefault();
   setError(null);
 
@@ -18,9 +18,12 @@ async function handleLogin(e, formData, setError, navigate) {
 
     localStorage.setItem("token", response.token);
 
+    const decoded = decodeJWT(response.token);
+    login(decoded.payload);
+
     navigate("/");
   } catch (error) {
-    if (!error?.statusCode) {
+    if (!error?.status || !error?.response?.status) {
       error = new CustomError(401);
     }
     handleError(error, setError);

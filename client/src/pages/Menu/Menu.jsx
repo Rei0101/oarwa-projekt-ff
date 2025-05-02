@@ -3,14 +3,14 @@ import MenuItem from "../../components/MenuItem";
 import useMenuItems from "../../hooks/useMenuItems";
 import FormInput from "../../components/FormInput";
 import FormSelect from "../../components/FormSelect";
-import { fetchUserRole } from "../../utils/helpers";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import useMenuItemAddForm from "../../hooks/useMenuItemAddForm";
 import { handleMenuItemAdd } from "../../utils/handlers/handlers";
 import useMenuItemAddSelectValues from "../../hooks/useMenuItemAddSelectValues";
 
 function Menu() {
-  const userRole = fetchUserRole();
+  const { user } = useAuth();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const { collectionData, menuError } = useMenuItems(filter, clickedAdd);
@@ -47,23 +47,22 @@ function Menu() {
                 }
                 ingredients={[...item.ingredients]}
                 price={item.price}
-                userRole={userRole}
               />
             );
           })}
-          {userRole === "admin" ? (
+          {user?.role === "admin" ? (
             <div
               className="item add"
               onClick={() => setClickedAdd(true)}
               style={{ cursor: `${!clickedAdd ? "pointer" : "default"}` }}
             >
               {!clickedAdd ? (
-                <span>
+                <>
                   <h1>+</h1>
                   <h2>Dodaj artikl</h2>
-                </span>
+                </>
               ) : (
-                <span>
+                <>
                   <form
                     onSubmit={(e) =>
                       handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
@@ -120,7 +119,7 @@ function Menu() {
                   >
                     Poništi
                   </button>
-                </span>
+                </>
               )}
             </div>
           ) : null}

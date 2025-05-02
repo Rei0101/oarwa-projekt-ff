@@ -89,6 +89,22 @@ h3 {
   width: 150px;
 }
 
+.item.clicked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.item.clicked h2 {
+  font-size: 28px;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
 .item.add {
   display: flex;
   flex-direction: column;
@@ -111,66 +127,83 @@ h3 {
   margin-bottom: 35px;
 }
 
-.item.add form {
+.item.add form,
+.item.clicked form {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 270px;
 }
 
-.item.add form span {
+.item.add form span,
+.item.clicked form span {
   display: flex;
   justify-content: space-between;
   margin: 5px 0px;
   width: 100%;
 }
 
-.item.add form span label {
+.item.add form span label,
+.item.clicked form span label {
   width: 40%;
   text-align: right;
   margin-right: 5px;
 }
 
 .item.add form span input,
-.item.add form span input {
+.item.add form span input,
+.item.clicked form span input,
+.item.clicked form span input {
   border-radius: 5px;
 }
 
 .item.add form span input,
-.item.add form span select {
+.item.add form span select,
+.item.clicked form span input,
+.item.clicked form span select {
   width: 80%;
   border-radius: 5px;
   border-width: 2px;
   margin-right: 10px;
 }
 
-.item.add form span select {
+.item.add form span select,
+.item.clicked form span select {
   width: 83%;
 }
 
-.item.add form > button {
+.item.add form > button,
+.item.clicked form > button {
   transform: translate(var(--form-button-x-space-diff), 40px);
   position: absolute;
   top: 240px;
 }
 
-.item.add span > button {
+.item.add > button {
+  transform: translateX(20px);
+}
+
+.item.clicked > button {
   transform: translateX(calc(0px - var(--form-button-x-space-diff)));
 }
 
-.item.add button {
+.item.add button,
+.item.clicked button {
   width: 40%;
 }
 
-.item.add button:disabled {
+.item.add button:disabled,
+.item.clicked button:disabled {
   cursor: not-allowed;
 }
 
-.item.add button:disabled:hover {
+.item.add button:disabled:hover,
+.item.clicked button:disabled:hover {
   background-color: crimson;
 }
 
-.item.add .optional {
+.item.add .optional,
+.item.clicked .optional {
   position: absolute;
   top: -8px;
   right: 20px;

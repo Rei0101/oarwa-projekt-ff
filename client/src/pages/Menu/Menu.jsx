@@ -22,8 +22,6 @@ function Menu() {
       ingredients: [],
       price: 0.01,
     });
-    console.log(formData.categories);
-    
 
   return (
     <div className="container">

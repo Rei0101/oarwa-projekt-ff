@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "67f04312bb615f52c1704439"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.k7H2072bx7IeBWp1UXHGFwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "name": "ketchup",
+  "categories": [
+    {
+      "$oid": "67f042dabb615f52c1704433"
+    }
+  ],
+  "price": 0.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f04440102a2715cb6b50f0"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.k7H2072bx7IeBWp1UXHGFwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "name": "krastavci",
+  "categories": [
+    {
+      "$oid": "67f04402102a2715cb6b50ec"
+    }
+  ],
+  "price": 0.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f04494102a2715cb6b50f8"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.k7H2072bx7IeBWp1UXHGFwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "name": "govedina",
+  "categories": [
+    {
+      "$oid": "67f04472102a2715cb6b50f4"
+    }
+  ],
+  "price": 1.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ffae899c2dc63a42e6c78a"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.wPEXPMbPNbkSnG5uUQChmwHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "name": "bublice za burger",
+  "categories": [
+    {
+      "$oid": "67f034b513b81050705a0579"
+    },
+    {
+      "$oid": "67f03a74bb615f52c1704429"
+    }
+  ],
+  "price": 0.5,
+  "__v": 0
+}]

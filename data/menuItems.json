@@ -1,0 +1,116 @@
+[{
+  "_id": {
+    "$oid": "67f93e1aad701373337014e7"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.Q7lzwb0oE7KsstQebohCoAHaHK?rs=1&pid=ImgDetMain",
+  "name": "Miješana pizza",
+  "categories": [
+    "67f93d99ad701373337014e0"
+  ],
+  "ingredients": [
+    {
+      "$oid": "67f04312bb615f52c1704439"
+    }
+  ],
+  "price": 12.99,
+  "timesSold": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ffd940f077813b285b1f7e"
+  },
+  "imageLink": "https://th.bing.com/th/id/OIP.g_EYshV4TBrKFonMmN2KEgHaE7?rs=1&pid=ImgDetMain",
+  "name": "Klasični hamburger",
+  "categories": [
+    {
+      "$oid": "67f034b513b81050705a0579"
+    }
+  ],
+  "ingredients": [
+    {
+      "$oid": "67f04312bb615f52c1704439"
+    },
+    {
+      "$oid": "67f04440102a2715cb6b50f0"
+    },
+    {
+      "$oid": "67ffae899c2dc63a42e6c78a"
+    }
+  ],
+  "price": 3.99,
+  "timesSold": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68138ae61dbc80f3a69308aa"
+  },
+  "imageLink": "",
+  "name": "test",
+  "categories": [
+    {
+      "$oid": "67f03a74bb615f52c1704429"
+    },
+    {
+      "$oid": "67f042dabb615f52c1704433"
+    }
+  ],
+  "ingredients": [
+    {
+      "$oid": "67f04440102a2715cb6b50f0"
+    }
+  ],
+  "price": 0.01,
+  "timesSold": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68138e81b40e6997c9396e6f"
+  },
+  "imageLink": "",
+  "name": "a",
+  "categories": [
+    {
+      "$oid": "67f034b513b81050705a0579"
+    }
+  ],
+  "ingredients": [
+    {
+      "$oid": "67f04494102a2715cb6b50f8"
+    }
+  ],
+  "price": 0.01,
+  "timesSold": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68179934379557e60e75c795"
+  },
+  "imageLink": "",
+  "name": "testtessteset",
+  "categories": [
+    {
+      "$oid": "67f034b513b81050705a0579"
+    },
+    {
+      "$oid": "67f04402102a2715cb6b50ec"
+    }
+  ],
+  "ingredients": [
+    {
+      "$oid": "67f04440102a2715cb6b50f0"
+    },
+    {
+      "$oid": "67ffae899c2dc63a42e6c78a"
+    },
+    {
+      "$oid": "67f04494102a2715cb6b50f8"
+    }
+  ],
+  "price": 2.99,
+  "timesSold": 0,
+  "__v": 0
+}]

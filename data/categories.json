@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "67f034b513b81050705a0579"
+  },
+  "name": "burger",
+  "type": "menuItem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f03a74bb615f52c1704429"
+  },
+  "name": "kruh",
+  "type": "ingredient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f042dabb615f52c1704433"
+  },
+  "name": "umak",
+  "type": "ingredient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f04402102a2715cb6b50ec"
+  },
+  "name": "dodatak",
+  "type": "ingredient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f04472102a2715cb6b50f4"
+  },
+  "name": "meso",
+  "type": "ingredient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f93d99ad701373337014e0"
+  },
+  "name": "pizza",
+  "type": "menuItem",
+  "__v": 0
+}]

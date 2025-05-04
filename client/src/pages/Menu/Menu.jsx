@@ -1,28 +1,29 @@
 import "./Menu.css";
+import MenuItemForm from "../../components/MenuItemForm";
 import MenuItem from "../../components/MenuItem";
 import useMenuItems from "../../hooks/useMenuItems";
-import FormInput from "../../components/FormInput";
-import FormSelect from "../../components/FormSelect";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useMenuItemAddForm from "../../hooks/useMenuItemAddForm";
+import useMenuItemForm from "../../hooks/useMenuItemForm";
 import { handleMenuItemAdd } from "../../utils/handlers/handlers";
-import useMenuItemAddSelectValues from "../../hooks/useMenuItemAddSelectValues";
+import useMenuItemSelect from "../../hooks/useMenuItemSelect";
 
 function Menu() {
   const { user } = useAuth();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const { collectionData, menuError } = useMenuItems(filter, clickedAdd);
-  const { categories, ingredients } = useMenuItemAddSelectValues();
+  const { selectCategories, selectIngredients } = useMenuItemSelect();
   const { formData, setFormData, handleChange, disabledSubmit } =
-    useMenuItemAddForm({
+    useMenuItemForm({
       imageLink: "",
       name: "",
       categories: [],
       ingredients: [],
-      price: "0.01",
+      price: 0.01,
     });
+    console.log(formData.categories);
+    
 
   return (
     <div className="container">
@@ -40,11 +41,7 @@ function Menu() {
                 key={item._id}
                 imageLink={item.imageLink || null}
                 name={item.name}
-                category={
-                  item.categories.sort((a, b) =>
-                    b.type.localeCompare(a.type)
-                  )[0]?.name
-                }
+                categories={[...item.categories]}
                 ingredients={[...item.ingredients]}
                 price={item.price}
               />
@@ -63,54 +60,14 @@ function Menu() {
                 </>
               ) : (
                 <>
-                  <form
-                    onSubmit={(e) =>
-                      handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
-                    }
-                  >
-                    <p className="optional">* (opcionalno)</p>
-                    <FormInput
-                      name="imageLink"
-                      label="* Slika"
-                      placeholder="https://link-na-sliku.mym"
-                      value={formData.imageLink}
-                      onChange={handleChange}
-                    />
-                    <FormInput
-                      name="name"
-                      label="Naziv"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                    <FormSelect
-                      name="categories"
-                      label="Kategorije"
-                      value={formData.categories}
-                      onChange={handleChange}
-                      options={categories}
-                      required
-                    />
-                    <FormSelect
-                      name="ingredients"
-                      label="Sastojci"
-                      value={formData.ingredients}
-                      onChange={handleChange}
-                      options={ingredients}
-                      required
-                    />
-                    <FormInput
-                      name="price"
-                      label="Cijena (€)"
-                      type="number"
-                      value={formData.price}
-                      onChange={handleChange}
-                      min="0.01"
-                      step="0.01"
-                      required
-                    />
-                    <button disabled={disabledSubmit}>Potvrdi</button>
-                  </form>
+                  <MenuItemForm 
+                      onSubmit={(e) => handleMenuItemAdd(e, formData, setFormData, setClickedAdd)}
+                      formData={formData}
+                      handleChange={handleChange}
+                      disabledSubmit={disabledSubmit}
+                      selectCategories={selectCategories}
+                      selectIngredients={selectIngredients}
+                  />
                   <button
                     onClick={(e) => {
                       e.stopPropagation();

@@ -51,13 +51,13 @@ async function fetchCollection(collectionName, setError) {
   }
 }
 
-async function fetchMenuItemAddSelectValues() {
+async function fetchMenuItemSelectValues() {
   try {
-    const [categories, ingredients] = await Promise.all([
+    const [selectCategories, selectIngredients] = await Promise.all([
       fetchCollection("categories"),
       fetchCollection("ingredients"),
     ]);
-    return { categories, ingredients };
+    return { selectCategories, selectIngredients };
   } catch (error) {
     return console.error(
       new CustomError(error?.status || error?.response?.status || 500)
@@ -95,6 +95,6 @@ export {
   handleFocus,
   handleBlur,
   fetchCollection,
-  fetchMenuItemAddSelectValues,
+  fetchMenuItemSelectValues,
   handleMenuItemAdd,
 };

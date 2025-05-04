@@ -1,22 +1,36 @@
-import PropTypes from "prop-types";
 import { fetchMenuItemImage } from "../utils/helpers";
-import FormInput from "./FormInput";
-import FormSelect from "./FormInput";
+import MenuItemForm from "./MenuItemForm";
 import useAuth from "../hooks/useAuth";
+import useMenuItemSelect from "../hooks/useMenuItemSelect";
+import useMenuItemForm from "../hooks/useMenuItemForm";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function MenuItem({
   imageLink,
   name,
-  category,
+  categories,
   ingredients,
   price,
 }) {
+  const initialCategories = categories.map((category) => category._id);
+  const initialIngredients = ingredients.map((ingredient) => ingredient._id);
   const { user } = useAuth();
-  const image = fetchMenuItemImage(imageLink, category);
+  const image = fetchMenuItemImage(
+    imageLink,
+    categories.sort((a, b) => b.type.localeCompare(a.type))[0]?.name
+  );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
+  const { selectCategories, selectIngredients } = useMenuItemSelect();
+  const { formData, setFormData, handleChange, disabledSubmit } =
+    useMenuItemForm({
+      imageLink,
+      name,
+      categories: initialCategories,
+      ingredients: initialIngredients,
+      price,
+    });
 
   useEffect(() => {
     if (clickedItemButton && user?.role !== "user" && user?.role !== "admin") {
@@ -37,7 +51,7 @@ export default function MenuItem({
           <button
             onClick={() => setClickedItemButton((prevValue) => !prevValue)}
           >
-            {user?.role === "user" ? "Dodaj u vrećicu" : "Uredi artikl"}
+            {user?.role === "admin" ? "Uredi artikl" : "Dodaj u vrećicu"}
           </button>
         </span>
       </div>
@@ -48,60 +62,20 @@ export default function MenuItem({
       <button onClick={() => setClickedItemButton(false)}>Poništi</button>
     </div>
   ) : (
-    <div className="item clicked">
-      <form>
-        <p className="optional">* (opcionalno)</p>
-        <FormInput
-          name="imageLink"
-          label="* Slika"
-          placeholder="https://link-na-sliku.mym"
-          value={""}
-          /* onChange={} */
-        />
-        <FormInput
-          name="name"
-          label="Naziv"
-          value={""}
-          /* onChange={} */
-          required
-        />
-        <FormSelect
-          name="categories"
-          label="Kategorije"
-          value={""}
-          /* onChange={} */
-          //options={categories}
-          required
-        />
-        <FormSelect
-          name="ingredients"
-          label="Sastojci"
-          value={""}
-          /* onChange={} */
-          options={ingredients}
-          required
-        />
-        <FormInput
-          name="price"
-          label="Cijena (€)"
-          type="number"
-          value={""}
-          /* onChange={} */
-          min="0.01"
-          step="0.01"
-          required
-        />
-        <button>Potvrdi</button>
-      </form>
-      <button onClick={() => setClickedItemButton(false)}>Poništi</button>
+    <div className="item update">
+      <MenuItemForm
+        onSubmit={(e) =>
+          handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
+        }
+        formData={formData}
+        handleChange={handleChange}
+        disabledSubmit={disabledSubmit}
+        selectCategories={selectCategories}
+        selectIngredients={selectIngredients}
+      />
+      <button onClick={() => setClickedItemButton(false)}>
+        Izbriši artikl
+      </button>
     </div>
   );
 }
-
-MenuItem.propTypes = {
-  imageLink: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  ingredients: PropTypes.array.isRequired,
-  price: PropTypes.number.isRequired,
-};

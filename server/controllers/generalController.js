@@ -46,4 +46,24 @@ const addEntry = (Entry) => async (req, res, next) => {
   }
 };
 
-export { welcomeMessage, getCollection, addEntry };
+const deleteEntry = (Entry) => async (req, res, next) => {
+  console.log(req.params);
+  
+  try {
+    const deletedEntry = await Entry.findByIdAndDelete(req.params.id);
+
+    if (!deletedEntry) {
+      return next(new CustomError(404));
+    }
+
+    res.json({
+      success: true,
+      message: "Successfully deleted entry",
+      deletedEntry
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { welcomeMessage, getCollection, addEntry, deleteEntry };

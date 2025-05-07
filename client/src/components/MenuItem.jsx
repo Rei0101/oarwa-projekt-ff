@@ -73,7 +73,10 @@ export default function MenuItem({
         selectCategories={selectCategories}
         selectIngredients={selectIngredients}
       />
-      <button onClick={() => setClickedItemButton(false)}>
+      <button onClick={(e) => {
+        console.log(e);
+        
+      }}>
         Izbriši artikl
       </button>
     </div>

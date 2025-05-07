@@ -1,6 +1,6 @@
 import CustomError from "../../../../shared/CustomErrorClass";
 import handleError from "./errorHandler";
-import collectionService from "../../services/collectionService";
+import entryService from "../../services/entryService";
 
 function handleFocus(getter, setError) {
   return function (e) {
@@ -34,7 +34,7 @@ function handleBlur(setter) {
 
 async function fetchCollection(collectionName, setError) {
   try {
-    const response = await collectionService.fetch(collectionName);
+    const response = await entryService.fetchAll(collectionName);
     if (setError) {
       setError(null);
     }
@@ -48,6 +48,18 @@ async function fetchCollection(collectionName, setError) {
         new CustomError(error?.status || error?.response?.status || 500)
       );
     }
+  }
+}
+
+async function deleteEntry(collectionName, id) {
+  try {
+    const response = await entryService.delete(collectionName, id);
+    return response;
+  } catch (error) {
+      throw console.error(
+        new CustomError(error?.status || error?.response?.status || 500)
+      );
+    
   }
 }
 
@@ -69,7 +81,7 @@ async function handleMenuItemAdd(e, formData, setFormData, setClickedAdd) {
   e.preventDefault();
 
   try {
-    const response = await collectionService.create("menu-items", formData);
+    const response = await entryService.add("menu-items", formData);
 
     setFormData({
       imageLink: "",

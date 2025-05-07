@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 
 function useMenuItems(filter, clickedAdd) {
   const [collectionData, setCollectionData] = useState([]);
-  const [menuError, setError] = useState(null);
+  const [menuError, setMenuError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const menuItemsData = await fetchCollection("menu-items", setError);
+      const menuItemsData = await fetchCollection("menu-items", setMenuError);
       setCollectionData(menuItemsData);
     }
 
     fetchData();
   }, [filter, clickedAdd]);
 
-  return { collectionData, menuError };
+  return { collectionData, setCollectionData, menuError };
 }
 
 export default useMenuItems;

@@ -12,7 +12,7 @@ function Menu() {
   const { user } = useAuth();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
-  const { collectionData, menuError } = useMenuItems(filter, clickedAdd);
+  const { collectionData, setCollectionData, menuError } = useMenuItems(filter, clickedAdd);
   const { selectCategories, selectIngredients } = useMenuItemSelect();
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
@@ -37,11 +37,14 @@ function Menu() {
             return (
               <MenuItem
                 key={item._id}
+                itemId={item._id}
                 imageLink={item.imageLink || null}
                 name={item.name}
                 categories={[...item.categories]}
                 ingredients={[...item.ingredients]}
                 price={item.price}
+                collectionData={collectionData}
+                setCollectionData={setCollectionData}
               />
             );
           })}

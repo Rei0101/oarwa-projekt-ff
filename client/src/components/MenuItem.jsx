@@ -1,5 +1,7 @@
+import PropTypes from "prop-types";
 import { fetchMenuItemImage } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
+import { deleteEntry } from "../utils/handlers/handlers";
 import useAuth from "../hooks/useAuth";
 import useMenuItemSelect from "../hooks/useMenuItemSelect";
 import useMenuItemForm from "../hooks/useMenuItemForm";
@@ -7,12 +9,16 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function MenuItem({
+  itemId,
   imageLink,
   name,
   categories,
   ingredients,
   price,
+  collectionData,
+  setCollectionData,
 }) {
+  
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
   const { user } = useAuth();
@@ -73,12 +79,30 @@ export default function MenuItem({
         selectCategories={selectCategories}
         selectIngredients={selectIngredients}
       />
-      <button onClick={(e) => {
-        console.log(e);
-        
-      }}>
+      <button
+        data-key={itemId}
+        onClick={(e) => {
+          deleteEntry(
+            "menu-items",
+            e.target.dataset.key,
+            collectionData,
+            setCollectionData
+          );
+        }}
+      >
         Izbriši artikl
       </button>
     </div>
   );
 }
+
+MenuItem.propTypes = {
+  itemId: PropTypes.string.isRequired,
+  imageLink: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  categories: PropTypes.array.isRequired,
+  ingredients: PropTypes.array.isRequired,
+  price: PropTypes.number.isRequired,
+  collectionData: PropTypes.array.isRequired,
+  setCollectionData: PropTypes.func.isRequired,
+};

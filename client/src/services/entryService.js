@@ -37,14 +37,18 @@ const entryService = {
   delete: async (collectionName, id) => {
     try {
       const token = localStorage.getItem("token");
-
-      const response = await axios.post(`${API_URL}/${collectionName}/${id}`);
+      
+      const response = await axios.delete(`${API_URL}/${collectionName}/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
       return response.data;
     } catch (error) {
       throw new CustomError(
         error?.status || error?.response?.status || 500,
-        "Zadana stavka nije uspješno kreirana."
+        "Stavka sa zadanim ID-om nije uspješno izbrisana."
       );
     }
   },

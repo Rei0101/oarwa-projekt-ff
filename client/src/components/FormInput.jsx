@@ -23,7 +23,7 @@ export default function FormInput({
         id={name}
         name={name}
         type={type}
-        value={value}
+        value={value || ""}
         onChange={onChange}
         placeholder={placeholder}
         required={required}
@@ -43,7 +43,7 @@ FormInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,

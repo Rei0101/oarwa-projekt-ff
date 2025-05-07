@@ -51,15 +51,15 @@ async function fetchCollection(collectionName, setError) {
   }
 }
 
-async function deleteEntry(collectionName, id) {
+async function deleteEntry(collectionName, id, collectionData, setCollectionData) {
   try {
     const response = await entryService.delete(collectionName, id);
+    setCollectionData(collectionData.filter((data) => data._id !== id));
     return response;
   } catch (error) {
-      throw console.error(
-        new CustomError(error?.status || error?.response?.status || 500)
-      );
-    
+    throw console.error(
+      new CustomError(error?.status || error?.response?.status || 500)
+    );
   }
 }
 
@@ -107,6 +107,7 @@ export {
   handleFocus,
   handleBlur,
   fetchCollection,
+  deleteEntry,
   fetchMenuItemSelectValues,
   handleMenuItemAdd,
 };

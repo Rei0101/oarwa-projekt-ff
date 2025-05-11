@@ -2,11 +2,15 @@ import CustomError from "../../shared/CustomErrorClass.js";
 
 const lowerCaseNameMiddleware = (req, res, next) => {
   try {
-    if (!req.body || typeof req.body.name !== 'string') {
-      return next(new CustomError(400, "Missing or invalid \"name\" field"));
+    const { name } = req.body || {};
+
+    if (name && typeof name !== "string") {
+      return next(new CustomError(400, 'Invalid "name" field'));
     }
 
-    req.name = req.body.name.toLowerCase();
+    if (name) {
+      req.name = name.toLowerCase();
+    }
 
     next();
   } catch (error) {

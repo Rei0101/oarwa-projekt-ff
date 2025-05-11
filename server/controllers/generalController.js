@@ -28,15 +28,9 @@ const getCollection = async (req, res, next) => {
 };
 
 const addEntry = (Entry) => async (req, res, next) => {
-  let name;
+  const name = req.name ?? req.body?.name;
 
-  if (req.baseUrl === "/api/categories" || req.baseUrl === "/api/ingredients") {
-    name = req.body.name.toLowerCase();
-  } else {
-    name = req.body.name;
-  }
-
-  const newEntry = new Entry({ ...req.body, name });
+  const newEntry = new Entry({ ...req.body, name});
 
   try {
     await newEntry.save();
@@ -47,8 +41,6 @@ const addEntry = (Entry) => async (req, res, next) => {
 };
 
 const deleteEntry = (Entry) => async (req, res, next) => {
-  console.log(req.params);
-  
   try {
     const deletedEntry = await Entry.findByIdAndDelete(req.params.id);
 

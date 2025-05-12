@@ -29,9 +29,9 @@ export default function MenuItem({
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
   const { selectCategories, selectIngredients } = useMenuItemSelect();
-  const { formData, setFormData, handleChange, disabledSubmit } =
+  const { formData, handleChange, disabledSubmit } =
     useMenuItemForm({
-      imageLink,
+      imageLink: imageLink || "",
       name,
       categories: initialCategories,
       ingredients: initialIngredients,

@@ -71,7 +71,7 @@ export default function MenuItem({
     <div className="item update">
       <MenuItemForm
         onSubmit={(e) =>
-          handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
+          handleMenuItemUpdate()
         }
         formData={formData}
         handleChange={handleChange}

@@ -1,4 +1,4 @@
-import { fetchMenuItemSelectValues } from "../utils/handlers/handlers";
+import { fetchMenuItemSelectValues } from "../utils/handlers/menuItemHandlers";
 import { useState, useEffect } from "react";
 
 function useMenuItemSelect() {

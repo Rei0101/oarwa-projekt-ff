@@ -5,7 +5,7 @@ import useMenuItems from "../../hooks/useMenuItems";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useMenuItemForm from "../../hooks/useMenuItemForm";
-import { handleMenuItemAdd } from "../../utils/handlers/handlers";
+import { handleMenuItemAdd } from "../../utils/handlers/menuItemHandlers";
 import useMenuItemSelect from "../../hooks/useMenuItemSelect";
 
 function Menu() {

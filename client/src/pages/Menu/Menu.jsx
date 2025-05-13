@@ -12,8 +12,13 @@ function Menu() {
   const { user } = useAuth();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
-  const { collectionData, setCollectionData, menuError } = useMenuItems(filter, clickedAdd);
+  const [updatedMenuItem, setUpdatedMenuItem] = useState(false);
   const { selectCategories, selectIngredients } = useMenuItemSelect();
+  const { collectionData, setCollectionData, menuError } = useMenuItems(
+    filter,
+    clickedAdd,
+    updatedMenuItem
+  );
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
       imageLink: "",
@@ -45,6 +50,7 @@ function Menu() {
                 price={item.price}
                 collectionData={collectionData}
                 setCollectionData={setCollectionData}
+                setUpdatedMenuItem={setUpdatedMenuItem}
               />
             );
           })}
@@ -61,13 +67,15 @@ function Menu() {
                 </>
               ) : (
                 <>
-                  <MenuItemForm 
-                      onSubmit={(e) => handleMenuItemAdd(e, formData, setFormData, setClickedAdd)}
-                      formData={formData}
-                      handleChange={handleChange}
-                      disabledSubmit={disabledSubmit}
-                      selectCategories={selectCategories}
-                      selectIngredients={selectIngredients}
+                  <MenuItemForm
+                    onSubmit={(e) =>
+                      handleMenuItemAdd(e, formData, setFormData, setClickedAdd)
+                    }
+                    formData={formData}
+                    handleChange={handleChange}
+                    disabledSubmit={disabledSubmit}
+                    selectCategories={selectCategories}
+                    selectIngredients={selectIngredients}
                   />
                   <button
                     onClick={(e) => {

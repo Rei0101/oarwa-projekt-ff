@@ -1,5 +1,6 @@
 import CustomError from "../../../../shared/CustomErrorClass";
 import entryService from "../../services/entryService";
+import { allFieldsChanged } from "../helpers";
 import { fetchCollection } from "./handlers";
 
 async function fetchMenuItemSelectValues() {
@@ -34,7 +35,7 @@ async function handleMenuItemAdd(e, formData, setFormData, setClickedAdd) {
     return response;
   } catch (error) {
     if (error?.status === 409 || error?.response?.status === 409) {
-      alert("Ova stavka već postoji." || error.message);
+      alert("Ova stavka već postoji.");
       return new CustomError(409, "Ovaj proizvod već postoji.");
     }
     alert(error.message);
@@ -42,4 +43,40 @@ async function handleMenuItemAdd(e, formData, setFormData, setClickedAdd) {
   }
 }
 
-export { fetchMenuItemSelectValues, handleMenuItemAdd };
+async function handleMenuItemUpdate(
+  e,
+  id,
+  prevFormData,
+  formData,
+  setFormData,
+  setClickedItemButton,
+  setUpdatedMenuItem
+) {
+  e.preventDefault();
+
+  let response;
+  setClickedItemButton(false);
+
+  try {
+    if (allFieldsChanged(prevFormData, formData)) {
+      response = await entryService.fullyUpdate("menu-items", id, formData);
+    } else if (JSON.stringify(prevFormData) !== JSON.stringify(formData)) {
+      response = await entryService.partiallyUpdate("menu-items", id, formData);
+    } else {
+      return;
+    }
+
+    setUpdatedMenuItem((prevValue) => !prevValue);
+    return response;
+  } catch (error) {
+    setFormData(prevFormData);
+    if (error?.status === 409 || error?.response?.status === 409) {
+      alert("Ova stavka već postoji.");
+      return new CustomError(409, "Ovaj proizvod već postoji.");
+    }
+    alert(error.message);
+    return new CustomError(error?.status || error?.response?.status || 500);
+  }
+}
+
+export { fetchMenuItemSelectValues, handleMenuItemAdd, handleMenuItemUpdate };

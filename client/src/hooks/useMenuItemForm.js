@@ -1,7 +1,7 @@
 import { MenuItemAddValidation } from "../utils/validation";
 import { useEffect, useState } from "react";
 
-function useMenuItemAddForm(initialValues) {
+function useMenuItemForm(initialValues) {
   const [formData, setFormData] = useState(initialValues);
   const [disabledSubmit, setDisabledSubmit] = useState(false);
 
@@ -20,7 +20,7 @@ function useMenuItemAddForm(initialValues) {
       const { name, value } = e.target;
       setFormData((prevData) => ({
         ...prevData,
-        [name]: value,
+        [name]: name !== "price" ? value : parseFloat(value),
       }));
     } else {
       const { name, selectedOptions } = e.target;
@@ -56,4 +56,4 @@ function useMenuItemAddForm(initialValues) {
   };
 }
 
-export default useMenuItemAddForm;
+export default useMenuItemForm;

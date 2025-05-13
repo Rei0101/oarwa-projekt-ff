@@ -9,6 +9,8 @@ export default function MenuItemForm({
   disabledSubmit,
   selectCategories,
   selectIngredients,
+  buttonText = "Potvrdi",
+  dataKey,
 }) {
   return (
     <form onSubmit={onSubmit}>
@@ -53,7 +55,9 @@ export default function MenuItemForm({
         step="0.01"
         required
       />
-      <button disabled={disabledSubmit}>Potvrdi</button>
+      <button disabled={disabledSubmit} data-key={dataKey}>
+        {buttonText}
+      </button>
     </form>
   );
 }
@@ -65,4 +69,6 @@ MenuItemForm.propTypes = {
   disabledSubmit: PropTypes.bool.isRequired,
   selectCategories: PropTypes.array.isRequired,
   selectIngredients: PropTypes.array.isRequired,
+  buttonText: PropTypes.string,
+  dataKey: PropTypes.string,
 };

@@ -33,4 +33,22 @@ function fetchMenuItemImage(imageLink, category) {
   return categoryImagePairs["missing"];
 }
 
-export { decodeJWT, fetchMenuItemImage };
+function deepCopy(referenceType) {
+  return JSON.parse(JSON.stringify(referenceType));
+}
+
+function allFieldsChanged(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (
+    keys1.length !== keys2.length ||
+    !keys1.every((key) => keys2.includes(key))
+  ) {
+    return false;
+  }
+
+  return keys1.every((key) => object1[key] !== object2[key]);
+}
+
+export { decodeJWT, fetchMenuItemImage, deepCopy, allFieldsChanged };

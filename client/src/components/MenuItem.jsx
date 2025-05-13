@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import { fetchMenuItemImage } from "../utils/helpers";
+import { deepCopy, fetchMenuItemImage } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import { deleteEntry } from "../utils/handlers/handlers";
+import { handleMenuItemUpdate } from "../utils/handlers/menuItemHandlers";
 import useAuth from "../hooks/useAuth";
 import useMenuItemSelect from "../hooks/useMenuItemSelect";
 import useMenuItemForm from "../hooks/useMenuItemForm";
@@ -17,8 +18,8 @@ export default function MenuItem({
   price,
   collectionData,
   setCollectionData,
+  setUpdatedMenuItem,
 }) {
-  
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
   const { user } = useAuth();
@@ -29,7 +30,7 @@ export default function MenuItem({
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
   const { selectCategories, selectIngredients } = useMenuItemSelect();
-  const { formData, handleChange, disabledSubmit } =
+  const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
       imageLink: imageLink || "",
       name,
@@ -37,12 +38,29 @@ export default function MenuItem({
       ingredients: initialIngredients,
       price,
     });
+  const [prevFormData, setPrevFormData] = useState({
+    imageLink: imageLink || "",
+    name,
+    categories: initialCategories,
+    ingredients: initialIngredients,
+    price,
+  });
+  const buttonText =
+    JSON.stringify(prevFormData) === JSON.stringify(formData)
+      ? "Poništi"
+      : "Ažuriraj artikl";
 
   useEffect(() => {
     if (clickedItemButton && user?.role !== "user" && user?.role !== "admin") {
       navigate("/login");
     }
   }, [clickedItemButton, user?.role, navigate]);
+
+  useEffect(() => {
+    if (clickedItemButton) {
+      setPrevFormData(deepCopy(formData));
+    }
+  }, [clickedItemButton]);
 
   return !clickedItemButton ? (
     <div className="item">
@@ -68,27 +86,37 @@ export default function MenuItem({
       <button onClick={() => setClickedItemButton(false)}>Poništi</button>
     </div>
   ) : (
-    <div className="item update">
+    <div className="item update" data-key={itemId}>
       <MenuItemForm
-        onSubmit={(e) =>
-          handleMenuItemUpdate()
-        }
+        onSubmit={(e) => {
+          handleMenuItemUpdate(
+            e,
+            e.target[5].dataset.key.toString(),
+            prevFormData,
+            formData,
+            setFormData,
+            setClickedItemButton,
+            setUpdatedMenuItem
+          );
+        }}
         formData={formData}
         handleChange={handleChange}
         disabledSubmit={disabledSubmit}
         selectCategories={selectCategories}
         selectIngredients={selectIngredients}
+        buttonText={buttonText}
+        dataKey={itemId}
       />
       <button
         data-key={itemId}
-        onClick={(e) => {
+        onClick={(e) =>
           deleteEntry(
             "menu-items",
             e.target.dataset.key,
             collectionData,
             setCollectionData
-          );
-        }}
+          )
+        }
       >
         Izbriši artikl
       </button>
@@ -105,4 +133,5 @@ MenuItem.propTypes = {
   price: PropTypes.number.isRequired,
   collectionData: PropTypes.array.isRequired,
   setCollectionData: PropTypes.func.isRequired,
+  setUpdatedMenuItem: PropTypes.func,
 };

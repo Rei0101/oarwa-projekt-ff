@@ -34,21 +34,70 @@ const entryService = {
       );
     }
   },
-  delete: async (collectionName, id) => {
+  fullyUpdate: async (collectionName, id, data) => {
     try {
       const token = localStorage.getItem("token");
-      
-      const response = await axios.delete(`${API_URL}/${collectionName}/${id}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+
+      const response = await axios.put(
+        `${API_URL}/${collectionName}/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
       return response.data;
     } catch (error) {
       throw new CustomError(
         error?.status || error?.response?.status || 500,
-        "Stavka sa zadanim ID-om nije uspješno izbrisana."
+        "Stavka nije uspješno ažurirana."
+      );
+    }
+  },
+  partiallyUpdate: async (collectionName, id, data) => {
+    try {
+      console.log();
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.patch(
+        `${API_URL}/${collectionName}/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new CustomError(
+        error?.status || error?.response?.status || 500,
+        "Stavka nije uspješno ažurirana."
+      );
+    }
+  },
+  delete: async (collectionName, id) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.delete(
+        `${API_URL}/${collectionName}/${id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new CustomError(
+        error?.status || error?.response?.status || 500,
+        "Stavka nije uspješno izbrisana."
       );
     }
   },

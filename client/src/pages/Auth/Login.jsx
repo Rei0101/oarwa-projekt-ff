@@ -4,7 +4,11 @@ import ErrorText from "../../components/ErrorText";
 import { handleLogin } from "../../utils/handlers/authHandlers";
 import { handleBlur } from "../../utils/handlers/handlers";
 import { Link, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import useAuthContext from "../../hooks/useAuth";
+=======
+import useAuthContext from "../../hooks/useAuthContext";
+>>>>>>> a172424 (Rename useAuth to useAuthContext for clarity)
 import useAuthForm from "../../hooks/useAuthForm";
 
 function Login() {

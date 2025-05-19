@@ -3,7 +3,7 @@ import { deepCopy, fetchMenuItemImage } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import { deleteEntry } from "../utils/handlers/handlers";
 import { handleMenuItemUpdate } from "../utils/handlers/menuItemHandlers";
-import useAuth from "../hooks/useAuth";
+import useAuthContext from "../hooks/useAuthContext";
 import useMenuItemSelect from "../hooks/useMenuItemSelect";
 import useMenuItemForm from "../hooks/useMenuItemForm";
 import { useState, useEffect } from "react";
@@ -22,7 +22,7 @@ export default function MenuItem({
 }) {
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const image = fetchMenuItemImage(
     imageLink,
     categories.sort((a, b) => b.type.localeCompare(a.type))[0]?.name

@@ -4,11 +4,11 @@ import ErrorText from "../../components/ErrorText";
 import { handleLogin } from "../../utils/handlers/authHandlers";
 import { handleBlur } from "../../utils/handlers/handlers";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import useAuthContext from "../../hooks/useAuth";
 import useAuthForm from "../../hooks/useAuthForm";
 
 function Login() {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
   const { formData, setFormData, handleChange, error, setError } = useAuthForm({
     email: "",
     password: "",

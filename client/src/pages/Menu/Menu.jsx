@@ -3,13 +3,13 @@ import MenuItemForm from "../../components/MenuItemForm";
 import MenuItem from "../../components/MenuItem";
 import useMenuItems from "../../hooks/useMenuItems";
 import { useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import useAuthContext from "../../hooks/useAuthContext";
 import useMenuItemForm from "../../hooks/useMenuItemForm";
 import { handleMenuItemAdd } from "../../utils/handlers/menuItemHandlers";
 import useMenuItemSelect from "../../hooks/useMenuItemSelect";
 
 function Menu() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const [updatedMenuItem, setUpdatedMenuItem] = useState(false);

@@ -2,8 +2,10 @@ import { useState } from "react";
 import blankProfile from "../assets/pfp-blank.png";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
+import useAuthContext from "../hooks/useAuthContext";
 
 export default function Header() {
+  const { user } = useAuthContext();
   const [textColor, setTextColor] = useState("black");
 
   return (

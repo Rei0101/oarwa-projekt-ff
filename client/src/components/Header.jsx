@@ -20,7 +20,7 @@ export default function Header() {
               onMouseLeave={() => setTextColor("black")}
               style={{ color: textColor }}
             >
-              PRIJAVA
+              {user?.role ? "PROFIL" : "PRIJAVA"}
             </h5>
           </a>
           <a href="/login">

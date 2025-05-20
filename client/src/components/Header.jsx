@@ -23,7 +23,7 @@ export default function Header() {
               {user?.role ? "PROFIL" : "PRIJAVA"}
             </h5>
           </a>
-          <a href="/login">
+          <a href={user?.role ? "/profile" : "/login"}>
             <img
               onMouseEnter={() => setTextColor("gold")}
               onMouseLeave={() => setTextColor("black")}

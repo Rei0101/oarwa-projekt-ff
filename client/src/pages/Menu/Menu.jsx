@@ -23,7 +23,6 @@ function Menu() {
     },
     fetchMenuItemSelectValues
   );
-  console.log(selectValues);
   
   const { collectionData, setCollectionData, menuError } = useMenuItems(
     filter,
@@ -94,7 +93,7 @@ function Menu() {
                       setClickedAdd(false);
                     }}
                   >
-                    Odustani
+                    Poništi
                   </button>
                 </>
               )}

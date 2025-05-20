@@ -56,7 +56,7 @@ export default function MenuItem({
   });
   const buttonText =
     JSON.stringify(prevFormData) === JSON.stringify(formData)
-      ? "Poništi"
+      ? "Odustani"
       : "Ažuriraj artikl";
 
   useEffect(() => {

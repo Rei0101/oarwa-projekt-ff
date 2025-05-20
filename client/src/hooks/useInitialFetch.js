@@ -1,13 +1,27 @@
+import CustomError from "../../../shared/CustomErrorClass";
 import { useState, useEffect } from "react";
 
-function useInitialFetch(initialState, valueHandler) {
+//TODO Combine with useMenuItems.jsx too
+function useInitialFetch(initialState, valueHandler, handlerParams) {
   const [data, setData] = useState(initialState);
-  
+
   useEffect(() => {
+    if (handlerParams.some((param) => param === undefined || param === null)) {
+      return;
+    }
     async function fetchValues() {
-      const result = await valueHandler();
-      
-      setData(result.length != 1 ? {result} : result);
+      try {
+        const result = await valueHandler(...(handlerParams ?? []));
+
+        setData(result.length != 1 ? { result } : result);
+      } catch (error) {
+        console.error(
+          new CustomError(
+            error?.status || 500,
+            error?.message || "Došlo je do pogreške."
+          )
+        );
+      }
     }
 
     fetchValues();

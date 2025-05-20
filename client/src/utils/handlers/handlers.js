@@ -10,7 +10,7 @@ async function fetchDocument(collectionName, id, setError) {
     }
     return response;
   } catch (error) {
-    error = new CustomError(500);
+    error = new CustomError(500, error?.message);
     if (setError) {
       handleError(error, setError);
     } else {
@@ -29,7 +29,7 @@ async function fetchCollection(collectionName, setError) {
     }
     return response;
   } catch (error) {
-    error = new CustomError(500);
+    error = new CustomError(500, error?.message);
     if (setError) {
       handleError(error, setError);
     } else {
@@ -51,7 +51,6 @@ async function deleteEntry(collectionName, id, collectionData, setCollectionData
     );
   }
 }
-
 
 export {
   fetchDocument,

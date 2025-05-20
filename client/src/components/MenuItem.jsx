@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 import { deepCopy, fetchMenuItemImage } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
-import { deleteEntry } from "../utils/handlers/handlers";
-import { handleMenuItemUpdate } from "../utils/handlers/menuItemHandlers";
 import useAuthContext from "../hooks/useAuthContext";
-import useMenuItemSelect from "../hooks/useMenuItemSelect";
+import useInitialFetch from "../hooks/useInitialFetch";
 import useMenuItemForm from "../hooks/useMenuItemForm";
+import { deleteEntry } from "../utils/handlers/handlers";
+import {
+  fetchMenuItemSelectValues,
+  handleMenuItemUpdate,
+} from "../utils/handlers/menuItemHandlers";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +32,13 @@ export default function MenuItem({
   );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
-  const { selectCategories, selectIngredients } = useMenuItemSelect();
+  const selectValues = useInitialFetch(
+    {
+      selectCategories: [],
+      selectIngredients: [],
+    },
+    fetchMenuItemSelectValues
+  );
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
       imageLink: imageLink || "",
@@ -102,8 +111,8 @@ export default function MenuItem({
         formData={formData}
         handleChange={handleChange}
         disabledSubmit={disabledSubmit}
-        selectCategories={selectCategories}
-        selectIngredients={selectIngredients}
+        selectCategories={selectValues?.selectCategories}
+        selectIngredients={selectValues?.selectIngredients}
         buttonText={buttonText}
         dataKey={itemId}
       />

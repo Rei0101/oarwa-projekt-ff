@@ -4,6 +4,17 @@ import CustomError from "../../../shared/CustomErrorClass";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const entryService = {
+  fetchOne: async (collectionName, id) => {
+    try {
+      const response = await axios.get(`${API_URL}/${collectionName}/${id}`);
+      return response.data;
+    } catch (error) {
+      throw new CustomError(
+        error?.status || error?.response?.status || 500,
+        "Tražena stavka nije uspješno dohvaćena."
+      );
+    }
+  },
   fetchAll: async (collectionName) => {
     try {
       const response = await axios.get(`${API_URL}/${collectionName}`);
@@ -34,11 +45,13 @@ const entryService = {
       );
     }
   },
-  fullyUpdate: async (collectionName, id, data) => {
+  partiallyUpdate: async (collectionName, id, data) => {
     try {
+      console.log();
+
       const token = localStorage.getItem("token");
 
-      const response = await axios.put(
+      const response = await axios.patch(
         `${API_URL}/${collectionName}/${id}`,
         data,
         {
@@ -56,13 +69,11 @@ const entryService = {
       );
     }
   },
-  partiallyUpdate: async (collectionName, id, data) => {
+  fullyUpdate: async (collectionName, id, data) => {
     try {
-      console.log();
-
       const token = localStorage.getItem("token");
 
-      const response = await axios.patch(
+      const response = await axios.put(
         `${API_URL}/${collectionName}/${id}`,
         data,
         {

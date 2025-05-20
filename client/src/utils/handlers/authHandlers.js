@@ -14,7 +14,7 @@ async function handleLogin(e, formData, setError, login, navigate) {
       throw new CustomError(403, "Nisu popunjeni svi potrebni podaci.");
     }
 
-    const response = await userService.login(email,password)
+    const response = await userService.login(email, password)
 
     localStorage.setItem("token", response.token);
 

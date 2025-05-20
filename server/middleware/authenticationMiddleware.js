@@ -20,8 +20,9 @@ const authenticateUser = async (req, res, next) => {
     if (!(await User.findOne({ email: decodedToken.email }))) {
       return next(new CustomError(404));
     }
-    req.userRole = decodedToken.role;
 
+    req.userRole = decodedToken.role;
+    
     next();
   } catch (error) {
     next(error || new CustomError(401));

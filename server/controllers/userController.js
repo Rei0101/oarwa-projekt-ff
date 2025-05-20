@@ -37,7 +37,7 @@ const loginUser = async (req, res, next) => {
 
     if (dbUser && (await bcrypt.compare(req.body.password, dbUser.password))) {
       const token = jwt.sign(
-        { email: dbUser.email, role: dbUser.role },
+        { id: dbUser._id, email: dbUser.email, role: dbUser.role },
         CONFIG.JWT_SECRET,
         { expiresIn: CONFIG.JWT_EXPIRATION }
       );

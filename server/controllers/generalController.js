@@ -1,6 +1,6 @@
 import CustomError from "../../shared/CustomErrorClass.js";
 import { allowedCollections } from "../utils/allowedCollections.js";
-import { handleCollection } from "../utils/handlers.js";
+import { fetchDocuments } from "../utils/helpers.js";
 
 const welcomeMessage = (req, res) => {
   res.status(200).json({
@@ -15,7 +15,7 @@ const getCollection = async (req, res, next) => {
   const collectionName = req.params.collection;
 
   try {
-    const collection = await handleCollection(collectionName);
+    const collection = await fetchDocuments(collectionName);
 
     if (collection.length == 0) {
       return next(new CustomError(404));
@@ -40,6 +40,29 @@ const addEntry = (Entry) => async (req, res, next) => {
   }
 };
 
+const partiallyUpdateEntry = (Entry) => async (req, res, next) => {
+  const name = req.name ?? req.body?.name;
+  const updatedData = { ...req.body, name };
+
+  try {
+    const updatedEntry = await Entry.findByIdAndUpdate(
+      req.params.id,
+      updatedData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedEntry) {
+      return next(new CustomError(404));
+    }
+
+    res.status(200).send(updatedEntry);
+  } catch (error) {
+    next(error);
+  }
+};
 const fullyUpdateEntry = (Entry) => async (req, res, next) => {
   const name = req.name ?? req.body?.name;
   const updatedData = { ...req.body, name };
@@ -51,30 +74,6 @@ const fullyUpdateEntry = (Entry) => async (req, res, next) => {
       {
         new: true,
         overwrite: true,
-        runValidators: true,
-      }
-    );
-
-    if (!updatedEntry) {
-      return next(new CustomError(404));
-    }
-
-    res.status(201).send(updatedEntry);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const partiallyUpdateEntry = (Entry) => async (req, res, next) => {
-  const name = req.name ?? req.body?.name;
-  const updatedData = { ...req.body, name };
-
-  try {
-    const updatedEntry = await Entry.findByIdAndUpdate(
-      req.params.id,
-      updatedData,
-      {
-        new: true,
         runValidators: true,
       }
     );

@@ -5,7 +5,7 @@ import useMenuItems from "../../hooks/useMenuItems";
 import { useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import useMenuItemForm from "../../hooks/useMenuItemForm";
-import useInitialFetch from "../../hooks/useInitialFetch";
+import useFetch from "../../hooks/useFetch";
 import {
   fetchMenuItemSelectValues,
   handleMenuItemAdd,
@@ -16,14 +16,13 @@ function Menu() {
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const [updatedMenuItem, setUpdatedMenuItem] = useState(false);
-  const selectValues = useInitialFetch(
+  const  {selectCategories, selectIngredients} = useFetch(
     {
       selectCategories: [],
       selectIngredients: [],
     },
     fetchMenuItemSelectValues
   );
-  
   const { collectionData, setCollectionData, menuError } = useMenuItems(
     filter,
     clickedAdd,
@@ -84,8 +83,8 @@ function Menu() {
                     formData={formData}
                     handleChange={handleChange}
                     disabledSubmit={disabledSubmit}
-                    selectCategories={selectValues?.selectCategories}
-                    selectIngredients={selectValues?.selectIngredients}
+                    selectCategories={selectCategories}
+                    selectIngredients={selectIngredients}
                   />
                   <button
                     onClick={(e) => {

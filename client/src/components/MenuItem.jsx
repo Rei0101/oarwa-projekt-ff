@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { deepCopy, fetchMenuItemImage } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import useAuthContext from "../hooks/useAuthContext";
-import useInitialFetch from "../hooks/useInitialFetch";
+import useFetch from "../hooks/useFetch";
 import useMenuItemForm from "../hooks/useMenuItemForm";
 import { deleteEntry } from "../utils/handlers/handlers";
 import {
@@ -32,7 +32,7 @@ export default function MenuItem({
   );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
-  const selectValues = useInitialFetch(
+  const {selectCategories, selectIngredients} = useFetch(
     {
       selectCategories: [],
       selectIngredients: [],
@@ -111,8 +111,8 @@ export default function MenuItem({
         formData={formData}
         handleChange={handleChange}
         disabledSubmit={disabledSubmit}
-        selectCategories={selectValues?.selectCategories}
-        selectIngredients={selectValues?.selectIngredients}
+        selectCategories={selectCategories}
+        selectIngredients={selectIngredients}
         buttonText={buttonText}
         dataKey={itemId}
       />

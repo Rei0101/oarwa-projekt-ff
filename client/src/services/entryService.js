@@ -7,7 +7,7 @@ const entryService = {
   fetchOne: async (collectionName, id) => {
     try {
       const response = await axios.get(`${API_URL}/${collectionName}/${id}`);
-      return response.data;
+      return response.data[0];
     } catch (error) {
       throw new CustomError(
         error?.status || error?.response?.status || 500,

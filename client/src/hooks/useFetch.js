@@ -2,16 +2,13 @@ import CustomError from "../../../shared/CustomErrorClass";
 import { useState, useEffect } from "react";
 
 //TODO Combine with useMenuItems.jsx too
-function useInitialFetch(initialState, valueHandler, handlerParams) {
+function useFetch(initialState, valueHandler, handlerParams, dependencies = []) {
   const [data, setData] = useState(initialState);
-
+  const [error, setError] = useState(null);
   useEffect(() => {
-    if (handlerParams.some((param) => param === undefined || param === null)) {
-      return;
-    }
     async function fetchValues() {
       try {
-        const result = await valueHandler(...(handlerParams ?? []));
+        const result = await valueHandler(...(handlerParams ?? []), setError);
 
         setData(result.length != 1 ? { result } : result);
       } catch (error) {
@@ -23,11 +20,13 @@ function useInitialFetch(initialState, valueHandler, handlerParams) {
         );
       }
     }
-
-    fetchValues();
-  }, []);
-
-  return data["result"];
+    if (handlerParams === undefined || handlerParams.length > 0) {
+      fetchValues();
+      
+    }
+  }, [...dependencies]);
+  
+  return { ...(data?.result ?? data), error };
 }
 
-export default useInitialFetch;
+export default useFetch;

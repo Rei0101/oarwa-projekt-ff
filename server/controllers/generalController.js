@@ -11,17 +11,17 @@ const welcomeMessage = (req, res) => {
   });
 };
 
-const getCollection = async (req, res, next) => {
-  const collectionName = req.params.collection;
-
+const getDocuments = async (req, res, next) => {
+  const { collection, id } = req.params;
+  
   try {
-    const collection = await fetchDocuments(collectionName);
+    const documents = await fetchDocuments(collection, id);
 
-    if (collection.length == 0) {
+    if (documents.length == 0) {
       return next(new CustomError(404));
     }
 
-    res.status(200).json(collection);
+    res.status(200).json(documents);
   } catch (error) {
     next(error);
   }
@@ -63,6 +63,7 @@ const partiallyUpdateEntry = (Entry) => async (req, res, next) => {
     next(error);
   }
 };
+
 const fullyUpdateEntry = (Entry) => async (req, res, next) => {
   const name = req.name ?? req.body?.name;
   const updatedData = { ...req.body, name };
@@ -108,7 +109,7 @@ const deleteEntry = (Entry) => async (req, res, next) => {
 
 export {
   welcomeMessage,
-  getCollection,
+  getDocuments,
   addEntry,
   fullyUpdateEntry,
   partiallyUpdateEntry,

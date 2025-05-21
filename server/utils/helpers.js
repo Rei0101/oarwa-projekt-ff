@@ -11,12 +11,21 @@ const isObjectIdInCollection = async (objectId, collection) => {
   return result !== null;
 };
 
-const fetchDocuments = async (collectionName) => {
+const fetchDocuments = async (collectionName, id) => {
   let documents;
+  let query = {};
 
   try {
+
+    if (id) {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new CustomError(400, "Invalid ID format");
+      }
+      query._id = new mongoose.Types.ObjectId(String(id));
+    }
+
     if (collectionName === "menu-items") {
-      documents = await MenuItem.find({})
+      documents = await MenuItem.find(query)
         .populate({
           path: "categories",
           options: { sort: { _id: 1 } },
@@ -31,7 +40,7 @@ const fetchDocuments = async (collectionName) => {
         })
         .sort({ _id: 1 });
     } else if (collectionName === "ingredients") {
-      documents = await Ingredient.find({})
+      documents = await Ingredient.find(query)
         .populate({
           path: "categories",
           options: { sort: { _id: 1 } },
@@ -41,7 +50,8 @@ const fetchDocuments = async (collectionName) => {
       const collection = mongoose.connection.collection(
         collectionName.replaceAll("-", "_")
       );
-      documents = await collection.find().toArray();
+  
+      documents = await collection.find(query).sort({ _id: 1 }).toArray();
     }
 
     return documents;

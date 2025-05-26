@@ -1,11 +1,11 @@
 import "./Menu.css";
 import MenuItemForm from "../../components/MenuItemForm";
 import MenuItem from "../../components/MenuItem";
-import useMenuItems from "../../hooks/useMenuItems";
 import { useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import useMenuItemForm from "../../hooks/useMenuItemForm";
 import useFetch from "../../hooks/useFetch";
+import { fetchCollection } from "../../utils/handlers/handlers";
 import {
   fetchMenuItemSelectValues,
   handleMenuItemAdd,
@@ -16,17 +16,22 @@ function Menu() {
   const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const [updatedMenuItem, setUpdatedMenuItem] = useState(false);
-  const  {selectCategories, selectIngredients} = useFetch(
+  const fetchedSelect = useFetch(
     {
       selectCategories: [],
       selectIngredients: [],
     },
     fetchMenuItemSelectValues
-  );
-  const { collectionData, setCollectionData, menuError } = useMenuItems(
-    filter,
-    clickedAdd,
-    updatedMenuItem
+  ).fetched;
+  const {
+    fetched: fetchedMenuItems,
+    error: menuError,
+    setFetched: setFetchedMenuItems,
+  } = useFetch(
+    [],
+    fetchCollection,
+    ["menu-items"],
+    [filter, clickedAdd, updatedMenuItem]
   );
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
@@ -45,9 +50,9 @@ function Menu() {
         onChange={(e) => setFilter(e.target.value)}
         type="text"
       />
-      {!menuError ? (
+      {!menuError && fetchedMenuItems ? (
         <div id="menu">
-          {collectionData.map((item) => {
+          {fetchedMenuItems.map((item) => {
             return (
               <MenuItem
                 key={item._id}
@@ -57,8 +62,8 @@ function Menu() {
                 categories={[...item.categories]}
                 ingredients={[...item.ingredients]}
                 price={item.price}
-                collectionData={collectionData}
-                setCollectionData={setCollectionData}
+                collectionData={fetchedMenuItems}
+                setCollectionData={setFetchedMenuItems}
                 setUpdatedMenuItem={setUpdatedMenuItem}
               />
             );
@@ -83,8 +88,8 @@ function Menu() {
                     formData={formData}
                     handleChange={handleChange}
                     disabledSubmit={disabledSubmit}
-                    selectCategories={selectCategories}
-                    selectIngredients={selectIngredients}
+                    selectCategories={fetchedSelect.selectCategories}
+                    selectIngredients={fetchedSelect.selectIngredients}
                   />
                   <button
                     onClick={(e) => {

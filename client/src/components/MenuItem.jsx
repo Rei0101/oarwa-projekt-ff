@@ -32,13 +32,13 @@ export default function MenuItem({
   );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
-  const {selectCategories, selectIngredients} = useFetch(
+  const fetchedSelect = useFetch(
     {
       selectCategories: [],
       selectIngredients: [],
     },
     fetchMenuItemSelectValues
-  );
+  ).fetched;
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
       imageLink: imageLink || "",
@@ -111,8 +111,8 @@ export default function MenuItem({
         formData={formData}
         handleChange={handleChange}
         disabledSubmit={disabledSubmit}
-        selectCategories={selectCategories}
-        selectIngredients={selectIngredients}
+        selectCategories={fetchedSelect.selectCategories}
+        selectIngredients={fetchedSelect.selectIngredients}
         buttonText={buttonText}
         dataKey={itemId}
       />

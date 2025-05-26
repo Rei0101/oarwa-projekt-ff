@@ -7,15 +7,7 @@ function Profile() {
   const { user } = useAuthContext();
 
   const {
-    firstName,
-    lastName,
-    email,
-    password,
-    confirmPassword,
-    dateOfBirth,
-    city,
-    address,
-    phone,
+    fetched,
     error
   } = useFetch(
     {
@@ -36,7 +28,7 @@ function Profile() {
 
   return (
     <div className="container">
-      {!error ? <div id="user-info">Profil od {firstName}</div> : <h3>{error}</h3>}
+      {!error ? <div id="user-info">Profil od {fetched.firstName}</div> : <h3>{error}</h3>}
     </div>
   );
 }

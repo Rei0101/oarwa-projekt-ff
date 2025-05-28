@@ -1,7 +1,8 @@
-.container {
+.container #profile {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    margin-top: 5em;
 }
 
 th {
@@ -12,13 +13,13 @@ th, td {
     padding: 10px 5px;
 }
 
-.container div {
+.container #profile div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container div button {
+.container #profile div button {
     margin: 35px 25px;
 }
 

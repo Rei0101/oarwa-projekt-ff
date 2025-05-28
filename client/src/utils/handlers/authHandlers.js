@@ -62,4 +62,12 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
   }
 }
 
-export { handleLogin, handleRegister };
+async function handleLogout(e, logout, navigate) {
+  e.preventDefault();
+
+  logout();
+
+  navigate("/login")
+}
+
+export { handleLogin, handleRegister, handleLogout };

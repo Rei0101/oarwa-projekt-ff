@@ -2,10 +2,11 @@ import "./Profile.css";
 import useAuthContext from "../../hooks/useAuthContext";
 import useFetch from "../../hooks/useFetch";
 import { fetchDocument } from "../../utils/handlers/handlers";
+import { handleLogout } from "../../utils/handlers/authHandlers";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const { user } = useAuthContext();
-
+  const { user, logout } = useAuthContext();
   const { fetched, error } = useFetch(
     {
       firstName: "",
@@ -22,6 +23,8 @@ function Profile() {
     user ? ["users", user.id] : [],
     [user]
   );
+  const navigate = useNavigate();
+
 
   return (
     <div className="container">
@@ -65,7 +68,7 @@ function Profile() {
           </table>
           <div>
             <button>Promijeni lozinku</button>
-            <button>Odjavi se</button>
+            <button onClick={(e) => handleLogout(e, logout, navigate)}>Odjavi se</button>
           </div>
         </div>
       ) : (

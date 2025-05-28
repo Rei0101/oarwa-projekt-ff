@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function FormInput({
   name,
-  label,
+  label = "",
   type = "text",
   value,
   onChange,
@@ -18,7 +18,7 @@ export default function FormInput({
 }) {
   return (
     <span>
-      <label htmlFor={name}>{label}:</label>
+      {label.length > 0 ? <label htmlFor={name}>{label}:</label> : null}
       <input
         id={name}
         name={name}
@@ -41,7 +41,7 @@ export default function FormInput({
 
 FormInput.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,

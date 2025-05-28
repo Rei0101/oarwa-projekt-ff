@@ -11,6 +11,14 @@ th {
 
 th, td {
     padding: 10px 5px;
+    overflow: visible;
+    height: 21px;
+    width: 200px;
+}
+
+td span, td input {
+    margin: 0px;
+    padding: 0px;
 }
 
 .container #profile div {
@@ -20,6 +28,9 @@ th, td {
 }
 
 .container #profile div button {
-    margin: 35px 25px;
+    margin: 10px 25px;
 }
 
+#profile p {
+    bottom: 0%;
+}

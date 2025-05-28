@@ -103,3 +103,11 @@ button:hover {
   cursor: pointer;
   background-color: gold;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: crimson;
+}

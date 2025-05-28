@@ -51,4 +51,14 @@ function allFieldsChanged(object1, object2) {
   return keys1.every((key) => object1[key] !== object2[key]);
 }
 
-export { decodeJWT, fetchMenuItemImage, deepCopy, allFieldsChanged };
+function formatDate(date) {
+  return date.slice(0, 10).split("-").reverse().join(".");
+}
+
+export {
+  decodeJWT,
+  fetchMenuItemImage,
+  deepCopy,
+  allFieldsChanged,
+  formatDate,
+};

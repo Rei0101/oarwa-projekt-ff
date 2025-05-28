@@ -47,8 +47,6 @@ const entryService = {
   },
   partiallyUpdate: async (collectionName, id, data) => {
     try {
-      console.log();
-
       const token = localStorage.getItem("token");
 
       const response = await axios.patch(

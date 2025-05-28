@@ -193,15 +193,6 @@ h3 {
   width: 40%;
 }
 
-.item.add button:disabled,
-.item.update button:disabled {
-  cursor: not-allowed;
-}
-
-.item.add button:disabled:hover,
-.item.update button:disabled:hover {
-  background-color: crimson;
-}
 
 .item.add .optional,
 .item.update .optional {

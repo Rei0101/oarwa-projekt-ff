@@ -23,9 +23,6 @@ async function handleLogin(e, formData, setError, login, navigate) {
 
     navigate("/");
   } catch (error) {
-    if (!error?.status || !error?.response?.status) {
-      error = new CustomError(401);
-    }
     handleError(error, setError);
   }
 }
@@ -51,13 +48,6 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
 
     navigate("/login");
   } catch (error) {
-    if (error?.status === 409 || error?.response?.status === 409) {
-      error = new CustomError(
-        409,
-        "Ovaj korisnik već postoji. Molimo pokušajte ponovno."
-      );
-    }
-
     handleError(error, setError);
   }
 }
@@ -70,4 +60,17 @@ async function handleLogout(e, logout, navigate) {
   navigate("/login")
 }
 
-export { handleLogin, handleRegister, handleLogout };
+async function handlePasswordChange(e, id, currentPassword, newPassword, setError) {
+  e.preventDefault();
+
+  try {
+    await userService.changePassword(id, currentPassword, newPassword);
+
+    setError(null)
+  } catch (error) {
+    setError(error.message)
+    handleError(error, setError);
+  }
+}
+
+export { handleLogin, handleRegister, handleLogout, handlePasswordChange };

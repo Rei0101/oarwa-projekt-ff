@@ -50,4 +50,37 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-export { registerUser, loginUser };
+const changePassword = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    
+    const { id, currentPassword, newPassword } = req.body;
+    const dbUser = await User.findById(id);
+
+    if (!(dbUser && (await bcrypt.compare(currentPassword, dbUser.password)))){
+      return next(new CustomError(401, "Current password not verified."));
+    }
+
+    if (!validPassword(newPassword)) {
+      return next(
+        new CustomError(400, `NewPassword: ${newPassword} is not a valid password.`)
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await User.findByIdAndUpdate(
+      id,
+      {
+        ...req.body,
+        password: hashedPassword,
+      }
+    );
+
+    res.status(200).send({message: "Password successfully updated."});
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { registerUser, loginUser, changePassword };

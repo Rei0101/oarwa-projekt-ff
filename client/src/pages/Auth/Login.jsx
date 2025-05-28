@@ -5,11 +5,11 @@ import { handleLogin } from "../../utils/handlers/authHandlers";
 import { handleBlur } from "../../utils/handlers/eventHandlers";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
-import useAuthForm from "../../hooks/useAuthForm";
+import useUserForm from "../../hooks/useUserForm";
 
 function Login() {
   const { login } = useAuthContext();
-  const { formData, setFormData, handleChange, error, setError } = useAuthForm({
+  const { formData, setFormData, handleChange, error, setError } = useUserForm({
     email: "",
     password: "",
   });

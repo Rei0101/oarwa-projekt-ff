@@ -5,7 +5,7 @@ import { handleRegister } from "../../utils/handlers/authHandlers";
 import { handleFocus, handleBlur } from "../../utils/handlers/eventHandlers";
 import { formatDate } from "../../../../shared/helpers";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthForm from "../../hooks/useAuthForm";
+import useUserForm from "../../hooks/useUserForm";
 
 function Register() {
   const {
@@ -16,7 +16,7 @@ function Register() {
     formErrors,
     error,
     setError,
-  } = useAuthForm({
+  } = useUserForm({
     firstName: "",
     lastName: "",
     email: "",

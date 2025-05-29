@@ -52,8 +52,6 @@ const loginUser = async (req, res, next) => {
 
 const changePassword = async (req, res, next) => {
   try {
-    console.log(req.body);
-    
     const { id, currentPassword, newPassword } = req.body;
     const dbUser = await User.findById(id);
 

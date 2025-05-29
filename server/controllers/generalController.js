@@ -13,9 +13,10 @@ const welcomeMessage = (req, res) => {
 
 const getDocuments = async (req, res, next) => {
   const { collection, id } = req.params;
+  const { q } = req.query;
   
   try {
-    const documents = await fetchDocuments(collection, id);
+    const documents = await fetchDocuments(collection, id, q);
 
     if (documents.length == 0) {
       return next(new CustomError(404));

@@ -11,7 +11,7 @@ const isObjectIdInCollection = async (objectId, collection) => {
   return result !== null;
 };
 
-const fetchDocuments = async (collectionName, id) => {
+const fetchDocuments = async (collectionName, id, queryString) => {
   let documents;
   let query = {};
 
@@ -23,8 +23,12 @@ const fetchDocuments = async (collectionName, id) => {
       }
       query._id = new mongoose.Types.ObjectId(String(id));
     }
-
+    
     if (collectionName === "menu-items") {
+      if (queryString) {
+        query.name = { $regex: queryString, $options: 'i' };
+      }
+
       documents = await MenuItem.find(query)
         .populate({
           path: "categories",

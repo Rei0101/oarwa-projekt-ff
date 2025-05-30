@@ -26,6 +26,17 @@ const entryService = {
       );
     }
   },
+  fetchByQuery: async (collectionName, q) => {
+    try {
+      const response = await axios.get(`${API_URL}/${collectionName}?q=${q}`);
+      return response.data;
+    } catch (error) {
+      throw new CustomError(
+        error?.status || error?.response?.status || 500,
+        "Tražene stavke nisu uspješno dohvaćene."
+      );
+    }
+  },
   add: async (collectionName, data) => {
     try {
       const token = localStorage.getItem("token");

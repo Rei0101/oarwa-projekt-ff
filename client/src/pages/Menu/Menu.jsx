@@ -1,21 +1,28 @@
 import "./Menu.css";
 import MenuItemForm from "../../components/MenuItemForm";
 import MenuItem from "../../components/MenuItem";
-import { useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import useMenuItemForm from "../../hooks/useMenuItemForm";
 import useFetch from "../../hooks/useFetch";
-import { fetchCollection } from "../../utils/handlers/handlers";
+import useMenuItemSearch from "../../hooks/useMenuItemSearch";
 import {
   fetchMenuItemSelectValues,
   handleMenuItemAdd,
 } from "../../utils/handlers/menuItemHandlers";
+import { useState } from "react";
 
 function Menu() {
   const { user } = useAuthContext();
-  const [filter, setFilter] = useState("");
   const [clickedAdd, setClickedAdd] = useState(false);
   const [updatedMenuItem, setUpdatedMenuItem] = useState(false);
+  const {
+    setSearchParams,
+    search,
+    setSearch,
+    fetchedMenuItems,
+    setFetchedMenuItems,
+    menuError,
+  } = useMenuItemSearch(clickedAdd, updatedMenuItem);
   const fetchedSelect = useFetch(
     {
       selectCategories: [],
@@ -23,16 +30,6 @@ function Menu() {
     },
     fetchMenuItemSelectValues
   ).fetched;
-  const {
-    fetched: fetchedMenuItems,
-    error: menuError,
-    setFetched: setFetchedMenuItems,
-  } = useFetch(
-    [],
-    fetchCollection,
-    ["menu-items"],
-    [filter, clickedAdd, updatedMenuItem]
-  );
   const { formData, setFormData, handleChange, disabledSubmit } =
     useMenuItemForm({
       imageLink: "",
@@ -45,9 +42,12 @@ function Menu() {
   return (
     <div className="container">
       <input
-        placeholder="Filter"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
+        placeholder="Search"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setSearchParams(e.target.value !== "" ? { q: e.target.value } : {});
+        }}
         type="text"
       />
       {!menuError && fetchedMenuItems ? (

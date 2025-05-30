@@ -40,7 +40,12 @@ async function fetchCollection(collectionName, setError) {
   }
 }
 
-async function deleteEntry(collectionName, id, collectionData, setCollectionData) {
+async function deleteEntry(
+  collectionName,
+  id,
+  collectionData,
+  setCollectionData
+) {
   try {
     const response = await entryService.delete(collectionName, id);
     setCollectionData(collectionData.filter((data) => data._id !== id));
@@ -52,8 +57,4 @@ async function deleteEntry(collectionName, id, collectionData, setCollectionData
   }
 }
 
-export {
-  fetchDocument,
-  fetchCollection,
-  deleteEntry,
-};
+export { fetchDocument, fetchCollection, deleteEntry };

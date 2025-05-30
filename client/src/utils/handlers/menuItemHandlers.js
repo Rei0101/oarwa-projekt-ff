@@ -79,4 +79,24 @@ async function handleMenuItemUpdate(
   }
 }
 
-export { fetchMenuItemSelectValues, handleMenuItemAdd, handleMenuItemUpdate };
+async function fetchMenuItemsByQuery(q, setMenuError) {
+  try {
+    const response = await entryService.fetchByQuery("menu-items", q);
+    if (setMenuError) {
+      setMenuError(null);
+    }
+    return response;
+  } catch (error) {
+    setMenuError("Došlo je do pogreške.");
+    console.error(
+      new CustomError(error?.status || error?.response?.status || 500)
+    );
+  }
+}
+
+export {
+  fetchMenuItemSelectValues,
+  handleMenuItemAdd,
+  handleMenuItemUpdate,
+  fetchMenuItemsByQuery,
+};

@@ -44,10 +44,7 @@ function Menu() {
       <input
         placeholder="Search"
         value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setSearchParams(e.target.value !== "" ? { q: e.target.value } : {});
-        }}
+        onChange={(e) => setSearch(e.target.value)}
         type="text"
       />
       {!menuError && fetchedMenuItems ? (

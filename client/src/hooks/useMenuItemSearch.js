@@ -2,7 +2,8 @@ import CustomError from "../../../shared/CustomErrorClass";
 import { useSearchParams } from "react-router-dom";
 import { fetchMenuItemsByQuery } from "../utils/handlers/menuItemHandlers";
 import { fetchCollection } from "../utils/handlers/handlers";
-import { useState, useEffect } from "react";
+import { debounce } from "lodash";
+import { useState, useEffect, useMemo } from "react";
 
 function useMenuItemSearch(clickedAdd, updatedMenuItem) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,23 +12,32 @@ function useMenuItemSearch(clickedAdd, updatedMenuItem) {
   const [fetchedMenuItems, setFetchedMenuItems] = useState([]);
   const [menuError, setMenuError] = useState(null);
 
+  const debouncedSetSearchParams = useMemo(
+    () =>
+      debounce((newSearch) => {
+        if (newSearch !== "") {
+          setSearchParams({ q: newSearch });
+        } else {
+          setSearchParams({});
+        }
+      }, 300),
+    [setSearchParams]
+  );
+
   useEffect(() => {
-    function searchParamSetting() {
-      if (search !== "") {
-        setSearchParams({ q: search });
-      } else {
-        setSearchParams({});
-      }
-    }
+    debouncedSetSearchParams(search);
+  }, [search, debouncedSetSearchParams]);
+
+  useEffect(() => {
     async function fetchData() {
       try {
         if (q === "") {
           setFetchedMenuItems(
             await fetchCollection("menu-items", setMenuError)
           );
-          return;
+        } else {
+          setFetchedMenuItems(await fetchMenuItemsByQuery(q, setMenuError));
         }
-        setFetchedMenuItems(await fetchMenuItemsByQuery(q, setMenuError));
       } catch (error) {
         console.error(
           new CustomError(
@@ -38,9 +48,14 @@ function useMenuItemSearch(clickedAdd, updatedMenuItem) {
       }
     }
 
-    searchParamSetting();
     fetchData();
   }, [q, clickedAdd, updatedMenuItem]);
+
+  useEffect(() => {
+    return () => {
+      debouncedSetSearchParams.cancel();
+    };
+  }, [debouncedSetSearchParams]);
 
   return {
     setSearchParams,

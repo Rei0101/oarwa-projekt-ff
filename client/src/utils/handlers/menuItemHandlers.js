@@ -87,7 +87,9 @@ async function fetchMenuItemsByQuery(q, setMenuError) {
     }
     return response;
   } catch (error) {
-    setMenuError("Došlo je do pogreške.");
+    setMenuError(
+      error?.status || error?.response?.status || "Došlo je do pogreške."
+    );
     console.error(
       new CustomError(error?.status || error?.response?.status || 500)
     );

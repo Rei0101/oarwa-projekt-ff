@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 export default function FormInput({
   name,
+  labelAfter = false,
   label = "",
   type = "text",
   value,
@@ -16,31 +17,43 @@ export default function FormInput({
   onFocus,
   onBlur,
 }) {
-  return (
+  const labelElement =
+    label.length > 0 ? <label htmlFor={name}>{label}{!labelAfter ? ":" : null}</label> : null;
+  const inputElement = (
+    <input
+      id={name}
+      name={name}
+      type={type}
+      value={value || ""}
+      onChange={onChange}
+      placeholder={placeholder}
+      required={required}
+      style={{ borderColor }}
+      min={min}
+      max={max}
+      maxLength={maxLength}
+      step={step}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    />
+  );
+
+  return !labelAfter ? (
     <span>
-      {label.length > 0 ? <label htmlFor={name}>{label}:</label> : null}
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={value || ""}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={required}
-        style={{ borderColor }}
-        min={min}
-        max={max}
-        maxLength={maxLength}
-        step={step}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
+      {labelElement}
+      {inputElement}
+    </span>
+  ) : (
+    <span>
+      {inputElement}
+      {labelElement}
     </span>
   );
 }
 
 FormInput.propTypes = {
   name: PropTypes.string.isRequired,
+  labelAfter: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -58,7 +58,6 @@ function useMenuItemSearch(clickedAdd, updatedMenuItem) {
   }, [debouncedSetSearchParams]);
 
   return {
-    setSearchParams,
     search,
     setSearch,
     fetchedMenuItems,

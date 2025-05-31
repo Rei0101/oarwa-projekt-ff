@@ -16,7 +16,6 @@ function Menu() {
   const [clickedAdd, setClickedAdd] = useState(false);
   const [updatedMenuItem, setUpdatedMenuItem] = useState(false);
   const {
-    setSearchParams,
     search,
     setSearch,
     fetchedMenuItems,

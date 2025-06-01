@@ -17,12 +17,14 @@ export default function FormInput({
   onFocus,
   onBlur,
 }) {
+  const formattedName = name.split(" ").join("-");
+
   const labelElement =
-    label.length > 0 ? <label htmlFor={name}>{label}{!labelAfter ? ":" : null}</label> : null;
+    label.length > 0 ? <label htmlFor={formattedName}>{label}{!labelAfter ? ":" : null}</label> : null;
   const inputElement = (
     <input
-      id={name}
-      name={name}
+      id={formattedName}
+      name={formattedName}
       type={type}
       value={value || ""}
       onChange={onChange}

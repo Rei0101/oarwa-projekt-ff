@@ -2,7 +2,7 @@ import CustomError from "../../../shared/CustomErrorClass";
 import { useSearchParams } from "react-router-dom";
 import { fetchMenuItemsByQuery } from "../utils/handlers/menuItemHandlers";
 import { fetchCollection } from "../utils/handlers/handlers";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import { useState, useEffect, useMemo } from "react";
 
 function useMenuItemSearch(clickedAdd, updatedMenuItem) {

@@ -1,5 +1,10 @@
-function handleMealCreation(e, checkedIngredients) {
+function handleMealCreation(e, checkedIngredients, userRole) {
     e.preventDefault();
+
+    if (userRole === "admin"){
+        alert("Administratorski računi nemaju ove ovlasti.")
+        return;
+    }
 
     let finalIngredients = []
 

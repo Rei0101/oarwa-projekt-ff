@@ -2,6 +2,7 @@ import "./MakeAMeal.css";
 import useFetch from "../../hooks/useFetch";
 import useMakeAMealForm from "../../hooks/useMakeAMealCheckboxes";
 import { fetchCollection } from "../../utils/handlers/handlers";
+import { handleMealCreation } from "../../utils/handlers/MakeAMealHandlers";
 import FormInput from "../../components/FormInput";
 import ErrorText from "../../components/ErrorText";
 
@@ -11,7 +12,7 @@ function MakeAMeal() {
 
   return (
     <div className="container">
-      <form id="make-a-meal">
+      <form id="make-a-meal" onSubmit={(e) => handleMealCreation(e, checkedIngredients)}>
         <button>Stvori jelo😋</button>
         <div>
           {fetched ? (

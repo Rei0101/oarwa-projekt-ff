@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { capitalize } from "../utils/helpers";
 
 export default function FormSelect({ name, label, value, onChange, options }) {
   return (
@@ -14,7 +15,7 @@ export default function FormSelect({ name, label, value, onChange, options }) {
       >
         {options.map((option, index) => (
           <option key={index} value={option._id}>
-            {option.name.charAt(0).toUpperCase() + option.name.slice(1)}
+            {capitalize(option.name)}
           </option>
         ))}
       </select>

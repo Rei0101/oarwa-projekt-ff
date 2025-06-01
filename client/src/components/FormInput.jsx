@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { capitalize } from "../utils/helpers";
 
 export default function FormInput({
   name,
@@ -6,6 +7,7 @@ export default function FormInput({
   label = "",
   type = "text",
   value,
+  checked = false,
   onChange,
   placeholder,
   required = false,
@@ -20,7 +22,7 @@ export default function FormInput({
   const formattedName = name.split(" ").join("-");
 
   const labelElement =
-    label.length > 0 ? <label htmlFor={formattedName}>{label}{!labelAfter ? ":" : null}</label> : null;
+    label.length > 0 ? <label htmlFor={formattedName}>{capitalize(label)}{!labelAfter ? ":" : null}</label> : null;
   const inputElement = (
     <input
       id={formattedName}
@@ -59,6 +61,7 @@ FormInput.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  checked: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,

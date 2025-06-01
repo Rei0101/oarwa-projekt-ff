@@ -1,12 +1,40 @@
+#make-a-meal {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #make-a-meal button {
-    font-size: 50px;
-    height: 150px;
-    width: 300px;
+  font-size: 50px;
+  height: 150px;
+  width: 300px;
 }
 
 #make-a-meal div {
-    margin: 0px;
-    margin-top: 30px;
-    padding: 10px;
-    width: 100%;
+  margin: 0px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+#make-a-meal div span input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+  transform: translateY(7px);
+}
+
+#make-a-meal div span label {
+  font-size: large;
+}
+
+#make-a-meal div span input[type="checkbox"]:hover,
+#make-a-meal div span label:hover {
+  cursor: pointer;
+}
+
+#make-a-meal div span {
+  margin: 0px 20px;
 }

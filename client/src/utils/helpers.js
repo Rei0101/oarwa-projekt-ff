@@ -55,10 +55,15 @@ function formatDate(date) {
   return date.slice(0, 10).split("-").reverse().join(".");
 }
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export {
   decodeJWT,
   fetchMenuItemImage,
   deepCopy,
   allFieldsChanged,
   formatDate,
+  capitalize
 };

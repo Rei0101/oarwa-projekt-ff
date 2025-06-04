@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import { deepCopy, fetchMenuItemImage } from "../utils/helpers";
+import { deepCopy, fetchMenuItemImage, descSortByAttribute } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import useAuthContext from "../hooks/useAuthContext";
+import useBagContext from "../hooks/useBagContext";
 import useFetch from "../hooks/useFetch";
 import useMenuItemForm from "../hooks/useMenuItemForm";
 import { deleteEntry } from "../utils/handlers/handlers";
@@ -26,9 +27,12 @@ export default function MenuItem({
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
   const { user } = useAuthContext();
+  const {bagItems, addToBag} = useBagContext();
+  console.log(bagItems);
+  
   const image = fetchMenuItemImage(
     imageLink,
-    categories.sort((a, b) => b.type.localeCompare(a.type))[0]?.name
+    descSortByAttribute(categories, "name")
   );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();
@@ -81,18 +85,36 @@ export default function MenuItem({
         </span>
         <span>
           <p>{price + " €"}</p>
-          <button
-            onClick={() => setClickedItemButton((prevValue) => !prevValue)}
-          >
-            {user?.role === "admin" ? "Uredi artikl" : "Dodaj u vrećicu"}
-          </button>
+          {user?.role === "user" ? (
+            <button
+              onClick={(e) => {
+                addToBag({
+                  id: itemId,
+                  imageLink,
+                  name,
+                  ingredients,
+                  price,
+                  quantity: 1
+                })
+                setClickedItemButton((prevValue) => !prevValue);
+              }}
+            >
+              Dodaj u vrećicu
+            </button>
+          ) : (
+            <button
+              onClick={() => setClickedItemButton((prevValue) => !prevValue)}
+            >
+              Uredi artikl
+            </button>
+          )}
         </span>
       </div>
     </div>
   ) : user?.role === "user" ? (
     <div className="item clicked">
       <h2>Dodano u vrećicu!</h2>
-      <button onClick={() => setClickedItemButton(false)}>Poništi</button>
+      <button onClick={(e) => setClickedItemButton(false)}>Poništi</button>
     </div>
   ) : (
     <div className="item update" data-key={itemId}>

@@ -55,8 +55,12 @@ function formatDate(date) {
   return date.slice(0, 10).split("-").reverse().join(".");
 }
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+function descSortByAttribute(object, attribute) {
+  return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute]
 }
 
 export {
@@ -65,5 +69,6 @@ export {
   deepCopy,
   allFieldsChanged,
   formatDate,
-  capitalize
+  capitalize,
+  descSortByAttribute
 };

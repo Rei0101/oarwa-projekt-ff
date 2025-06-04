@@ -1,14 +1,15 @@
 import { useState } from "react";
+import BagContext from "./BagContext";
 
 function BagProvider({ children }) {
   const [bagItems, setBagItems] = useState([]);
 
   const addToBag = (item) => {
     setBagItems(prev => {
-      const existing = prev.find(i => i._id === item._id);
+      const existing = prev.find(i => i.id === item.id);
       if (existing) {
         return prev.map(i =>
-          i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       return [...prev, { ...item, quantity: 1 }];
@@ -16,7 +17,13 @@ function BagProvider({ children }) {
   };
 
   const removeFromBag = (id) => {
-    setBagItems(prev => prev.filter(item => item._id !== id));
+    setBagItems(prev => {
+      let changed = prev.map(i =>
+          id === i.id ? { ...i, quantity: i.quantity - 1 } : i
+        );
+      changed = changed.filter(i => i.quantity > 0)
+      return changed
+    });
   };
 
   const clearBag = () => setBagItems([]);

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import { decodeJWT } from "../utils/helpers";
+import { useState, useEffect } from "react";
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

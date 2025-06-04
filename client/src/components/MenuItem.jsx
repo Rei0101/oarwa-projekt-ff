@@ -1,5 +1,9 @@
 import PropTypes from "prop-types";
-import { deepCopy, fetchMenuItemImage, descSortByAttribute } from "../utils/helpers";
+import {
+  deepCopy,
+  fetchMenuItemImage,
+  descSortByAttribute,
+} from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import useAuthContext from "../hooks/useAuthContext";
 import useBagContext from "../hooks/useBagContext";
@@ -26,10 +30,10 @@ export default function MenuItem({
 }) {
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
+
   const { user } = useAuthContext();
-  const {bagItems, addToBag} = useBagContext();
-  console.log(bagItems);
-  
+  const { bagItems, addToBag, removeFromBag } = useBagContext();
+
   const image = fetchMenuItemImage(
     imageLink,
     descSortByAttribute(categories, "name")
@@ -87,15 +91,14 @@ export default function MenuItem({
           <p>{price + " €"}</p>
           {user?.role === "user" ? (
             <button
-              onClick={(e) => {
+              onClick={() => {
                 addToBag({
                   id: itemId,
-                  imageLink,
+                  imageLink: imageLink || "",
                   name,
                   ingredients,
                   price,
-                  quantity: 1
-                })
+                });
                 setClickedItemButton((prevValue) => !prevValue);
               }}
             >
@@ -112,17 +115,48 @@ export default function MenuItem({
       </div>
     </div>
   ) : user?.role === "user" ? (
-    <div className="item clicked">
-      <h2>Dodano u vrećicu!</h2>
-      <button onClick={(e) => setClickedItemButton(false)}>Poništi</button>
+    <div className="item bought">
+      <h3>{name}</h3>
+      <p>Cijena: {price} €</p>
+      <h4>
+        Količina u vrećici:{" "}
+        {bagItems.find((i) => i.id === itemId)?.quantity || 0}
+      </h4>
+      <div>
+        <button
+          onClick={() =>
+            addToBag({
+              id: itemId,
+              imageLink: imageLink || "",
+              name,
+              ingredients,
+              price,
+            })
+          }
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            if (bagItems.find((i) => i.id === itemId)?.quantity !== 1) {
+              removeFromBag(itemId);
+            } else {
+              removeFromBag(itemId);
+              setClickedItemButton(false)
+            }
+          }}
+        >
+          -
+        </button>
+      </div>
     </div>
   ) : (
-    <div className="item update" data-key={itemId}>
+    <div className="item update">
       <MenuItemForm
         onSubmit={(e) => {
           handleMenuItemUpdate(
             e,
-            e.target[5].dataset.key.toString(),
+            itemId,
             prevFormData,
             formData,
             setFormData,
@@ -139,14 +173,8 @@ export default function MenuItem({
         dataKey={itemId}
       />
       <button
-        data-key={itemId}
         onClick={(e) =>
-          deleteEntry(
-            "menu-items",
-            e.target.dataset.key,
-            collectionData,
-            setCollectionData
-          )
+          deleteEntry("menu-items", itemId, collectionData, setCollectionData)
         }
       >
         Izbriši artikl

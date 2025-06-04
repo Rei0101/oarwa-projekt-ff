@@ -201,3 +201,29 @@ h3 {
   display: inline;
   font-size: 10px;
 }
+
+.item.bought {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item.bought > * {
+  margin: 20px;
+}
+
+.item.bought h4 {
+  margin-bottom: 10px;
+}
+
+.item.bought div {
+  margin-top: 0px;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}

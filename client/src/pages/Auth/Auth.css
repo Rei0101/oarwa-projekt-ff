@@ -4,41 +4,34 @@
   border-radius: 25px;
   background-color: palevioletred;
   width: 75%;
-  flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .form-box form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  max-height: 500px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .form-box form span {
-  width: 200px;
-  margin: 0px 20px;
+  text-align: left;
 }
 
 .form-box form label,
 .form-box form button {
   margin-top: 20px;
+  justify-self: center;
 }
-
-.form-box form input {
-  margin-top: 10px;
-  border-width: 5px;
-}
-
+ 
 .form-box form input {
   border-radius: 15px;
   height: 30px;
   width: 100%;
+  margin-top: 10px;
+  border-width: 5px;
 }
 
 .form-box form label {

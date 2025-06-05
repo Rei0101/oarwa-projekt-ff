@@ -33,7 +33,7 @@ const entryService = {
     } catch (error) {
       throw new CustomError(
         error?.status || error?.response?.status || 500,
-        "Tražene stavke nisu uspješno dohvaćene."
+        "Stavke s danim imenom nisu pronađene."
       );
     }
   },

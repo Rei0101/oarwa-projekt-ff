@@ -88,7 +88,9 @@ async function fetchMenuItemsByQuery(q, setMenuError) {
     return response;
   } catch (error) {
     setMenuError(
-      error?.status || error?.response?.status || "Došlo je do pogreške."
+      error?.status ||
+        error?.response?.status ||
+        "Stavke s danim imenom nisu pronađene."
     );
     console.error(
       new CustomError(error?.status || error?.response?.status || 500)

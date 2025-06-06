@@ -3,32 +3,42 @@
   position: relative;
   border-radius: 25px;
   background-color: palevioletred;
+  height: 37.5em;
   width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.form-box form {
+.form-box.register form {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, 100px);
+  justify-content: space-evenly;
 }
 
-.form-box form span {
+.form-box.register span {
+  width: 220px;
+}
+
+.form-box form label{
+  margin-top: 20px;
   text-align: left;
 }
 
-.form-box form label,
-.form-box form button {
+.form-box form button  {
   margin-top: 20px;
+  text-align: center;
   justify-self: center;
 }
  
 .form-box form input {
+  box-sizing: border-box;
   border-radius: 15px;
-  height: 30px;
+  height: 3em;
   width: 100%;
   margin-top: 10px;
   border-width: 5px;
@@ -65,3 +75,4 @@
 .error.visible {
   visibility: visible;
 }
+

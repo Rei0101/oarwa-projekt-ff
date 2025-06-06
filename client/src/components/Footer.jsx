@@ -8,13 +8,16 @@ export default function Footer() {
         <Navigation />
       </div>
       <div>
-        <h5>JEZIK</h5>
-        <Navigation />
-      </div>
-      <div>
         <h5>TEMA</h5>
-        <Navigation />
+        <span>
+          <a>Sistemska</a>
+          <br />
+          <a>Svijetla</a>
+          <br />
+          <a>Tamna</a>
+        </span>
       </div>
+      <div className="break"></div>
       <div>
         <p>
           © {String(new Date().getFullYear())} <i>Meat Your Maker.</i> All

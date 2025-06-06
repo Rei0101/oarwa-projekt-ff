@@ -1,7 +1,35 @@
+#cover-image {
+  position: relative;
+  height: 650px;
+  width: 100%;
+}
+
+#cover-image svg {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+  display: block;
+  margin: 0 auto;
+}
+
+#cover-image text {
+  font-size: 64px;
+  letter-spacing: 9px;
+  fill: palevioletred;
+  font-family: Chewy;
+  text-shadow: 5px 0 2px crimson, -5px 0 2px crimson, 0 5px 2px crimson,
+    0 -5px 2px crimson, 4px 4px 2px crimson, -4px -4px 2px crimson,
+    4px -4px 2px crimson, -4px 4px 2px crimson;
+}
+
 .burger-logo {
   width: 500px;
-  transform: translate(0%, -40%);
-  margin-bottom: -7%;
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 25%);
 }
 
 .text-block {
@@ -85,7 +113,8 @@
   width: 33.33%;
 }
 
-.link-cards > div:first-child div:nth-child(2) {
+.link-cards > div:first-child div:nth-child(2),
+.reviews > div div:nth-child(2) {
   border-left: 2px solid palevioletred;
   border-right: 2px solid palevioletred;
 }
@@ -145,7 +174,38 @@
   width: 33.33%;
 }
 
-.reviews > div div:nth-child(2) {
-  border-left: 2px solid palevioletred;
-  border-right: 2px solid palevioletred;
+@media (max-width: 600px) {
+  #cover-image {
+    height: 400px;
+  }
+
+  .burger-logo {
+    width: 300px;
+    transform: translate(-50%, 30%);
+  }
+
+  .link-cards > div:first-child,
+  .reviews > div {
+    flex-direction: column;
+    height: fit-content;
+    padding-bottom: 20px;
+  }
+
+  .link-cards > div:first-child div {
+    width: 80%;
+    padding-bottom: 30px;
+  }
+
+  .reviews > div div {
+    width: 80%;
+    padding-top: 30px;
+    padding-bottom: 15px;
+  }
+
+  .link-cards > div:first-child div:nth-child(2),
+  .reviews > div div:nth-child(2) {
+    border: 0px;
+    border-top: 2px solid palevioletred;
+    border-bottom: 2px solid palevioletred;
+  }
 }

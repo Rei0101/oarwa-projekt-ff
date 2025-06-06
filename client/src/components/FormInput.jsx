@@ -29,6 +29,7 @@ export default function FormInput({
       name={formattedName}
       type={type}
       value={value || ""}
+      checked={checked}
       onChange={onChange}
       placeholder={placeholder}
       required={required}

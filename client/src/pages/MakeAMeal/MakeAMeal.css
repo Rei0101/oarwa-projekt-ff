@@ -16,15 +16,25 @@
 }
 
 #make-a-meal div {
-  margin: 0px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   margin-top: 30px;
-  padding: 10px;
+  justify-content: center;
+  padding-left: 50px;
+}
+
+#make-a-meal div span {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
 }
 
 #make-a-meal div span input[type="checkbox"] {
   width: 30px;
   height: 30px;
-  transform: translateY(7px);
 }
 
 #make-a-meal div span label {
@@ -36,6 +46,3 @@
   cursor: pointer;
 }
 
-#make-a-meal div span {
-  margin: 0px 20px;
-}

@@ -89,7 +89,13 @@ export default function MenuItem({
         </span>
         <span>
           <p>{price + " €"}</p>
-          {user?.role === "user" ? (
+          {user?.role === "admin" ? (
+            <button
+              onClick={() => setClickedItemButton((prevValue) => !prevValue)}
+            >
+              Uredi artikl
+            </button>
+          ) : (
             <button
               onClick={() => {
                 addToBag({
@@ -104,53 +110,11 @@ export default function MenuItem({
             >
               Dodaj u vrećicu
             </button>
-          ) : (
-            <button
-              onClick={() => setClickedItemButton((prevValue) => !prevValue)}
-            >
-              Uredi artikl
-            </button>
           )}
         </span>
       </div>
     </div>
-  ) : user?.role === "user" ? (
-    <div className="item bought">
-      <h3>{name}</h3>
-      <p>Cijena: {price} €</p>
-      <h4>
-        Količina u vrećici:{" "}
-        {bagItems.find((i) => i.id === itemId)?.quantity || 0}
-      </h4>
-      <div>
-        <button
-          onClick={() =>
-            addToBag({
-              id: itemId,
-              imageLink: imageLink || "",
-              name,
-              ingredients,
-              price,
-            })
-          }
-        >
-          +
-        </button>
-        <button
-          onClick={() => {
-            if (bagItems.find((i) => i.id === itemId)?.quantity !== 1) {
-              removeFromBag(itemId);
-            } else {
-              removeFromBag(itemId);
-              setClickedItemButton(false)
-            }
-          }}
-        >
-          -
-        </button>
-      </div>
-    </div>
-  ) : (
+  ) : user?.role === "admin" ? (
     <div className="item update">
       <MenuItemForm
         onSubmit={(e) => {
@@ -179,6 +143,42 @@ export default function MenuItem({
       >
         Izbriši artikl
       </button>
+    </div>
+  ) : (
+    <div className="item bought">
+      <h3>{name}</h3>
+      <p>Cijena: {price} €</p>
+      <h4>
+        Količina u vrećici:{" "}
+        {bagItems.find((i) => i.id === itemId)?.quantity || 0}
+      </h4>
+      <div>
+        <button
+          onClick={() =>
+            addToBag({
+              id: itemId,
+              imageLink: imageLink || "",
+              name,
+              ingredients,
+              price,
+            })
+          }
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            if (bagItems.find((i) => i.id === itemId)?.quantity !== 1) {
+              removeFromBag(itemId);
+            } else {
+              removeFromBag(itemId);
+              setClickedItemButton(false);
+            }
+          }}
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }

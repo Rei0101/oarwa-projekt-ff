@@ -20,6 +20,8 @@
   justify-content: space-evenly;
 }
 
+.form-box.login span,
+.form-box.login form,
 .form-box.register span {
   width: 220px;
 }

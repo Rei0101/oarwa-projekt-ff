@@ -68,6 +68,15 @@ export default function MenuItem({
       : "Ažuriraj artikl";
 
   useEffect(() => {
+    if (bagItems.length > 0 && bagItems.find((i) => i.id === itemId)){ 
+      setClickedItemButton(true)
+    }
+    else{
+      setClickedItemButton(false)
+    }
+  }, [bagItems])
+
+  useEffect(() => {
     if (clickedItemButton && user?.role !== "user" && user?.role !== "admin") {
       navigate("/login");
     }
@@ -104,6 +113,7 @@ export default function MenuItem({
                   name,
                   ingredients,
                   price,
+                  type: "menu"
                 });
                 setClickedItemButton((prevValue) => !prevValue);
               }}
@@ -154,21 +164,8 @@ export default function MenuItem({
       </h4>
       <div>
         <button
-          onClick={() =>
-            addToBag({
-              id: itemId,
-              imageLink: imageLink || "",
-              name,
-              ingredients,
-              price,
-            })
-          }
-        >
-          +
-        </button>
-        <button
           onClick={() => {
-            if (bagItems.find((i) => i.id === itemId)?.quantity !== 1) {
+            if (bagItems.find((i) => i.id === itemId)?.quantity > 1) {
               removeFromBag(itemId);
             } else {
               removeFromBag(itemId);
@@ -177,6 +174,20 @@ export default function MenuItem({
           }}
         >
           -
+        </button>
+        <button
+          onClick={() =>
+            addToBag({
+              id: itemId,
+              imageLink: imageLink || "",
+              name,
+              ingredients,
+              price,
+
+            })
+          }
+        >
+          +
         </button>
       </div>
     </div>

@@ -1,25 +1,43 @@
-function handleMealCreation(e, checkedIngredients, userRole) {
-    e.preventDefault();
+import { includeValidAttributes } from "../helpers";
 
-    if (userRole === "admin"){
-        alert("Administratorski računi nemaju ove ovlasti.")
-        return;
-    }
+function handleMealCreation(
+  e,
+  formIngredients,
+  totalPrice,
+  bagItems,
+  addToBag,
+  removeFromBag,
+  userRole,
+  navigate
+) {
+  e.preventDefault();
 
-    let finalIngredients = []
+  if (userRole === null) {
+    navigate("/login");
+    return;
+  }
+  if (userRole === "admin") {
+    alert("Administratorski računi nemaju ove ovlasti.");
+    return;
+  }
+  
+  const finalIngredients = includeValidAttributes(formIngredients);
+  
+  if (finalIngredients.length === 0) {
+    alert("Nema označenih sastojaka.");
+    return;
+  }
 
-    Object.entries(checkedIngredients).forEach(([key, value]) => {
-        if (value === true) {
-            finalIngredients.push(key)
-        }
+  if (bagItems.find((i) => i.type === "custom")) {
+    removeFromBag("custom");
+  } else {
+    addToBag({
+      name: "Kreirano jelo",
+      ingredients: finalIngredients,
+      price: totalPrice,
+      type: "custom",
     });
-    if(finalIngredients.length === 0){
-        alert("Nema označenih sastojaka.")
-        return;
-    }
-
-    console.log(finalIngredients);
-    
+  }
 }
 
-export {handleMealCreation};
+export { handleMealCreation };

@@ -67,7 +67,7 @@ function includeValidAttributes(objectToCheck) {
   let included = []
   
   for (const [key, value] of Object.entries(objectToCheck)) {
-    if (value) {
+    if (value.checked) {
       included.push(key);
     }
   }

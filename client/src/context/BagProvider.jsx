@@ -13,19 +13,25 @@ function BagProvider({ children }) {
 
   const addToBag = (item) => {
     setBagItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
-      if (existing) {
+      const existingId = prev.find((i) => i.id === item.id);
+
+      if (existingId) {
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
+
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
   const removeFromBag = (id) => {
+    if (id === "custom") {
+      setBagItems((prev) => prev.filter((i) => i.type !== "custom"));
+      return;
+    }
+
     setBagItems((prev) => {
-      
       let changed = prev.map((i) =>
         id === i.id ? { ...i, quantity: i.quantity - 1 } : i
       );

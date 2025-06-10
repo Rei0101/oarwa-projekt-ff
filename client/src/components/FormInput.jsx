@@ -16,6 +16,7 @@ export default function FormInput({
   max,
   maxLength = 100,
   step,
+  disabled,
   onFocus,
   onBlur,
 }) {
@@ -38,6 +39,7 @@ export default function FormInput({
       max={max}
       maxLength={maxLength}
       step={step}
+      disabled={disabled}
       onFocus={onFocus}
       onBlur={onBlur}
     />
@@ -71,6 +73,7 @@ FormInput.propTypes = {
   max: PropTypes.string,
   maxLength: PropTypes.number,
   step: PropTypes.string,
+  disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
 };

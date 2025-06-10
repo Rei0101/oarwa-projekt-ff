@@ -63,9 +63,22 @@ function descSortByAttribute(object, attribute) {
   return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute]
 }
 
+function includeValidAttributes(objectToCheck) {
+  let included = []
+  
+  for (const [key, value] of Object.entries(objectToCheck)) {
+    if (value) {
+      included.push(key);
+    }
+  }
+
+  return included;
+}
+
 function kebabCase(string) {
   return string.toLowerCase().split(" ").join("-")
 }
+
 
 export {
   decodeJWT,
@@ -75,5 +88,6 @@ export {
   formatDate,
   capitalize,
   descSortByAttribute,
+  includeValidAttributes,
   kebabCase
 };

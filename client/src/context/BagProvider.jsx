@@ -25,6 +25,7 @@ function BagProvider({ children }) {
 
   const removeFromBag = (id) => {
     setBagItems((prev) => {
+      
       let changed = prev.map((i) =>
         id === i.id ? { ...i, quantity: i.quantity - 1 } : i
       );

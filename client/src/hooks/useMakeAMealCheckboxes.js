@@ -2,30 +2,42 @@ import { kebabCase } from "../utils/helpers";
 import { useState, useEffect } from "react";
 
 function useMakeAMealCheckboxes(fetched) {
-  const [checkedIngredients, setCheckedIngredients] = useState({});
+  const [formIngredients, setFormIngredients] = useState({});
 
   useEffect(() => {
+    
+    
     if (fetched) {
       const initialState = {};
       fetched.forEach((item) => {
-        initialState[kebabCase(item.name)] = false;
+        initialState[kebabCase(item.name)] = {
+          checked: false,
+          price: item.price
+        };
       });
-      setCheckedIngredients(initialState);
+      setFormIngredients(initialState);
+      
+    console.log(formIngredients);
     }
   }, [fetched]);
 
   const handleChange = (event) => {
     const { name, checked } = event.target;
-    console.log(event.target.name, event.target.checked);
     
-    setCheckedIngredients((prev) => {
+    setFormIngredients((prev) => {
       return ({
       ...prev,
-      [name]: checked,
+      [name]: {
+        checked,
+        price: prev[name].price
+      },
     })});
+
+    console.log(formIngredients);
+    
   };
   
-  return { checkedIngredients, handleChange };
+  return { formIngredients, handleChange };
 }
 
 export default useMakeAMealCheckboxes;

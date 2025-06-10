@@ -1,3 +1,4 @@
+import { kebabCase } from "../utils/helpers";
 import { useState, useEffect } from "react";
 
 function useMakeAMealCheckboxes(fetched) {
@@ -7,7 +8,7 @@ function useMakeAMealCheckboxes(fetched) {
     if (fetched) {
       const initialState = {};
       fetched.forEach((item) => {
-        initialState[item.name.split(" ").join("-")] = false;
+        initialState[kebabCase(item.name)] = false;
       });
       setCheckedIngredients(initialState);
     }
@@ -15,12 +16,15 @@ function useMakeAMealCheckboxes(fetched) {
 
   const handleChange = (event) => {
     const { name, checked } = event.target;
-    setCheckedIngredients((prev) => ({
+    console.log(event.target.name, event.target.checked);
+    
+    setCheckedIngredients((prev) => {
+      return ({
       ...prev,
       [name]: checked,
-    }));
+    })});
   };
-
+  
   return { checkedIngredients, handleChange };
 }
 

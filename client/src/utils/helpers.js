@@ -63,6 +63,10 @@ function descSortByAttribute(object, attribute) {
   return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute]
 }
 
+function kebabCase(string) {
+  return string.toLowerCase().split(" ").join("-")
+}
+
 export {
   decodeJWT,
   fetchMenuItemImage,
@@ -70,5 +74,6 @@ export {
   allFieldsChanged,
   formatDate,
   capitalize,
-  descSortByAttribute
+  descSortByAttribute,
+  kebabCase
 };

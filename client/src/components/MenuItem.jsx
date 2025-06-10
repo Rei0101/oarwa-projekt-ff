@@ -183,7 +183,6 @@ export default function MenuItem({
               name,
               ingredients,
               price,
-
             })
           }
         >

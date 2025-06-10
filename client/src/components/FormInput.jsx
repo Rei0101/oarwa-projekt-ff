@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { capitalize } from "../utils/helpers";
+import { capitalize, kebabCase } from "../utils/helpers";
 
 export default function FormInput({
   name,
@@ -19,7 +19,7 @@ export default function FormInput({
   onFocus,
   onBlur,
 }) {
-  const formattedName = name.split(" ").join("-");
+  const formattedName = kebabCase(name);
 
   const labelElement =
     label.length > 0 ? <label htmlFor={formattedName}>{capitalize(label)}{!labelAfter ? ":" : null}</label> : null;

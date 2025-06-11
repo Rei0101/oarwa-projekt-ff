@@ -5,9 +5,11 @@ import {
   formatFromKebabCase,
   sortByObjectAttribute,
 } from "../../utils/helpers";
+import useAuthContext from "../../hooks/useAuthContext";
 import useBagContext from "../../hooks/useBagContext";
 
 function Order() {
+  const { user } = useAuthContext();
   const { bagItems, clearBag } = useBagContext();
 
   const sortedBag = bagItems ? sortByObjectAttribute(bagItems) : [];
@@ -16,7 +18,8 @@ function Order() {
     (accumulator, value) => accumulator + value.price * value.quantity,
     0
   );
-
+  console.log(user);
+  
   return (
     <div className="container order">
       {sortedBag.length > 0 ? (
@@ -73,11 +76,11 @@ function Order() {
           <div>
             <h3>Sveukupna cijena: {totalPrice.toFixed(2)} €</h3>
             <button>Naruči!</button>
-            <button>Isprazni vrećicu</button>
+            <button onClick={() => clearBag()}>Isprazni vrećicu</button>
           </div>
         </>
       ) : (
-        <h3>Nemate ništa u košarici!</h3>
+        <h3>Nemate ništa u vrećici!</h3>
       )}
     </div>
   );

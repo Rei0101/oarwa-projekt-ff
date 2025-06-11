@@ -11,7 +11,12 @@
   font-size: 20px;
 }
 
-.order > div:first-child > ul > li > span {
+.order div .info, .order div h4 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.order > div:first-child > ul > li > div {
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
@@ -36,17 +41,15 @@
   margin-right: 10px;
 }
 
-.order > div:first-child ul li > span p {
+.order > div:first-child div:first-child {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.order > div:first-child ul li > div .info {
   height: fit-content;
   font-size: 15px;
   width: 250px;
-}
-
-.order button {
-  font-size: 40px;
-  width: 5em;
-  height: 2em;
-  margin-top: 3em;
 }
 
 .order .ingredients {
@@ -61,4 +64,16 @@
 .order .custom {
     box-sizing: border-box;
     width: 390px;
+}
+
+.order .text {
+    display: flex;
+    flex-direction: column;
+}
+
+.order button {
+  font-size: 40px;
+  width: 5em;
+  height: 2em;
+  margin-top: 3em;
 }

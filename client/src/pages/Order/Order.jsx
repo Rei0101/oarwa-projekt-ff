@@ -15,36 +15,40 @@ function Order() {
               {bagItems.map((item) => (
                 <li key={item.id || "custom"}>
                   {item.id ? (
-                    <span>
+                    <div>
                       <img
                         src={item.imageLink}
                         alt={item.imageLink + " slika"}
                       />
-                      <p>
+                      <div className="text">
                         <h4>{item.name}</h4>
-                        <br />
-                        Količina: {item.quantity}
-                        <br />
-                        Cijena: {item.price * item.quantity} €
-                      </p>
-                    </span>
+                        <div className="info">
+                          Količina: {item.quantity}
+                          <br />
+                          Cijena: {item.price * item.quantity} €
+                        </div>
+                      </div>
+                    </div>
                   ) : (
-                    <span className="custom">
-                      <p>
+                    <div className="custom">
+                      <div className="text">
                         <h4>{item.name}</h4>
-                        <br />
-                        Cijena: {item.price * item.quantity} €
-                        <br />
-                        <span className="ingredients">
-                          <span>Sastojci:</span>
-                          <span><ul>{item.ingredients.map((ingredient) => (
-                            <li>
-                              {formatFromKebabCase(ingredient)}
-                            </li>)
-                          )}</ul></span>
-                        </span>
-                      </p>
-                    </span>
+                        <div className="info">
+                          Cijena: {item.price * item.quantity} €
+                          <br />
+                          <div className="ingredients">
+                            <div>Sastojci:</div>
+                            <div>
+                              <ul>
+                                {item.ingredients.map((ingredient) => (
+                                  <li key={ingredient}>{formatFromKebabCase(ingredient)}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </li>
               ))}

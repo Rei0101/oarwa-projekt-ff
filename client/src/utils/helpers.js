@@ -93,6 +93,6 @@ export {
   capitalize,
   descSortByAttribute,
   includeValidAttributes,
-  formatFromKebabCase,
-  formatString
+  kebabCase,
+  formatFromKebabCase
 };

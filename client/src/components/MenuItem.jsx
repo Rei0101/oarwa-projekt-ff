@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import {
   deepCopy,
   fetchMenuItemImage,
-  descSortByAttribute,
+  descSortAttribute,
 } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
 import useAuthContext from "../hooks/useAuthContext";
@@ -36,7 +36,7 @@ export default function MenuItem({
 
   const image = fetchMenuItemImage(
     imageLink,
-    descSortByAttribute(categories, "name")
+    descSortAttribute(categories, "name")
   );
   const [clickedItemButton, setClickedItemButton] = useState(false);
   const navigate = useNavigate();

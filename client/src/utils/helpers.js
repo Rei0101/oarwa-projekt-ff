@@ -59,7 +59,7 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-function descSortByAttribute(object, attribute) {
+function descSortAttribute(object, attribute) {
   return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute]
 }
 
@@ -83,6 +83,10 @@ function formatFromKebabCase(string) {
   return capitalize(string).split("-").join(" ");
 }
 
+function sortByObjectAttribute(array) {
+  return array.sort((a, b) => (a.type < b.type) ? 1 : (a.type > b.type) ? -1 : 0)
+}
+
 
 export {
   decodeJWT,
@@ -91,8 +95,9 @@ export {
   allFieldsChanged,
   formatDate,
   capitalize,
-  descSortByAttribute,
+  descSortAttribute,
   includeValidAttributes,
   kebabCase,
-  formatFromKebabCase
+  formatFromKebabCase,
+  sortByObjectAttribute
 };

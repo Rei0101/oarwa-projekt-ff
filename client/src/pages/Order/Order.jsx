@@ -1,18 +1,19 @@
 import "./Order.css";
 import useBagContext from "../../hooks/useBagContext";
-import { formatFromKebabCase } from "../../utils/helpers";
+import { formatFromKebabCase, sortByObjectAttribute } from "../../utils/helpers";
 
 function Order() {
   const { bagItems, clearBag } = useBagContext();
-  console.log(bagItems);
+  
+  const sortedBag = bagItems ? sortByObjectAttribute(bagItems) : []
 
   return (
     <div className="container order">
-      {bagItems.length > 0 ? (
+      {sortedBag.length > 0 ? (
         <>
           <div>
             <ul>
-              {bagItems.map((item) => (
+              {sortedBag.map((item) => (
                 <li key={item.id || "custom"}>
                   {item.id ? (
                     <div>

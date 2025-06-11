@@ -13,7 +13,15 @@ export default function Footer() {
       <div>
         <h5>TEMA</h5>
         <span>
-          <a>Sistemska</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setTheme("system");
+            }}
+          >
+            Sistemska
+          </a>
           <br />
           <a
             href="#"

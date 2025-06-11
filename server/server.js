@@ -8,6 +8,7 @@ import userRoutes from "./routes/userRoutes.js";
 import menuItemRoutes from "./routes/menuItemRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import ingredientRoutes from "./routes/ingredientRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/menu-items", menuItemRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/ingredients", ingredientRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.use(errorHandler);
 

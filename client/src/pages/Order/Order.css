@@ -1,0 +1,64 @@
+.order {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  line-height: 1.7;
+}
+
+.order > div:first-child h4 {
+  display: inline;
+  font-size: 20px;
+}
+
+.order > div:first-child > ul > li > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  vertical-align: middle;
+  background-color: palevioletred;
+  padding: 0px 20px;
+  border-radius: 15px;
+}
+
+.order > div:first-child > ul {
+  list-style: circle;
+  font-size: 35px;
+}
+
+.order > div:first-child > ul > li {
+  margin-top: 25px;
+}
+
+.order img {
+  width: 90px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.order > div:first-child ul li > span p {
+  height: fit-content;
+  font-size: 15px;
+  width: 250px;
+}
+
+.order button {
+  font-size: 40px;
+  width: 5em;
+  height: 2em;
+  margin-top: 3em;
+}
+
+.order .ingredients {
+    display: flex;
+}
+
+.order .ingredients ul {
+    padding-left: 25px;
+    list-style-type: square;
+}
+
+.order .custom {
+    box-sizing: border-box;
+    width: 390px;
+}

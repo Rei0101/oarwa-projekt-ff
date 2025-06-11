@@ -76,7 +76,11 @@ function includeValidAttributes(objectToCheck) {
 }
 
 function kebabCase(string) {
-  return string.toLowerCase().split(" ").join("-")
+  return string.toLowerCase().split(" ").join("-");
+}
+
+function formatFromKebabCase(string) {
+  return capitalize(string).split("-").join(" ");
 }
 
 
@@ -89,5 +93,6 @@ export {
   capitalize,
   descSortByAttribute,
   includeValidAttributes,
-  kebabCase
+  formatFromKebabCase,
+  formatString
 };

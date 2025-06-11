@@ -11,7 +11,8 @@
   font-size: 20px;
 }
 
-.order div .info, .order div h4 {
+.order div .info,
+.order div h4 {
   margin: 0px;
   padding: 0px;
 }
@@ -38,7 +39,7 @@
 .order img {
   width: 90px;
   height: 60px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .order > div:first-child div:first-child {
@@ -46,29 +47,37 @@
   padding-bottom: 10px;
 }
 
+.order > div:first-child ul li > div {
+  box-sizing: border-box;
+  width: 350px;
+}
+
 .order > div:first-child ul li > div .info {
   height: fit-content;
   font-size: 15px;
-  width: 250px;
 }
 
-.order .ingredients {
-    display: flex;
+.order #ingredients {
+  display: flex;
+  align-items: flex-start;
 }
 
-.order .ingredients ul {
-    padding-left: 25px;
-    list-style-type: square;
+.order #ingredients div {
+  padding: 0px;
 }
 
-.order .custom {
-    box-sizing: border-box;
-    width: 390px;
+.order #ingredients ul {
+  padding-left: 25px;
+  list-style-type: square;
 }
 
 .order .text {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.order .menu .text {
+  flex-grow: 1;
 }
 
 .order button {

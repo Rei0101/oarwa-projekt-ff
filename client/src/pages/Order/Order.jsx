@@ -23,7 +23,7 @@ function Order() {
               {sortedBag.map((item) => (
                 <li key={item.id || "custom"}>
                   {item.id ? (
-                    <div>
+                    <div className="menu">
                       <img
                         src={fetchImageByCategory(
                           item.imageLink,
@@ -47,7 +47,7 @@ function Order() {
                         <div className="info">
                           Cijena: {item.price * item.quantity} €
                           <br />
-                          <div className="ingredients">
+                          <div id="ingredients">
                             <div>Sastojci:</div>
                             <div>
                               <ul>

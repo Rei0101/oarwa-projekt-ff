@@ -30,6 +30,7 @@ function Register() {
   const navigate = useNavigate();
 
   const today = new Date();
+  console.log(formData);
 
   return (
     <div className="container">

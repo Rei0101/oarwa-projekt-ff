@@ -19,7 +19,7 @@ function MakeAMeal() {
   const [totalPrice, setTotalPrice] = useState(0);
   const existingCustom = bagItems.some((i) => i.type === "custom");
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     let newTotal = 0;
     if (formIngredients) {
@@ -70,9 +70,9 @@ function MakeAMeal() {
             fetched.map((ingredient) => (
               <FormInput
                 key={ingredient._id}
-                name={ingredient.name}
+                name={kebabCase(ingredient.name)}
                 labelAfter
-                label={ingredient.name}
+                label={kebabCase(ingredient.name)}
                 type="checkbox"
                 checked={
                   formIngredients

@@ -20,19 +20,17 @@ export default function FormInput({
   onFocus,
   onBlur,
 }) {
-  const formattedName = kebabCase(name);
-
   const labelElement =
     label.length > 0 ? (
-      <label htmlFor={formattedName}>
+      <label htmlFor={name}>
         {capitalize(label)}
         {!labelAfter ? ":" : null}
       </label>
     ) : null;
   const inputElement = (
     <input
-      id={formattedName}
-      name={formattedName}
+      id={name}
+      name={name}
       type={type}
       value={value || ""}
       checked={checked}

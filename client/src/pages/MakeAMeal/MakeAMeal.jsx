@@ -19,6 +19,18 @@ function MakeAMeal() {
   const [totalPrice, setTotalPrice] = useState(0);
   const existingCustom = bagItems.some((i) => i.type === "custom");
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    let newTotal = 0;
+    if (formIngredients) {
+      for (const value of Object.values(formIngredients)) {
+        if (value.checked) {
+          newTotal += value.price;
+        }
+      }
+      setTotalPrice(newTotal);
+    }
+  }, [formIngredients]);
 
   useEffect(() => {
     let newTotal = 0;

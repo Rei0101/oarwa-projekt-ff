@@ -31,7 +31,6 @@ function useMakeAMealCheckboxes(fetched, bagItems) {
 
   const handleChange = (event) => {
     const { name, checked } = event.target;
-
     setFormIngredients((prev) => {
       return {
         ...prev,

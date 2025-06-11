@@ -1,5 +1,6 @@
 import "./Profile.css";
 import useAuthContext from "../../hooks/useAuthContext";
+import useBagContext from "../../hooks/useBagContext";
 import useFetch from "../../hooks/useFetch";
 import useUserForm from "../../hooks/useUserForm";
 import { formatDate } from "../../utils/helpers";
@@ -21,6 +22,8 @@ const passwordChangeState = {
 
 function Profile() {
   const { user, logout } = useAuthContext();
+  const { clearBag } = useBagContext();
+
   const { fetched } = useFetch(
     {
       firstName: "",
@@ -123,7 +126,7 @@ function Profile() {
         </table>
         <div>
           {changingPassword === passwordChangeState[0] ? (
-            <button onClick={(e) => handleLogout(e, logout, navigate)}>
+            <button onClick={(e) => handleLogout(e, clearBag, logout, navigate)}>
               Odjavi se
             </button>
           ) : (

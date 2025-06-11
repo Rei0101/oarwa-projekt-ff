@@ -14,7 +14,7 @@ async function handleLogin(e, formData, setError, login, navigate) {
       throw new CustomError(403, "Nisu popunjeni svi potrebni podaci.");
     }
 
-    const response = await userService.login(email, password)
+    const response = await userService.login(email, password);
 
     localStorage.setItem("token", response.token);
 
@@ -52,23 +52,30 @@ async function handleRegister(e, formData, formErrors, setError, navigate) {
   }
 }
 
-async function handleLogout(e, logout, navigate) {
+async function handleLogout(e, clearBag, logout, navigate) {
   e.preventDefault();
 
+  clearBag();
   logout();
-
-  navigate("/login")
+  
+  navigate("/login");
 }
 
-async function handlePasswordChange(e, id, currentPassword, newPassword, setError) {
+async function handlePasswordChange(
+  e,
+  id,
+  currentPassword,
+  newPassword,
+  setError
+) {
   e.preventDefault();
 
   try {
     await userService.changePassword(id, currentPassword, newPassword);
 
-    setError(null)
+    setError(null);
   } catch (error) {
-    setError(error.message)
+    setError(error.message);
     handleError(error, setError);
   }
 }

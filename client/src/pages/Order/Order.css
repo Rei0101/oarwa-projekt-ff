@@ -80,9 +80,25 @@
   flex-grow: 1;
 }
 
-.order button {
+.order > div:last-child {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.order > div:last-child h3{
+  margin-top: 5em;
+}
+
+.order > div:last-child button:nth-child(2) {
   font-size: 40px;
-  width: 5em;
-  height: 2em;
+  height: 70px;
+  width: 175px;
+}
+
+.order > div:last-child button:last-child {
+  font-size: 20px;
+  height: 60px;
+  width: 125px;
   margin-top: 3em;
 }

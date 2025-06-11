@@ -12,7 +12,10 @@ function Order() {
 
   const sortedBag = bagItems ? sortByObjectAttribute(bagItems) : [];
 
-  console.log(sortedBag);
+  const totalPrice = sortedBag.reduce(
+    (accumulator, value) => accumulator + value.price * value.quantity,
+    0
+  );
 
   return (
     <div className="container order">
@@ -68,7 +71,9 @@ function Order() {
             </ul>
           </div>
           <div>
+            <h3>Sveukupna cijena: {totalPrice.toFixed(2)} €</h3>
             <button>Naruči!</button>
+            <button>Isprazni vrećicu</button>
           </div>
         </>
       ) : (

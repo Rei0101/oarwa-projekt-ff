@@ -23,7 +23,7 @@ function decodeJWT(token) {
   return { header, payload };
 }
 
-function fetchMenuItemImage(imageLink, category) {
+function fetchImageByCategory(imageLink, category) {
   if (imageLink) {
     return imageLink;
   }
@@ -90,7 +90,7 @@ function sortByObjectAttribute(array) {
 
 export {
   decodeJWT,
-  fetchMenuItemImage,
+  fetchImageByCategory,
   deepCopy,
   allFieldsChanged,
   formatDate,

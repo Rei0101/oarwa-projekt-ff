@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import {
   deepCopy,
-  fetchMenuItemImage,
+  fetchImageByCategory,
   descSortAttribute,
 } from "../utils/helpers";
 import MenuItemForm from "./MenuItemForm";
@@ -31,10 +31,27 @@ export default function MenuItem({
   const initialCategories = categories.map((category) => category._id);
   const initialIngredients = ingredients.map((ingredient) => ingredient._id);
 
+  const bagTemplate = {
+    id: itemId,
+    imageLink: imageLink || "",
+    name,
+    categories,
+    ingredients,
+    price,
+    type: "menu",
+  };
+  const hookInitialStateTemplate = {
+    imageLink: imageLink || "",
+    name,
+    categories: initialCategories,
+    ingredients: initialIngredients,
+    price,
+  };
+
   const { user } = useAuthContext();
   const { bagItems, addToBag, removeFromBag } = useBagContext();
 
-  const image = fetchMenuItemImage(
+  const image = fetchImageByCategory(
     imageLink,
     descSortAttribute(categories, "name")
   );
@@ -48,33 +65,20 @@ export default function MenuItem({
     fetchMenuItemSelectValues
   ).fetched;
   const { formData, setFormData, handleChange, disabledSubmit } =
-    useMenuItemForm({
-      imageLink: imageLink || "",
-      name,
-      categories: initialCategories,
-      ingredients: initialIngredients,
-      price,
-    });
-  const [prevFormData, setPrevFormData] = useState({
-    imageLink: imageLink || "",
-    name,
-    categories: initialCategories,
-    ingredients: initialIngredients,
-    price,
-  });
+    useMenuItemForm(hookInitialStateTemplate);
+  const [prevFormData, setPrevFormData] = useState(hookInitialStateTemplate);
   const buttonText =
     JSON.stringify(prevFormData) === JSON.stringify(formData)
       ? "Odustani"
       : "Ažuriraj artikl";
 
   useEffect(() => {
-    if (bagItems.length > 0 && bagItems.find((i) => i.id === itemId)){ 
-      setClickedItemButton(true)
+    if (bagItems.length > 0 && bagItems.find((i) => i.id === itemId)) {
+      setClickedItemButton(true);
+    } else {
+      setClickedItemButton(false);
     }
-    else{
-      setClickedItemButton(false)
-    }
-  }, [bagItems])
+  }, [bagItems]);
 
   useEffect(() => {
     if (clickedItemButton && user?.role !== "user" && user?.role !== "admin") {
@@ -107,14 +111,7 @@ export default function MenuItem({
           ) : (
             <button
               onClick={() => {
-                addToBag({
-                  id: itemId,
-                  imageLink: imageLink || "",
-                  name,
-                  ingredients,
-                  price,
-                  type: "menu"
-                });
+                addToBag(bagTemplate);
                 setClickedItemButton((prevValue) => !prevValue);
               }}
             >
@@ -175,19 +172,7 @@ export default function MenuItem({
         >
           -
         </button>
-        <button
-          onClick={() =>
-            addToBag({
-              id: itemId,
-              imageLink: imageLink || "",
-              name,
-              ingredients,
-              price,
-            })
-          }
-        >
-          +
-        </button>
+        <button onClick={() => addToBag(bagTemplate)}>+</button>
       </div>
     </div>
   );

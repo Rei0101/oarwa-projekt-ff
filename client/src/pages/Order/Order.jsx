@@ -1,11 +1,18 @@
 import "./Order.css";
+import {
+  fetchImageByCategory,
+  descSortAttribute,
+  formatFromKebabCase,
+  sortByObjectAttribute,
+} from "../../utils/helpers";
 import useBagContext from "../../hooks/useBagContext";
-import { formatFromKebabCase, sortByObjectAttribute } from "../../utils/helpers";
 
 function Order() {
   const { bagItems, clearBag } = useBagContext();
-  
-  const sortedBag = bagItems ? sortByObjectAttribute(bagItems) : []
+
+  const sortedBag = bagItems ? sortByObjectAttribute(bagItems) : [];
+
+  console.log(sortedBag);
 
   return (
     <div className="container order">
@@ -18,7 +25,10 @@ function Order() {
                   {item.id ? (
                     <div>
                       <img
-                        src={item.imageLink}
+                        src={fetchImageByCategory(
+                          item.imageLink,
+                          descSortAttribute(item.categories, "name")
+                        )}
                         alt={item.imageLink + " slika"}
                       />
                       <div className="text">
@@ -42,7 +52,9 @@ function Order() {
                             <div>
                               <ul>
                                 {item.ingredients.map((ingredient) => (
-                                  <li key={ingredient}>{formatFromKebabCase(ingredient)}</li>
+                                  <li key={ingredient}>
+                                    {formatFromKebabCase(ingredient)}
+                                  </li>
                                 ))}
                               </ul>
                             </div>

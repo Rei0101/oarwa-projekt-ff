@@ -9,6 +9,11 @@ body {
   background-color: rgb(255, 218, 224);
 }
 
+body[data-theme="dark"] {
+  background-color: rgb(113, 66, 99);
+  color: rgb(255, 218, 224);
+}
+
 a {
   color: darkred;
   text-decoration: none;

@@ -18,7 +18,9 @@ function Login() {
   return (
     <div className="container">
       <div className="form-box login">
-        <form onSubmit={(e) => handleLogin(e, formData, setError, login, navigate)}>
+        <form
+          onSubmit={(e) => handleLogin(e, formData, setError, login, navigate)}
+        >
           <FormInput
             name="email"
             label="E-mail"

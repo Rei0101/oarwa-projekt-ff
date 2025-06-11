@@ -6,7 +6,7 @@ async function placeOrder(userId, bagItems, totalPrice, clearBag, navigate) {
     const result = orderService.order(userId, bagItems, totalPrice);
     alert("Hvala na narudžbi.");
     clearBag();
-    navigate("/")
+    navigate("/");
     return result;
   } catch (error) {
     alert("Dogodila se greška pri naručivanju!");

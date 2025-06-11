@@ -56,16 +56,16 @@ function formatDate(date) {
 }
 
 function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function descSortAttribute(object, attribute) {
-  return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute]
+  return object.sort((a, b) => b.type.localeCompare(a.type))[0]?.[attribute];
 }
 
 function includeValidAttributes(objectToCheck) {
-  let included = []
-  
+  let included = [];
+
   for (const [key, value] of Object.entries(objectToCheck)) {
     if (value.checked) {
       included.push(key);
@@ -84,9 +84,8 @@ function formatFromKebabCase(string) {
 }
 
 function sortByObjectAttribute(array) {
-  return array.sort((a, b) => (a.type < b.type) ? 1 : (a.type > b.type) ? -1 : 0)
+  return array.sort((a, b) => (a.type < b.type ? 1 : a.type > b.type ? -1 : 0));
 }
-
 
 export {
   decodeJWT,
@@ -99,5 +98,5 @@ export {
   includeValidAttributes,
   kebabCase,
   formatFromKebabCase,
-  sortByObjectAttribute
+  sortByObjectAttribute,
 };

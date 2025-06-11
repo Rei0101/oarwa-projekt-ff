@@ -1,7 +1,12 @@
 import CustomError from "../../../shared/CustomErrorClass";
 import { useState, useEffect } from "react";
 
-function useFetch(initialState, valueHandler, handlerParams, dependencies = []) {
+function useFetch(
+  initialState,
+  valueHandler,
+  handlerParams,
+  dependencies = []
+) {
   const [data, setData] = useState(initialState);
   const [error, setError] = useState(null);
 
@@ -24,7 +29,7 @@ function useFetch(initialState, valueHandler, handlerParams, dependencies = []) 
       fetchValues();
     }
   }, [...dependencies]);
-  
+
   return { fetched: data?.result ?? data, error, setFetched: setData };
 }
 

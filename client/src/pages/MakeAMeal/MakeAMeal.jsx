@@ -17,9 +17,9 @@ function MakeAMeal() {
   const { fetched } = useFetch([], fetchCollection, ["ingredients"]);
   const { formIngredients, handleChange } = useMakeAMealForm(fetched, bagItems);
   const [totalPrice, setTotalPrice] = useState(0);
-  const existingCustom = bagItems.some(i => i.type === "custom");
+  const existingCustom = bagItems.some((i) => i.type === "custom");
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     let newTotal = 0;
     if (formIngredients) {
@@ -49,7 +49,9 @@ function MakeAMeal() {
           )
         }
       >
-        <button>{!existingCustom ? "Stvori jelo😋" : "Poništi kreaciju"}</button>
+        <button>
+          {!existingCustom ? "Stvori jelo😋" : "Poništi kreaciju"}
+        </button>
         <p>Cijena: {totalPrice} €</p>
         <div>
           {fetched ? (
@@ -61,7 +63,9 @@ function MakeAMeal() {
                 label={ingredient.name}
                 type="checkbox"
                 checked={
-                  formIngredients ? formIngredients[kebabCase(ingredient?.name)]?.checked : false
+                  formIngredients
+                    ? formIngredients[kebabCase(ingredient?.name)]?.checked
+                    : false
                 }
                 onChange={handleChange}
                 disabled={!existingCustom ? false : true}

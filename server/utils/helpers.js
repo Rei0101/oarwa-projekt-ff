@@ -16,17 +16,16 @@ const fetchDocuments = async (collectionName, id, queryString) => {
   let query = {};
 
   try {
-
     if (id) {
       if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new CustomError(400, "Invalid ID format");
       }
       query._id = new mongoose.Types.ObjectId(String(id));
     }
-    
+
     if (collectionName === "menu-items") {
       if (queryString) {
-        query.name = { $regex: queryString, $options: 'i' };
+        query.name = { $regex: queryString, $options: "i" };
       }
 
       documents = await MenuItem.find(query)
@@ -54,7 +53,7 @@ const fetchDocuments = async (collectionName, id, queryString) => {
       const collection = mongoose.connection.collection(
         collectionName.replaceAll("-", "_")
       );
-  
+
       documents = await collection.find(query).sort({ _id: 1 }).toArray();
     }
 

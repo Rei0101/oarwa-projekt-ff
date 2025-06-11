@@ -79,7 +79,19 @@ function Order() {
             </div>
             <div>
               <h3>Sveukupna cijena: {totalPrice.toFixed(2)} €</h3>
-              <button onClick={() => placeOrder(user?.id, sortedBag, totalPrice, clearBag, navigate)}>Naruči!</button>
+              <button
+                onClick={() =>
+                  placeOrder(
+                    user?.id,
+                    sortedBag,
+                    totalPrice,
+                    clearBag,
+                    navigate
+                  )
+                }
+              >
+                Naruči!
+              </button>
               <button onClick={() => clearBag()}>Isprazni vrećicu</button>
             </div>
           </>

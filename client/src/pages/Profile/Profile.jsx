@@ -126,7 +126,9 @@ function Profile() {
         </table>
         <div>
           {changingPassword === passwordChangeState[0] ? (
-            <button onClick={(e) => handleLogout(e, clearBag, logout, navigate)}>
+            <button
+              onClick={(e) => handleLogout(e, clearBag, logout, navigate)}
+            >
               Odjavi se
             </button>
           ) : (

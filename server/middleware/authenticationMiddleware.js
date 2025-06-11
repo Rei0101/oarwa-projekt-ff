@@ -22,7 +22,7 @@ const authenticateUser = async (req, res, next) => {
     }
 
     req.userRole = decodedToken.role;
-    
+
     next();
   } catch (error) {
     next(error || new CustomError(401));

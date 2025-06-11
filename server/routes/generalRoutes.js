@@ -1,7 +1,7 @@
 import express from "express";
 import {
   welcomeMessage,
-  getDocuments
+  getDocuments,
 } from "../controllers/generalController.js";
 
 const router = express.Router();

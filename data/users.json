@@ -1,49 +1,51 @@
-[{
-  "_id": {
-    "$oid": "67e6e513be7311e1b5ef81e7"
+[
+  {
+    "_id": {
+      "$oid": "67e6e513be7311e1b5ef81e7"
+    },
+    "firstName": "Ante",
+    "lastName": "Antic",
+    "email": "aantic@mym.hr",
+    "password": "$2b$10$GzKVYpVvtV.2UhxNmWohhuiOjCRcEpeeIenaVIjghacP5NDs/6qY.",
+    "dateOfBirth": {
+      "$date": "2002-02-14T00:00:00.000Z"
+    },
+    "city": "Split",
+    "address": "Teslina 44",
+    "phone": "123123123",
+    "role": "admin",
+    "__v": 0
   },
-  "firstName": "Ante",
-  "lastName": "Antic",
-  "email": "aantic@mym.hr",
-  "password": "$2b$10$GzKVYpVvtV.2UhxNmWohhuiOjCRcEpeeIenaVIjghacP5NDs/6qY.",
-  "dateOfBirth": {
-    "$date": "2002-02-14T00:00:00.000Z"
+  {
+    "_id": {
+      "$oid": "67e6e515be7311e1b5ef81ea"
+    },
+    "firstName": "Ivan",
+    "lastName": "Ivic",
+    "email": "iivic@mail.com",
+    "password": "$2b$10$fHBf7B26/z1KnerkfvBmKOwE3WkrSXS/mOwLgEKgjFM7ONozDuV4u",
+    "dateOfBirth": {
+      "$date": "2001-03-12T00:00:00.000Z"
+    },
+    "city": "Split",
+    "address": "Neka Ulica 2",
+    "phone": "456456456",
+    "role": "user",
+    "__v": 0
   },
-  "city": "Split",
-  "address": "Teslina 44",
-  "phone": "123123123",
-  "role": "admin",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67e6e515be7311e1b5ef81ea"
-  },
-  "firstName": "Ivan",
-  "lastName": "Ivic",
-  "email": "iivic@mail.com",
-  "password": "$2b$10$fHBf7B26/z1KnerkfvBmKOwE3WkrSXS/mOwLgEKgjFM7ONozDuV4u",
-  "dateOfBirth": {
-    "$date": "2001-03-12T00:00:00.000Z"
-  },
-  "city": "Split",
-  "address": "Neka Ulica 2",
-  "phone": "456456456",
-  "role": "user",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "681251f1247e76bca0884ead"
-  },
-  "firstName": "Mate",
-  "lastName": "Matic",
-  "email": "mmatic@mail.com",
-  "password": "$2b$10$Tl.O3CE3O9fgjTAHiCSI1.eHafPXCT7a3UlyPsth9uqRI0k3wC/j6",
-  "dateOfBirth": null,
-  "city": "Split",
-  "address": "Hercegovačka 1",
-  "phone": "0789789789",
-  "role": "user",
-  "__v": 0
-}]
+  {
+    "_id": {
+      "$oid": "681251f1247e76bca0884ead"
+    },
+    "firstName": "Mate",
+    "lastName": "Matic",
+    "email": "mmatic@mail.com",
+    "password": "$2b$10$Tl.O3CE3O9fgjTAHiCSI1.eHafPXCT7a3UlyPsth9uqRI0k3wC/j6",
+    "dateOfBirth": null,
+    "city": "Split",
+    "address": "Hercegovačka 1",
+    "phone": "0789789789",
+    "role": "user",
+    "__v": 0
+  }
+]

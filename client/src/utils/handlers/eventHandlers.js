@@ -28,4 +28,4 @@ function handleBlur(setter) {
   };
 }
 
-export {handleFocus, handleBlur}
+export { handleFocus, handleBlur };

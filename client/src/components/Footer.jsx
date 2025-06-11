@@ -1,6 +1,9 @@
 import Navigation from "./Navigation";
+import useThemeContext from "../hooks/useThemeContext";
 
 export default function Footer() {
+  const { setTheme } = useThemeContext();
+
   return (
     <footer>
       <div>
@@ -12,9 +15,25 @@ export default function Footer() {
         <span>
           <a>Sistemska</a>
           <br />
-          <a>Svijetla</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setTheme("light");
+            }}
+          >
+            Svijetla
+          </a>
           <br />
-          <a>Tamna</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setTheme("dark");
+            }}
+          >
+            Tamna
+          </a>
         </span>
       </div>
       <div className="break"></div>

@@ -11,7 +11,7 @@ function handleMealCreation(
   navigate
 ) {
   e.preventDefault();
-  
+
   if (userRole === undefined) {
     navigate("/login");
     return;
@@ -20,9 +20,9 @@ function handleMealCreation(
     alert("Administratorski računi nemaju ove ovlasti.");
     return;
   }
-  
+
   const finalIngredients = includeValidAttributes(formIngredients);
-  
+
   if (finalIngredients.length === 0) {
     alert("Nema označenih sastojaka.");
     return;

@@ -57,7 +57,7 @@ async function handleLogout(e, clearBag, logout, navigate) {
 
   clearBag();
   logout();
-  
+
   navigate("/login");
 }
 

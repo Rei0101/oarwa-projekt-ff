@@ -23,7 +23,12 @@ export default function FormInput({
   const formattedName = kebabCase(name);
 
   const labelElement =
-    label.length > 0 ? <label htmlFor={formattedName}>{capitalize(label)}{!labelAfter ? ":" : null}</label> : null;
+    label.length > 0 ? (
+      <label htmlFor={formattedName}>
+        {capitalize(label)}
+        {!labelAfter ? ":" : null}
+      </label>
+    ) : null;
   const inputElement = (
     <input
       id={formattedName}

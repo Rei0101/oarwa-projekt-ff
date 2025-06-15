@@ -14,16 +14,19 @@ The main user of the app is the customer, but the app also supports admin accoun
    cd oarwa-projekt-ff
    ```
 4. Open the project in Visual Studio Code
-5. Create a .env file in the root directory, based on the provided .env.example. Update the variables to match your local setup.
-6. Open the terminal install dependencies
+   ```bash  
+   code .
+   ```
+6. Create a .env file in the root directory, based on the provided .env.example. Update the variables to match your local setup.
+7. Open the terminal and install dependencies
    ```bash  
    npm install
    ```
-7. Seed the database with dummy data (optional)
+8. Seed the database with dummy data (optional)
    ```bash  
    npm run seed
    ```
-9. Run the develoment server
+9. Run app client and server concurrently
    ```bash  
    npm run dev
    ```
